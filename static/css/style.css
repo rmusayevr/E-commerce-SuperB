@@ -92,7 +92,7 @@ button {
 }
 
 /* list/grid toolbar*/
-.toolbar span.button-active.button-grid, {
+.toolbar span.button-active.button-grid {
 background-color:#C2A476!important;
 }
 .toolbar a.button-grid {
