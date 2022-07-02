@@ -15,9 +15,9 @@
           <div id="rev_slider_4_1" class="rev_slider fullwidthabanner" style="display:none;" data-version="5.0.7">
             <ul>
               <!-- SLIDE  -->
-              <li data-index="rs-16" data-transition="zoomout" data-slotamount="default"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000"  data-thumb="images/slide-img1.jpg"  data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="Intro" data-description=""> 
+              <li data-index="rs-16" data-transition="zoomout" data-slotamount="default"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000"  data-thumb="{% static 'images/slide-img1.jpg' %}"  data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="Intro" data-description=""> 
                 <!-- MAIN IMAGE --> 
-                <img src="images/slide-img1.jpg" alt=""> 
+                <img src="{% static 'images/slide-img1.jpg' %}" alt=""> 
                 <!-- LAYERS --> 
                 
                 <!-- LAYER NR. 1 -->
@@ -116,9 +116,9 @@
               <!-- SLIDE  -->
               
               <!-- SLIDE  -->
-              <li data-index="rs-18" data-transition="zoomin" data-slotamount="7"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000"  data-thumb="images/slide-img2.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="Ken Burns" data-description=""> 
+              <li data-index="rs-18" data-transition="zoomin" data-slotamount="7"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000"  data-thumb="{% static 'images/slide-img2.jpg' %}"  data-rotate="0"  data-saveperformance="off"  data-title="Ken Burns" data-description=""> 
                 <!-- MAIN IMAGE --> 
-                <img src="images/slide-img2.jpg"  alt=""> 
+                <img src="{% static 'images/slide-img2.jpg' %}"  alt=""> 
                 <!-- LAYERS --> 
                 
                 <!-- LAYER NR. 1 -->
@@ -188,9 +188,9 @@
                     style="z-index: 7; white-space: nowrap;">Lorem ipsum dolor sit amet, consectetur </div>
               </li>
               <!-- SLIDE  -->
-              <li data-index="rs-19" data-transition="zoomout" data-slotamount="default"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000"  data-thumb="images/video-img.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="HTML5 Video" data-description=""> 
+              <li data-index="rs-19" data-transition="zoomout" data-slotamount="default"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000"  data-thumb="{% static 'images/video-img.jpg' %}"  data-rotate="0"  data-saveperformance="off"  data-title="HTML5 Video" data-description=""> 
                 <!-- MAIN IMAGE --> 
-                <img src="images/video-img.jpg"  alt=""> 
+                <img src="{% static 'images/video-img.jpg' %}"  alt=""> 
                 <!-- LAYERS --> 
                 
                 <!-- BACKGROUND VIDEO LAYER -->
@@ -199,8 +199,8 @@
                     data-volume="mute" 
                     data-videowidth="100%" 
                     data-videoheight="100%" 
-                    data-videomp4="images/bg1.mp4"
-                    data-videowebm="images/bg1.webm"  
+                    data-videomp4="{% static 'images/bg1.mp4' %}"
+                    data-videowebm="{% static 'images/bg1.webm' %}"  
                     data-videopreload="preload" 
                     data-videoloop="none" 
                     data-forceCover="1" 
@@ -312,9 +312,9 @@
     <div class="promo-section">
     <div class="container">
     <div class="row">
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"><img alt="promotion banner" src="images/promo-banner1.jpg"></div>
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"><img alt="promotion banner" src="images/promo-banner2.jpg"></div>
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"><img alt="promotion banner" src="images/promo-banner3.jpg"></div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"><img alt="promotion banner" src="{% static 'images/promo-banner1.jpg' %}"></div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"><img alt="promotion banner" src="{% static 'images/promo-banner2.jpg' %}"></div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"><img alt="promotion banner" src="{% static 'images/promo-banner3.jpg' %}"></div>
     </div>
     </div>
     </div>
@@ -331,7 +331,7 @@
             <div class="item">
               <div class="item-inner">
                 <div class="item-img">
-                  <div class="item-img-info"> <a class="product-image" title="Retis lapen casen" href="#"> <img alt="Retis lapen casen" src="products-images/product.jpg"> </a>
+                  <div class="item-img-info"> <a class="product-image" title="Retis lapen casen" href="#"> <img alt="Retis lapen casen" src="{% static 'products-images/product.jpg' %}"> </a>
                     <div class="new-label new-top-left">new</div>
                     <div class="box-timer">
                         <div class="countbox_2 timer-grid"></div>
@@ -369,7 +369,7 @@
             <div class="item">
               <div class="item-inner">
                 <div class="item-img">
-                  <div class="item-img-info"> <a class="product-image" title="Retis lapen casen" href="#"> <img alt="Retis lapen casen" src="products-images/product.jpg"> </a>
+                  <div class="item-img-info"> <a class="product-image" title="Retis lapen casen" href="#"> <img alt="Retis lapen casen" src="{% static 'products-images/product.jpg' %}"> </a>
                     <div class="actions">
                       <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
                       <div class="link-wishlist"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Wishlist"><span>Add to Wishlist</span></a></div>
@@ -406,7 +406,7 @@
             <div class="item">
               <div class="item-inner">
                 <div class="item-img">
-                  <div class="item-img-info"> <a class="product-image" title="Retis lapen casen" href="#"> <img alt="Retis lapen casen" src="products-images/product.jpg"> </a>
+                  <div class="item-img-info"> <a class="product-image" title="Retis lapen casen" href="#"> <img alt="Retis lapen casen" src="{% static 'products-images/product.jpg' %}"> </a>
                     <div class="sale-label new-top-left">Sale</div>
                     <div class="actions">
                       <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
@@ -443,7 +443,7 @@
             <div class="item">
               <div class="item-inner">
                 <div class="item-img">
-                  <div class="item-img-info"> <a class="product-image" title="Retis lapen casen" href="#"> <img alt="Retis lapen casen" src="products-images/product.jpg"> </a>
+                  <div class="item-img-info"> <a class="product-image" title="Retis lapen casen" href="#"> <img alt="Retis lapen casen" src="{% static 'products-images/product.jpg' %}"> </a>
                     <div class="actions">
                       <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
                       <div class="link-wishlist"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Wishlist"><span>Add to Wishlist</span></a></div>
@@ -479,7 +479,7 @@
             <div class="item">
               <div class="item-inner">
                 <div class="item-img">
-                  <div class="item-img-info"> <a class="product-image" title="Retis lapen casen" href="#"> <img alt="Retis lapen casen" src="products-images/product.jpg"> </a>
+                  <div class="item-img-info"> <a class="product-image" title="Retis lapen casen" href="#"> <img alt="Retis lapen casen" src="{% static 'products-images/product.jpg' %}"> </a>
                     <div class="actions">
                       <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
                       <div class="link-wishlist"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Wishlist"><span>Add to Wishlist</span></a></div>
@@ -514,7 +514,7 @@
             <div class="item">
               <div class="item-inner">
                 <div class="item-img">
-                  <div class="item-img-info"> <a class="product-image" title="Retis lapen casen" href="#"> <img alt="Retis lapen casen" src="products-images/product.jpg"> </a>
+                  <div class="item-img-info"> <a class="product-image" title="Retis lapen casen" href="#"> <img alt="Retis lapen casen" src="{% static 'products-images/product.jpg' %}"> </a>
                     <div class="actions">
                       <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
                       <div class="link-wishlist"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Wishlist"><span>Add to Wishlist</span></a></div>
@@ -549,7 +549,7 @@
             <div class="item">
               <div class="item-inner">
                 <div class="item-img">
-                  <div class="item-img-info"> <a class="product-image" title="Retis lapen casen" href="#"> <img alt="Retis lapen casen" src="products-images/product.jpg"> </a>
+                  <div class="item-img-info"> <a class="product-image" title="Retis lapen casen" href="#"> <img alt="Retis lapen casen" src="{% static 'products-images/product.jpg' %}"> </a>
                       <div class="actions">
                       <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
                       <div class="link-wishlist"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Wishlist"><span>Add to Wishlist</span></a></div>
@@ -627,7 +627,7 @@
                             <li class="item item-animate wide-first">
                               <div class="item-inner">
                                 <div class="item-img">
-                                  <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="products-images/product.jpg" alt="Retis lapen casen"></a>
+                                  <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="{% static 'products-images/product.jpg' %}" alt="Retis lapen casen"></a>
                         
                                     <div class="actions">
                                       <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
@@ -662,7 +662,7 @@
                             <li class="item item-animate">
                               <div class="item-inner">
                                 <div class="item-img">
-                                  <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="products-images/product.jpg" alt="Retis lapen casen"></a>
+                                  <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="{% static 'products-images/product.jpg' %}" alt="Retis lapen casen"></a>
                         
                                     <div class="actions">
                                       <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
@@ -697,7 +697,7 @@
                             <li class="item item-animate">
                               <div class="item-inner">
                                 <div class="item-img">
-                                  <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="products-images/product.jpg" alt="Retis lapen casen"></a>
+                                  <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="{% static 'products-images/product.jpg' %}" alt="Retis lapen casen"></a>
                         
                                     <div class="actions">
                                       <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
@@ -732,7 +732,7 @@
                             <li class="item last item-animate">
                               <div class="item-inner">
                                 <div class="item-img">
-                                  <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="products-images/product.jpg" alt="Retis lapen casen"></a>
+                                  <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="{% static 'products-images/product.jpg' %}" alt="Retis lapen casen"></a>
                     
                                     <div class="actions">
                                       <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
@@ -771,7 +771,7 @@
                             <li class="item item-animate wide-first">
                               <div class="item-inner">
                                 <div class="item-img">
-                                  <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="products-images/product.jpg" alt="Retis lapen casen"></a>
+                                  <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="{% static 'products-images/product.jpg' %}" alt="Retis lapen casen"></a>
                                               <div class="actions">
                                       <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
                                       <div class="link-wishlist"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Wishlist"><span>Add to Wishlist</span></a></div>
@@ -805,7 +805,7 @@
                             <li class="item item-animate">
                               <div class="item-inner">
                                 <div class="item-img">
-                                  <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="products-images/product.jpg" alt="Retis lapen casen"></a>
+                                  <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="{% static 'products-images/product.jpg' %}" alt="Retis lapen casen"></a>
                                           <div class="actions">
                                       <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
                                       <div class="link-wishlist"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Wishlist"><span>Add to Wishlist</span></a></div>
@@ -839,7 +839,7 @@
                             <li class="item item-animate">
                               <div class="item-inner">
                                 <div class="item-img">
-                                  <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="products-images/product.jpg" alt="Retis lapen casen"></a>
+                                  <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="{% static 'products-images/product.jpg' %}" alt="Retis lapen casen"></a>
                               
                                     <div class="actions">
                                       <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
@@ -874,7 +874,7 @@
                             <li class="item item-animate last">
                               <div class="item-inner">
                                 <div class="item-img">
-                                  <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="products-images/product.jpg" alt="Retis lapen casen"></a>
+                                  <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="{% static 'products-images/product.jpg' %}" alt="Retis lapen casen"></a>
                                           <div class="actions">
                                       <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
                                       <div class="link-wishlist"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Wishlist"><span>Add to Wishlist</span></a></div>
@@ -912,7 +912,7 @@
                             <li class="item item-animate wide-first">
                               <div class="item-inner">
                                 <div class="item-img">
-                                  <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="products-images/product.jpg" alt="Retis lapen casen"></a>
+                                  <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="{% static 'products-images/product.jpg' %}" alt="Retis lapen casen"></a>
                                         <div class="actions">
                                       <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
                                       <div class="link-wishlist"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Wishlist"><span>Add to Wishlist</span></a></div>
@@ -946,7 +946,7 @@
                             <li class="item item-animate">
                               <div class="item-inner">
                                 <div class="item-img">
-                                  <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="products-images/product.jpg" alt="Retis lapen casen"></a>
+                                  <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="{% static 'products-images/product.jpg' %}" alt="Retis lapen casen"></a>
                                     <div class="actions">
                                       <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
                                       <div class="link-wishlist"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Wishlist"><span>Add to Wishlist</span></a></div>
@@ -980,7 +980,7 @@
                             <li class="item item-animate">
                               <div class="item-inner">
                                 <div class="item-img">
-                                  <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="products-images/product.jpg" alt="Retis lapen casen"></a>
+                                  <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="{% static 'products-images/product.jpg' %}" alt="Retis lapen casen"></a>
                                             <div class="actions">
                                       <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
                                       <div class="link-wishlist"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Wishlist"><span>Add to Wishlist</span></a></div>
@@ -1014,7 +1014,7 @@
                             <li class="item item-animate last">
                               <div class="item-inner">
                                 <div class="item-img">
-                                  <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="products-images/product.jpg" alt="Retis lapen casen"></a>
+                                  <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="{% static 'products-images/product.jpg' %}" alt="Retis lapen casen"></a>
                                         <div class="actions">
                                       <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
                                       <div class="link-wishlist"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Wishlist"><span>Add to Wishlist</span></a></div>
@@ -1074,14 +1074,14 @@
                 <h2> <a href="#">Lorem ipsum dolor sit amet, consect adipiscing elit</a> </h2>
             <div class="featured-img">
             <span class="gradient-overlay"></span>
-            <img src="images/blog-img1.jpg" alt="blog post">
+            <img src="{% static 'images/blog-img1.jpg' %}" alt="blog post">
             
             </div>
                     
                       </div>
                       <div class="entry-meta">
         <a href="#">
-    <span class="author-avatar byline"><img alt="" src="images/admin-photo.jpg" class="avatar avatar-96 photo">By John Doe</span> <span class="timestamp">January 26, 2016</span>
+    <span class="author-avatar byline"><img alt="" src="{% static 'images/admin-photo.jpg' %}" class="avatar avatar-96 photo">By John Doe</span> <span class="timestamp">January 26, 2016</span>
   </a>
 
         
@@ -1098,14 +1098,14 @@
                 <h2> <a href="#"> Pellentesque aliquet, sem eget laoreet ultrices</a> </h2>
             <div class="featured-img">
             <span class="gradient-overlay"></span>
-            <img src="images/blog-img2.jpg"  alt="blog post 2">
+            <img src="{% static 'images/blog-img2.jpg' %}"  alt="blog post 2">
             
             </div>
                     
                       </div>
                       <div class="entry-meta">
         <a href="#">
-    <span class="author-avatar byline"><img alt="" src="images/admin-photo1.jpg"  class="avatar avatar-96 photo">By Saraha Smith</span>
+    <span class="author-avatar byline"><img alt="" src="{% static 'images/admin-photo1.jpg' %}"  class="avatar avatar-96 photo">By Saraha Smith</span>
   </a>
   <span class="timestamp">January 20, 2016</span>
         
@@ -1129,35 +1129,35 @@
             <div class="slider-items slider-width-col6"> 
               
               <!-- Item -->
-              <div class="item"><a href="#"><img src="images/b-logo3.png" alt="Image"></a> </div>
+              <div class="item"><a href="#"><img src="{% static 'images/b-logo3.png' %}" alt="Image"></a> </div>
               <!-- End Item --> 
               
               <!-- Item -->
-              <div class="item"><a href="#"><img src="images/b-logo2.png" alt="Image"></a> </div>
+              <div class="item"><a href="#"><img src="{% static 'images/b-logo2.png' %}" alt="Image"></a> </div>
               <!-- End Item --> 
               
               <!-- Item -->
-              <div class="item"><a href="#"><img src="images/b-logo1.png" alt="Image"></a> </div>
+              <div class="item"><a href="#"><img src="{% static 'images/b-logo1.png' %}" alt="Image"></a> </div>
               <!-- End Item --> 
               
               <!-- Item -->
-              <div class="item"><a href="#"><img src="images/b-logo4.png" alt="Image"></a> </div>
+              <div class="item"><a href="#"><img src="{% static 'images/b-logo4.png' %}" alt="Image"></a> </div>
               <!-- End Item --> 
               
               <!-- Item -->
-              <div class="item"><a href="#"><img src="images/b-logo5.png" alt="Image"></a> </div>
+              <div class="item"><a href="#"><img src="{% static 'images/b-logo5.png' %}" alt="Image"></a> </div>
               <!-- End Item --> 
               
               <!-- Item -->
-              <div class="item"><a href="#"><img src="images/b-logo6.png" alt="Image"></a> </div>
+              <div class="item"><a href="#"><img src="{% static 'images/b-logo6.png' %}" alt="Image"></a> </div>
               <!-- End Item --> 
               
               <!-- Item -->
-              <div class="item"><a href="#"><img src="images/b-logo1.png" alt="Image"></a> </div>
+              <div class="item"><a href="#"><img src="{% static 'images/b-logo1.png' %}" alt="Image"></a> </div>
               <!-- End Item --> 
               
               <!-- Item -->
-              <div class="item"><a href="#"><img src="images/b-logo4.png" alt="Image"></a> </div>
+              <div class="item"><a href="#"><img src="{% static 'images/b-logo4.png' %}" alt="Image"></a> </div>
               <!-- End Item --> 
               
             </div>
@@ -1404,9 +1404,9 @@
     </ul>
         <div class="dropdown block-language-wrapper">
             <ul>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="images/english.png" alt="language"> English </a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="images/francais.png" alt="language"> French </a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="images/german.png" alt="language"> German </a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="{% static 'images/english.png' %}" alt="language"> English </a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="{% static 'images/francais.png' %}" alt="language"> French </a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="{% static 'images/german.png' %}" alt="language"> German </a></li>
             </ul>
         </div>
         <div class="dropdown block-currency-wrapper"> 
