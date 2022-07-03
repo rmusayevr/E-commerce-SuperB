@@ -7,7 +7,7 @@
 <!-- CSS Style -->
 
 {% block css %}
-  <link rel="stylesheet" type="text/css" href="css/internal.css">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/internal.css' %}">
 {% endblock %}
 
 
@@ -58,35 +58,35 @@
             <div class="slider-items slider-width-col6"> 
               
               <!-- Item -->
-              <div class="item"><a href="#"><img src="images/b-logo3.png" alt="Image"></a> </div>
+              <div class="item"><a href="#"><img src="{% static 'images/b-logo3.png' %}" alt="Image"></a> </div>
               <!-- End Item --> 
               
               <!-- Item -->
-              <div class="item"><a href="#"><img src="images/b-logo2.png" alt="Image"></a> </div>
+              <div class="item"><a href="#"><img src="{% static 'images/b-logo2.png' %}" alt="Image"></a> </div>
               <!-- End Item --> 
               
               <!-- Item -->
-              <div class="item"><a href="#"><img src="images/b-logo1.png" alt="Image"></a> </div>
+              <div class="item"><a href="#"><img src="{% static 'images/b-logo1.png' %}" alt="Image"></a> </div>
               <!-- End Item --> 
               
               <!-- Item -->
-              <div class="item"><a href="#"><img src="images/b-logo4.png" alt="Image"></a> </div>
+              <div class="item"><a href="#"><img src="{% static 'images/b-logo4.png' %}" alt="Image"></a> </div>
               <!-- End Item --> 
               
               <!-- Item -->
-              <div class="item"><a href="#"><img src="images/b-logo5.png" alt="Image"></a> </div>
+              <div class="item"><a href="#"><img src="{% static 'images/b-logo5.png' %}" alt="Image"></a> </div>
               <!-- End Item --> 
               
               <!-- Item -->
-              <div class="item"><a href="#"><img src="images/b-logo6.png" alt="Image"></a> </div>
+              <div class="item"><a href="#"><img src="{% static 'images/b-logo6.png' %}" alt="Image"></a> </div>
               <!-- End Item --> 
               
               <!-- Item -->
-              <div class="item"><a href="#"><img src="images/b-logo1.png" alt="Image"></a> </div>
+              <div class="item"><a href="#"><img src="{% static 'images/b-logo1.png' %}" alt="Image"></a> </div>
               <!-- End Item --> 
               
               <!-- Item -->
-              <div class="item"><a href="#"><img src="images/b-logo4.png" alt="Image"></a> </div>
+              <div class="item"><a href="#"><img src="{% static 'images/b-logo4.png' %}" alt="Image"></a> </div>
               <!-- End Item --> 
               
             </div>
@@ -120,25 +120,25 @@
         <ul>
             <li><a href="grid.html">Grid</a> </li>
             <li> <a href="list.html">List</a> </li>
-            <li> <a href="product_detail.html">Product Detail</a> </li>
-            <li> <a href="shopping_cart.html">Shopping Cart</a> </li>
-            <li><a href="checkout.html">Checkout</a>
+            <li> <a href="{% url 'product_detail' %}">Product Detail</a> </li>
+            <li> <a href="{% url 'shopping_cart' %}">Shopping Cart</a> </li>
+            <li><a href="{% url 'checkout' %}">Checkout</a>
             <ul>
                 <li><a href="checkout_method.html">Checkout Method</a> </li>
-                <li><a href="checkout_billing_info.html">Checkout Billing Info</a> </li>
+                <li><a href="{% url 'checkout_billing_info' %}">Checkout Billing Info</a> </li>
             </ul>
             </li>
-            <li> <a href="wishlist.html">Wishlist</a> </li>
+            <li> <a href="{% url 'wishlist' %}">Wishlist</a> </li>
             <li> <a href="dashboard.html">Dashboard</a> </li>
             <li> <a href="multiple_addresses.html">Multiple Addresses</a> </li>
-            <li> <a href="about_us.html">About us</a> </li>
-            <li><a href="blog.html">Blog</a>
+            <li> <a href="{% url 'about_us' %}">About us</a> </li>
+            <li><a href="{% url 'blog' %}">Blog</a>
             <ul>
-                <li><a href="blog-detail.html">Blog Detail</a> </li>
+                <li><a href="{% url 'blog_detail' %}">Blog Detail</a> </li>
             </ul>
             </li>
-            <li><a href="contact_us.html">Contact us</a> </li>
-            <li><a href="404error.html">404 Error Page</a> </li>
+            <li><a href="{% url 'contact_us' %}">Contact us</a> </li>
+            <li><a href="{% url 'error' %}">404 Error Page</a> </li>
         </ul>
         </li>
         <li><a href="#">Women</a>
@@ -299,13 +299,13 @@
         </li>
         <li><a href="#">Furniture</a> </li>
         <li><a href="#">Kids</a> </li>
-        <li><a href="contact-us.html">Contact Us</a> </li>
+        <li><a href="{% url 'contact_us' %}">Contact Us</a> </li>
     </ul>
         <div class="dropdown block-language-wrapper">
             <ul>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="images/english.png" alt="language"> English </a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="images/francais.png" alt="language"> French </a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="images/german.png" alt="language"> German </a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="{% static 'images/english.png' %}" alt="language"> English </a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="{% static 'images/francais.png' %}" alt="language"> French </a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="{% static 'images/german.png' %}" alt="language"> German </a></li>
             </ul>
         </div>
         <div class="dropdown block-currency-wrapper"> 
@@ -318,9 +318,9 @@
   </div>
 {% endblock %}
 {% block js %}
-  <script type="text/javascript" src="js/parallax.js"></script>
-  <script type="text/javascript" src="js/jquery.flexslider.js"></script> 
-  <script type="text/javascript" src="js/cloud-zoom.js"></script>
+  <script type="text/javascript" src="{% static 'js/parallax.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/jquery.flexslider.js' %}"></script> 
+  <script type="text/javascript" src="{% static 'js/cloud-zoom.js' %}"></script>
 {% endblock %}
 </body>
 </html>

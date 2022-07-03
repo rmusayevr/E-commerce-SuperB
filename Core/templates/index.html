@@ -1221,25 +1221,25 @@
         <ul>
             <li><a href="grid.html">Grid</a> </li>
             <li> <a href="list.html">List</a> </li>
-            <li> <a href="product_detail.html">Product Detail</a> </li>
-            <li> <a href="shopping_cart.html">Shopping Cart</a> </li>
-            <li><a href="checkout.html">Checkout</a>
+            <li> <a href="{% url 'product_detail' %}">Product Detail</a> </li>
+            <li> <a href="{% url 'shopping_cart' %}">Shopping Cart</a> </li>
+            <li><a href="{% url 'checkout' %}">Checkout</a>
             <ul>
                 <li><a href="checkout_method.html">Checkout Method</a> </li>
-                <li><a href="checkout_billing_info.html">Checkout Billing Info</a> </li>
+                <li><a href="{% url 'checkout_billing_info' %}">Checkout Billing Info</a> </li>
             </ul>
             </li>
-            <li> <a href="wishlist.html">Wishlist</a> </li>
+            <li> <a href="{% url 'wishlist' %}">Wishlist</a> </li>
             <li> <a href="dashboard.html">Dashboard</a> </li>
             <li> <a href="multiple_addresses.html">Multiple Addresses</a> </li>
-            <li> <a href="about_us.html">About us</a> </li>
-            <li><a href="blog.html">Blog</a>
+            <li> <a href="{% url 'about_us' %}">About us</a> </li>
+            <li><a href="{% url 'blog' %}">Blog</a>
             <ul>
-                <li><a href="blog-detail.html">Blog Detail</a> </li>
+                <li><a href="{% url 'blog_detail' %}">Blog Detail</a> </li>
             </ul>
             </li>
-            <li><a href="contact_us.html">Contact us</a> </li>
-            <li><a href="404error.html">404 Error Page</a> </li>
+            <li><a href="{% url 'contact_us' %}">Contact us</a> </li>
+            <li><a href="{% url 'error' %}">404 Error Page</a> </li>
         </ul>
         </li>
         <li><a href="#">Women</a>
@@ -1400,7 +1400,7 @@
         </li>
         <li><a href="#">Furniture</a> </li>
         <li><a href="#">Kids</a> </li>
-        <li><a href="contact-us.html">Contact Us</a> </li>
+        <li><a href="{% url 'contact_us' %}">Contact Us</a> </li>
     </ul>
         <div class="dropdown block-language-wrapper">
             <ul>

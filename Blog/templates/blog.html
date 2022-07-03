@@ -8,7 +8,7 @@
 <!-- CSS Style -->
 
 {% block css %}
-  <link rel="stylesheet" type="text/css" href="css/blogmate.css">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/blogmate.css' %}">
 {% endblock %}
 
 
@@ -30,14 +30,14 @@
                 <h2> <a href="#">Lorem ipsum dolor sit amet, consect adipiscing elit</a> </h2>
             <div class="featured-img">
             <span class="gradient-overlay"></span>
-            <img src="images/blog-img1.jpg" alt="blog post">
+            <img src="{% static 'images/blog-img1.jpg' %}" alt="blog post">
             
             </div>
                     
                       </div>
                       <div class="entry-meta">
         <a href="#">
-    <span class="author-avatar byline"><img alt="" src="images/admin-photo.jpg" class="avatar avatar-96 photo">By John Doe</span> <span class="timestamp">January 26, 2016</span>
+    <span class="author-avatar byline"><img alt="" src="{% static 'images/admin-photo.jpg' %}" class="avatar avatar-96 photo">By John Doe</span> <span class="timestamp">January 26, 2016</span>
   </a>
   </div>
                       <p> Fusce ac pharetra urna. Duis non lacus sit amet lacus interdum facilisis sed non est. Ut mi metus, semper eu dictum nec, condimentum sed sapien. Nullam lobortis nunc semper ipsum luctus ut viverra ante eleifend.</p>
@@ -49,14 +49,14 @@
                 <h2> <a href="#"> Pellentesque aliquet, sem eget laoreet ultrices</a> </h2>
             <div class="featured-img">
             <span class="gradient-overlay"></span>
-            <img src="images/blog-img2.jpg" alt="blog post 2">
+            <img src="{% static 'images/blog-img2.jpg' %}" alt="blog post 2">
             
             </div>
                     
                       </div>
                       <div class="entry-meta">
         <a href="#">
-    <span class="author-avatar byline"><img alt="" src="images/admin-photo1.jpg" class="avatar avatar-96 photo">By Saraha Smith</span>
+    <span class="author-avatar byline"><img alt="" src="{% static 'images/admin-photo1.jpg' %}" class="avatar avatar-96 photo">By Saraha Smith</span>
   </a>
   <span class="timestamp">January 20, 2016</span>
         
@@ -71,14 +71,14 @@
                 <h2> <a href="#">Lorem ipsum dolor sit amet, consect adipiscing elit</a> </h2>
             <div class="featured-img">
             <span class="gradient-overlay"></span>
-            <img src="images/blog-img1.jpg" alt="blog post">
+            <img src="{% static 'images/blog-img1.jpg' %}" alt="blog post">
             
             </div>
                     
                       </div>
                       <div class="entry-meta">
         <a href="#">
-    <span class="author-avatar byline"><img alt="" src="images/admin-photo.jpg" class="avatar avatar-96 photo">By John Doe</span> <span class="timestamp">January 26, 2016</span>
+    <span class="author-avatar byline"><img alt="" src="{% static 'images/admin-photo.jpg' %}" class="avatar avatar-96 photo">By John Doe</span> <span class="timestamp">January 26, 2016</span>
   </a>
   </div>
                       <p> Fusce ac pharetra urna. Duis non lacus sit amet lacus interdum facilisis sed non est. Ut mi metus, semper eu dictum nec, condimentum sed sapien. Nullam lobortis nunc semper ipsum luctus ut viverra ante eleifend.</p>
@@ -90,14 +90,14 @@
                 <h2> <a href="#"> Pellentesque aliquet, sem eget laoreet ultrices</a> </h2>
             <div class="featured-img">
             <span class="gradient-overlay"></span>
-            <img src="images/blog-img2.jpg" alt="blog post 2">
+            <img src="{% static 'images/blog-img2.jpg' %}" alt="blog post 2">
             
             </div>
                     
                       </div>
                       <div class="entry-meta">
         <a href="#">
-    <span class="author-avatar byline"><img alt="" src="images/admin-photo1.jpg" class="avatar avatar-96 photo">By Saraha Smith</span>
+    <span class="author-avatar byline"><img alt="" src="{% static 'images/admin-photo1.jpg' %}" class="avatar avatar-96 photo">By Saraha Smith</span>
   </a>
   <span class="timestamp">January 20, 2016</span>
         
@@ -119,7 +119,7 @@
                 <div class="widget-content">
                   <ul class="posts-list unstyled clearfix">
                     <li>
-                      <figure class="featured-thumb"> <a href="#"> <img width="80" height="53" alt="blog image" src="images/blog-img1.jpg"> </a> </figure>
+                      <figure class="featured-thumb"> <a href="#"> <img width="80" height="53" alt="blog image" src="{% static 'images/blog-img1.jpg' %}"> </a> </figure>
                       <!--featured-thumb-->
                       <h4><a title="Pellentesque posuere" href="#">Pellentesque posuere</a></h4>
                       <p class="post-meta"><i class="icon-calendar"></i>
@@ -127,7 +127,7 @@
                         .</p>
                     </li>
                     <li>
-                      <figure class="featured-thumb"> <a href="#"> <img width="80" height="53" alt="blog image" src="images/blog-img2.jpg"> </a> </figure>
+                      <figure class="featured-thumb"> <a href="#"> <img width="80" height="53" alt="blog image" src="{% static 'images/blog-img2.jpg' %}"> </a> </figure>
                       <!--featured-thumb-->
                       <h4><a title="Dolor lorem ipsum" href="#">Dolor lorem ipsum</a></h4>
                       <p class="post-meta"><i class="icon-calendar"></i>
@@ -135,7 +135,7 @@
                         .</p>
                     </li>
                     <li>
-                      <figure class="featured-thumb"> <a href="#"> <img width="80" height="53" alt="blog image" src="images/blog-img1.jpg"> </a> </figure>
+                      <figure class="featured-thumb"> <a href="#"> <img width="80" height="53" alt="blog image" src="{% static 'images/blog-img1.jpg' %}"> </a> </figure>
                       <!--featured-thumb-->
                       <h4><a title="Aliquam eget sapien placerat" href="#">Aliquam eget sapien placerat</a></h4>
                       <p class="post-meta"><i class="icon-calendar"></i>
@@ -143,7 +143,7 @@
                         .</p>
                     </li>
                     <li>
-                      <figure class="featured-thumb"> <a href="#"> <img width="80" height="53" alt="blog image" src="images/blog-img2.jpg"> </a> </figure>
+                      <figure class="featured-thumb"> <a href="#"> <img width="80" height="53" alt="blog image" src="{% static 'images/blog-img2.jpg' %}"> </a> </figure>
                       <!--featured-thumb-->
                       <h4><a title="Pellentesque habitant morbi" href="#">Pellentesque habitant morbi</a></h4>
                       <p class="post-meta"><i class="icon-calendar"></i>
@@ -163,8 +163,8 @@
                 </ul>
               </div>
               <!-- Banner Ad Block -->
-              <div class="ad-spots widget"> <a target="_self" href="#" title=""><img alt="offer banner" src="images/bloc3.jpg"></a></br>
-                <a target="_self" href="#" title=""><img alt="offer banner" src="images/block2.jpg"></a> </div>
+              <div class="ad-spots widget"> <a target="_self" href="#" title=""><img alt="offer banner" src="{% static 'images/bloc3.jpg' %}"></a></br>
+                <a target="_self" href="#" title=""><img alt="offer banner" src="{% static 'images/block2.jpg' %}"></a> </div>
               <!-- Banner Text Block -->
               <div class="text-widget widget widget__sidebar">
                 <h3 class="widget-title">Text Widget</h3>
@@ -185,35 +185,35 @@
             <div class="slider-items slider-width-col6"> 
               
               <!-- Item -->
-              <div class="item"><a href="#"><img src="images/b-logo3.png" alt="Image"></a> </div>
+              <div class="item"><a href="#"><img src="{% static 'images/b-logo3.png' %}" alt="Image"></a> </div>
               <!-- End Item --> 
               
               <!-- Item -->
-              <div class="item"><a href="#"><img src="images/b-logo2.png" alt="Image"></a> </div>
+              <div class="item"><a href="#"><img src="{% static 'images/b-logo2.png' %}" alt="Image"></a> </div>
               <!-- End Item --> 
               
               <!-- Item -->
-              <div class="item"><a href="#"><img src="images/b-logo1.png" alt="Image"></a> </div>
+              <div class="item"><a href="#"><img src="{% static 'images/b-logo1.png' %}" alt="Image"></a> </div>
               <!-- End Item --> 
               
               <!-- Item -->
-              <div class="item"><a href="#"><img src="images/b-logo4.png" alt="Image"></a> </div>
+              <div class="item"><a href="#"><img src="{% static 'images/b-logo4.png' %}" alt="Image"></a> </div>
               <!-- End Item --> 
               
               <!-- Item -->
-              <div class="item"><a href="#"><img src="images/b-logo5.png" alt="Image"></a> </div>
+              <div class="item"><a href="#"><img src="{% static 'images/b-logo5.png' %}" alt="Image"></a> </div>
               <!-- End Item --> 
               
               <!-- Item -->
-              <div class="item"><a href="#"><img src="images/b-logo6.png" alt="Image"></a> </div>
+              <div class="item"><a href="#"><img src="{% static 'images/b-logo6.png' %}" alt="Image"></a> </div>
               <!-- End Item --> 
               
               <!-- Item -->
-              <div class="item"><a href="#"><img src="images/b-logo1.png" alt="Image"></a> </div>
+              <div class="item"><a href="#"><img src="{% static 'images/b-logo1.png' %}" alt="Image"></a> </div>
               <!-- End Item --> 
               
               <!-- Item -->
-              <div class="item"><a href="#"><img src="images/b-logo4.png" alt="Image"></a> </div>
+              <div class="item"><a href="#"><img src="{% static 'images/b-logo4.png' %}" alt="Image"></a> </div>
               <!-- End Item --> 
               
             </div>
@@ -247,25 +247,25 @@
         <ul>
             <li><a href="grid.html">Grid</a> </li>
             <li> <a href="list.html">List</a> </li>
-            <li> <a href="product_detail.html">Product Detail</a> </li>
-            <li> <a href="shopping_cart.html">Shopping Cart</a> </li>
-            <li><a href="checkout.html">Checkout</a>
+            <li> <a href="{% url 'product_detail' %}">Product Detail</a> </li>
+            <li> <a href="{% url 'shopping_cart' %}">Shopping Cart</a> </li>
+            <li><a href="{% url 'checkout' %}">Checkout</a>
             <ul>
                 <li><a href="checkout_method.html">Checkout Method</a> </li>
-                <li><a href="checkout_billing_info.html">Checkout Billing Info</a> </li>
+                <li><a href="{% url 'checkout_billing_info' %}">Checkout Billing Info</a> </li>
             </ul>
             </li>
-            <li> <a href="wishlist.html">Wishlist</a> </li>
+            <li> <a href="{% url 'wishlist' %}">Wishlist</a> </li>
             <li> <a href="dashboard.html">Dashboard</a> </li>
             <li> <a href="multiple_addresses.html">Multiple Addresses</a> </li>
-            <li> <a href="about_us.html">About us</a> </li>
-            <li><a href="blog.html">Blog</a>
+            <li> <a href="{% url 'about_us' %}">About us</a> </li>
+            <li><a href="{% url 'blog' %}">Blog</a>
             <ul>
-                <li><a href="blog-detail.html">Blog Detail</a> </li>
+                <li><a href="{% url 'blog_detail' %}">Blog Detail</a> </li>
             </ul>
             </li>
-            <li><a href="contact_us.html">Contact us</a> </li>
-            <li><a href="404error.html">404 Error Page</a> </li>
+            <li><a href="{% url 'contact_us' %}">Contact us</a> </li>
+            <li><a href="{% url 'error' %}">404 Error Page</a> </li>
         </ul>
         </li>
         <li><a href="#">Women</a>
@@ -426,13 +426,13 @@
         </li>
         <li><a href="#">Furniture</a> </li>
         <li><a href="#">Kids</a> </li>
-        <li><a href="contact-us.html">Contact Us</a> </li>
+        <li><a href="{% url 'contact_us' %}">Contact Us</a> </li>
     </ul>
         <div class="dropdown block-language-wrapper">
             <ul>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="images/english.png" alt="language"> English </a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="images/francais.png" alt="language"> French </a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="images/german.png" alt="language"> German </a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="{% static 'images/english.png' %}" alt="language"> English </a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="{% static 'images/francais.png' %}" alt="language"> French </a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="{% static 'images/german.png' %}" alt="language"> German </a></li>
             </ul>
         </div>
         <div class="dropdown block-currency-wrapper"> 
@@ -445,9 +445,9 @@
   </div>
 {% endblock %}
 {% block js %}
-  <script type="text/javascript" src="js/parallax.js"></script>
-  <script type="text/javascript" src="js/jquery.flexslider.js"></script> 
-  <script type="text/javascript" src="js/cloud-zoom.js"></script>
+  <script type="text/javascript" src="{% static 'js/parallax.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/jquery.flexslider.js' %}"></script> 
+  <script type="text/javascript" src="{% static 'js/cloud-zoom.js' %}"></script>
 {% endblock %}
 </body>
 </html>

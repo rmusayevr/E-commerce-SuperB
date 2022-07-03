@@ -181,40 +181,40 @@
               <ul class="level1" style="display: none;">
                 <li class="level1 first"><a href="grid.html"><span>Grid</span></a></li>
                 <li class="level1 nav-10-2"> <a href="list.html"> <span>List</span> </a> </li>
-                <li class="level1 nav-10-3"> <a href="product_detail.html"> <span>Product Detail</span> </a> </li>
-                <li class="level1 nav-10-4"> <a href="shopping_cart.html"> <span>Shopping Cart</span> </a> </li>
-                <li class="level1 first parent"><a href="checkout.html"><span>Checkout</span></a> 
+                <li class="level1 nav-10-3"> <a href="{% url 'product_detail' %}"> <span>Product Detail</span> </a> </li>
+                <li class="level1 nav-10-4"> <a href="{% url 'shopping_cart' %}"> <span>Shopping Cart</span> </a> </li>
+                <li class="level1 first parent"><a href="{% url 'checkout' %}"><span>Checkout</span></a> 
                   <!--sub sub category-->
                   <ul class="level2 right-sub" style="top: 0px; left: 165px; display: none;">
                     <li class="level2 nav-2-1-1 first"><a href="checkout_method.html"><span>Checkout Method</span></a></li>
-                    <li class="level2 nav-2-1-5 last"><a href="checkout_billing_info.html"><span>Checkout Billing Info</span></a></li>
+                    <li class="level2 nav-2-1-5 last"><a href="{% url 'checkout_billing_info' %}"><span>Checkout Billing Info</span></a></li>
                   </ul>
                   <!--sub sub category--> 
                 </li>
-                <li class="level1 nav-10-4"> <a href="wishlist.html"> <span>Wishlist</span> </a> </li>
+                <li class="level1 nav-10-4"> <a href="{% url 'wishlist' %}"> <span>Wishlist</span> </a> </li>
                 <li class="level1 first parent"><a href="dashboard.html"><span>Dashboard</span></a> 
                   <!--sub sub category-->
                   <ul class="level2 right-sub" style="top: 0px; left: 165px; display: none;">
-                    <li class="level2 nav-2-1-1 first"><a href="account_information.html"><span>Account Information</span></a></li>
-                    <li class="level2 nav-2-1-5 last"><a href="address_book.html"><span>Address Book</span></a></li>
-                    <li class="level2 nav-2-1-1 first"><a href="contact_information.html"><span>Contact Information</span></a></li>
+                    <li class="level2 nav-2-1-1 first"><a href="{% url 'account_information' %}"><span>Account Information</span></a></li>
+                    <li class="level2 nav-2-1-5 last"><a href="{% url 'address_book' %}"><span>Address Book</span></a></li>
+                    <li class="level2 nav-2-1-1 first"><a href="{% url 'contact_information' %}"><span>Contact Information</span></a></li>
                   </ul>
                   <!--sub sub category--> 
                 </li>
                 <li class="level1"> <a href="multiple_addresses.html"> <span>Multiple Addresses</span> </a> </li>
-                <li class="level1"> <a href="about_us.html"> <span>About us</span> </a> </li>
+                <li class="level1"> <a href="{% url 'about_us' %}"> <span>About us</span> </a> </li>
                 
-                <li class="level1"> <a href="faq.html"> <span>FAQ</span> </a> </li>
-                <li class="level1"> <a href="login.html"> <span>Login</span> </a> </li>
-                <li class="level1"> <a href="forgot_password.html"> <span>Forgot Password</span> </a> </li>
-                <li class="level1"> <a href="quick_view.html"> <span>Quick view </span> </a> </li>
-                <li class="level1 first parent"><a href="blog.html"><span>Blog</span></a>
+                <li class="level1"> <a href="{% url 'faq' %}"> <span>FAQ</span> </a> </li>
+                <li class="level1"> <a href="{% url 'login' %}"> <span>Login</span> </a> </li>
+                <li class="level1"> <a href="{% url 'forgot_password' %}"> <span>Forgot Password</span> </a> </li>
+                <li class="level1"> <a href="{% url 'quick_view' %}"> <span>Quick view </span> </a> </li>
+                <li class="level1 first parent"><a href="{% url 'blog' %}"><span>Blog</span></a>
                   <ul class="level2 right-sub" style="top: 0px; left: 165px; display: none;">
-                    <li class="level2 nav-2-1-1 first"><a href="blog_detail.html"><span>Blog Detail</span></a></li>
+                    <li class="level2 nav-2-1-1 first"><a href="{% url 'blog_detail' %}"><span>Blog Detail</span></a></li>
                   </ul>
                 </li>
-                <li class="level1"><a href="contact_us.html"><span>Contact us</span></a> </li>
-                <li class="level1"><a href="404error.html"><span>404 Error Page</span></a> </li>
+                <li class="level1"><a href="{% url 'contact_us' %}"><span>Contact us</span></a> </li>
+                <li class="level1"><a href="{% url 'error' %}"><span>404 Error Page</span></a> </li>
               </ul>
             </li>
             <li class="mega-menu"><a href="grid.html" class="level-top"><span>Women</span></a>
@@ -434,7 +434,7 @@
               <ul class="links">
                 <li class="first"><a href="#" title="Contact us">My Account</a></li>
                 <li><a href="#" title="About us">Order History</a></li>
-                <li><a href="#" title="faq">FAQ</a></li>
+                <li><a href="{% url 'faq' %}" title="faq">FAQ</a></li>
                 <li><a href="#" title="Popular Searches">Specials</a></li>
                 <li class="last"><a href="#" title="Where is my order?">Help Center</a></li>
 
@@ -443,7 +443,7 @@
             <div class="footer-column pull-left">
               <h4>Corporation</h4>
               <ul class="links">
-                <li class="first"><a title="Your Account" href="#">About us</a></li>
+                <li class="first"><a title="Your Account" href="{% url 'about_us' %}">About us</a></li>
                 <li><a title="Information" href="#">Customer Service</a></li>
                 <li><a title="Addresses" href="#">Company</a></li>
                 <li><a title="Addresses" href="#">Investor Relations</a></li>
@@ -455,10 +455,10 @@
               <h4>Why choose Us</h4>
               <ul class="links">
                 <li class="first"><a href="#" title="About us">Shopping Guide</a></li>
-                <li><a href="#" title="Blog">Blog</a></li>
+                <li><a href="{% url 'blog' %}" title="Blog">Blog</a></li>
                 <li><a href="#" title="Company">Company</a></li>
                 <li><a href="#" title="Investor Relations">Investor Relations</a></li>
-                <li class=" last"><a href="contact-us.html" title="Suppliers">Contact Us</a></li>
+                <li class=" last"><a href="{% url 'contact_us' %}" title="Suppliers">Contact Us</a></li>
               </ul>
             </div>
           </div>
