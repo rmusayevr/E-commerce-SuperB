@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}
+  <title>Superb, premium HTML5 &amp; CSS3 template</title>
+{% endblock %}
+
+{% block css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/internal.css' %}">
+{% endblock %}
+<!-- Google Fonts -->
+
+<body class="onestepcheckout-index-index inner-page">
+<div id="page"> 
+  
+  {% block content %}
+    <!-- Main Container -->
+    <section class="main-container col2-right-layout bounceInUp animated">
+      <div class="main container">
+        <div class="row">
+          <div class="col-main col-sm-9">
+            <div class="page-title">
+              <h1>Shipping Information</h1>
+            </div>
+            <ol class="one-page-checkout" id="checkoutSteps">
+              <li id="opc-shipping" class="section allow active">
+                <div id="checkout-step-shipping" class="a-item">
+                  <form id="co-shipping-form" action="{% url 'shipping_info' %}" method="POST">
+                    {% csrf_token %}
+                    <ul class="row form-list">
+                      <li class="col-md-6">
+                        {{ form.first_name.label }}
+                        {{ form.first_name }}
+                        {% for error in form.first_name.errors %}
+                          <span class="alert-danger">
+                            {{ error }}
+                          </span>
+                        {% endfor %}
+                      </li>
+                      <li class="col-md-6">
+                        {{ form.last_name.label }}
+                        {{ form.last_name }}
+                        {% for error in form.last_name.errors %}
+                          <span class="alert-danger">
+                            {{ error }}
+                          </span>
+                        {% endfor %}
+                      </li>
+                      <li class="col-md-6">
+                        {{ form.telephone.label }}
+                        {{ form.telephone }}
+                        {% for error in form.telephone.errors %}
+                          <span class="alert-danger">
+                            {{ error }}
+                          </span>
+                        {% endfor %}
+                      </li>
+                      <li class="col-md-6">
+                        {{ form.email.label }}
+                        {{ form.email }}
+                        {% for error in form.email.errors %}
+                          <span class="alert-danger">
+                            {{ error }}
+                          </span>
+                        {% endfor %}
+                      </li>
+                      <li class="col-md-6">
+                        {{ form.country.label }}
+                        {{ form.country }}
+                        {% for error in form.country.errors %}
+                          <span class="alert-danger">
+                            {{ error }}
+                          </span>
+                        {% endfor %}
+                      </li>
+                      <li class="col-md-6">
+                        {{ form.city.label }}
+                        {{ form.city }}
+                        {% for error in form.city.errors %}
+                          <span class="alert-danger">
+                            {{ error }}
+                          </span>
+                        {% endfor %}
+                      </li>
+                      <li class="col-md-6">
+                        {{ form.province.label }}
+                        {{ form.province }}
+                        {% for error in form.province.errors %}
+                          <span class="alert-danger">
+                            {{ error }}
+                          </span>
+                        {% endfor %}
+                      </li>
+                      <li class="col-md-6">
+                        {{ form.zip.label }}
+                        {{ form.zip }}
+                        {% for error in form.zip.errors %}
+                          <span class="alert-danger">
+                            {{ error }}
+                          </span>
+                        {% endfor %}
+                      </li>
+                      <li class="col-md-12">
+                        {{ form.street_address.label }}
+                        {{ form.street_address }}
+                        {% for error in form.street_address.errors %}
+                          <span class="alert-danger">
+                            {{ error }}
+                          </span>
+                        {% endfor %}
+                      </li>
+                    <div class="buttons-set">
+                      <button type="submit" class="button submit" style="margin-left: 15px;"><span>Save Address</span></button>
+                    </div>
+                  </form>
+                </div>
+              </li>
+            </ol>
+          </div>
+          <aside class="col-right sidebar col-sm-3">
+            <div class="block block-progress">
+              <div class="block-title ">Your Checkout</div>
+              <div class="block-content">
+                <dl>
+                  <dt class="complete"> Billing Address <span class="separator">|</span> <a href="#">Change</a> </dt>
+                  <dd class="complete">
+                    <address>
+                    John Deo<br>
+                    23 North Main Street<br>
+                    Windsor<br>
+                    Holtsville,  New York, 00501<br>
+                    United States<br>
+                    T: 5465465 <br>
+                    </address>
+                  </dd>
+                  <dt class="complete"> Shipping Address <span class="separator">|</span> <a href="#">Change</a> </dt>
+                  <dd class="complete">
+                    <address>
+                    John Deo<br>
+                    23 North Main Street<br>
+                    Windsor<br>
+                    Holtsville,  New York, 00501<br>
+                    United States<br>
+                    T: 5465465 <br>
+                    </address>
+                  </dd>
+                  <dt> Payment Method </dt>
+                </dl>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+    <!-- Main Container end --> 
+  {% endblock %}
+</div>
+
+
+<!-- JavaScript --> 
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'js/parallax.js' %}"></script> 
+  <script type="text/javascript" src="{% static 'js/jquery.flexslider.js' %}"></script> 
+  <script type="text/javascript" src="{% static 'js/cloud-zoom.js' %}"></script>
+{% endblock %}

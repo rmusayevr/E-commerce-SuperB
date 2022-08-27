@@ -1,0 +1,84 @@
+﻿{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+  <title>Account Information</title>
+{% endblock %}
+
+{% block css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/internal.css' %}">
+{% endblock %}
+
+<body class="customer-account-index customer-account inner-page">
+<div id="page"> 
+  {% block content %}
+    <!-- Main Container -->
+    <section class="main-container col2-right-layout">
+      <div class="main container">
+        <div class="row">
+          <div class="col-main col-sm-9 animated" style="visibility: visible;">
+            <div class="my-account">
+              <div class="page-title">
+                <h1>Edit Account Information</h1>
+              </div>
+              <div class="line"></div>
+              <div class="dashboard">
+                <form method="POST" id="form-validate">
+                  {% csrf_token %}
+                  <div class="fieldset">
+                    <input name="" type="hidden" value="bO6ubPokBJ71l86o">
+                    <h2 class="legend">Account Information</h2>
+                    <ul class="form-list">
+                      <li class="fields">
+                        <div class="customer-name">
+                          <div class="input-box name-firstname">
+                            {{ form.first_name.label }}
+                            {{ form.first_name }}
+                            {% for error in form.first_name.errors %}
+                              <span class="alert-danger">
+                                {{ error }}
+                              </span>
+                            {% endfor %}
+                          </div>
+                          <div class="input-box name-lastname">
+                            {{ form.last_name.label }}
+                            {{ form.last_name }}
+                            {% for error in form.last_name.errors %}
+                              <span class="alert-danger">
+                                {{ error }}
+                              </span>
+                            {% endfor %}
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        {{ form.email.label }}
+                        {{ form.email }}
+                        {% for error in form.email.errors %}
+                          <span class="alert-danger">
+                            {{ error }}
+                          </span>
+                        {% endfor %}
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="buttons-set">
+                    <button type="submit" title="Save" class="button"><span>Save</span></button>
+                  </div>
+                </form>
+              </div>
+              <!--dashboard--> 
+            </div>
+          </div>
+          <!--col-right sidebar col-sm-3--> 
+        </div>
+      </div>
+    </section>
+    <!-- Main Container End --> 
+  {% endblock %}
+</div>
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'js/parallax.js' %}"></script> 
+  <script type="text/javascript" src="{% static 'js/jquery.flexslider.js' %}"></script> 
+  <script type="text/javascript" src="{% static 'js/cloud-zoom.js' %}"></script>
+{% endblock %}

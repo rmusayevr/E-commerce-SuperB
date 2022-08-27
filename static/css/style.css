@@ -4412,7 +4412,6 @@ a.button.detail-bnt span {
 }
 
 .gradient-overlay {
-    background: url(../images/article-header-overlay.png) no-repeat bottom center;
     height:300px;
     width: 100%;
     z-index: 25;
