@@ -15,26 +15,7 @@
       <div class="container">
         <div class="row">
           <div class="col-main col-sm-9 col-sm-push-3">
-            <div class="category-image"><img title="Sofas " alt="Sofas " src="{% static 'images/category-banner.jpg' %}"></div>
               <article class="col-main">
-                <div class="page-title">
-                  <h1>Tops & Tees</h1>
-                </div>
-                <div class="toolbar">
-                  <div id="sort-by">
-                    <label class="left">Sort By: </label>
-                    <ul>
-                      <li><a href="#">Position<span class="right-arrow"></span></a>
-                        <ul>
-                          <li><a href="#">Name</a></li>
-                          <li><a href="#">Price</a></li>
-                          <li><a href="#">Position</a></li>
-                        </ul>
-                      </li>
-                    </ul>
-                    <a class="button-asc left" href="#" title="Set Descending Direction"><span class="top_arrow"></span></a> 
-                  </div>
-                </div>
                 <div class="category-products">
                   <ol class="products-list" id="products-list">
                     {% for product in products %}
@@ -108,13 +89,12 @@
                 <div class="block block-layered-nav">
                   <div class="block-title">Shop By</div>
                   <div class="block-content">
-                    <p class="block-subtitle">Shopping Options</p>
                     <dl id="narrow-by-list">
                       <dt class="even">Manufacturer</dt>
                       <dd class="even">
                         <ol>
                           {% for manufacturer in manufacturers %}
-                            <li><a href="#">{{ manufacturer.name} }</a> (9) </li>
+                            <li><a href="#" class="manufacturer-category" data = '{{ manufacturer.manufacturer }}'>{{ manufacturer.manufacturer }} </a> ({{ manufacturer.count }}) </li>
                           {% endfor %}
                         </ol>
                       </dd>
@@ -122,21 +102,11 @@
                       <dd class="odd">
                         <ol>
                           {% for color in colors %}
-                            <li><a href="#">{{ color.name }}</a> (1) </li>
+                            <li><a href="#" class="color-category" data = '{{ color.color }}'>{{ color.color }}</a> ({{ color.count }}) </li>
                           {% endfor %}
                         </ol>
                       </dd>
                     </dl>
-                  </div>
-                </div>
-                <div class="block block-tags">
-                  <div class="block-title"> Popular Tags</div>
-                  <div class="block-content">
-                    <ul class="tags-list">
-                      {% for tag in tags %}
-                        <li><a href="#">#{{ tag.name }}</a></li>
-                      {% endfor %}
-                    </ul>
                   </div>
                 </div>
               </aside>

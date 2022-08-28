@@ -2,7 +2,7 @@ from django.shortcuts import redirect
 from django.views.generic import ListView, DetailView, CreateView
 from .models import *
 from .forms import ReviewForm
-
+from django.db.models import Count
 
 class ProductListView(ListView):
     model = Product_version
@@ -19,6 +19,8 @@ class ProductListView(ListView):
         context['s_categories'] = Category.objects.filter(is_navbar = "False").all() 
         context['tags'] = Tags.objects.all()[:15]
         context['images'] = Images_of_product.objects.all()
+        context['manufacturers'] = Product.objects.values_list("manufacturer", flat=True).distinct().values('manufacturer').annotate(count = Count('manufacturer'))
+        context['colors'] = Product_version.objects.values_list("color", flat=True).distinct().values('color').annotate(count = Count('color'))
         return context
 
 class ProductDetailView(DetailView, CreateView):

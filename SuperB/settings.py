@@ -45,7 +45,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'social_django',
-    'django_celery_beat',
+    # 'django_celery_beat',
     "corsheaders",
     'rest_framework_simplejwt',
 
@@ -178,7 +178,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Baku'
 
 USE_I18N = True
 
