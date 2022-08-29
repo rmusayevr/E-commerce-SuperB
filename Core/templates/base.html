@@ -327,9 +327,9 @@
                     {% csrf_token %}
                     <div id="container_form_news">
                       <div id="container_form_news2">
-                        {{ form.email }}
+                        {{ subscriber_form.email }}
                         <button class="button subscribe" title="Subscribe" type="submit"><span>Subscribe</span></button>
-                        {%  for field in form.email.errors %}
+                        {%  for field in subscriber_form.email.errors %}
                           <span class="alert-danger">{{ field }}</span>
                         {% endfor %}
                       </div>
@@ -591,6 +591,7 @@
   <script type="text/javascript" src="{% static 'js/common.js' %}"></script> 
   <script type="text/javascript" src="{% static 'js/owl.carousel.min.js' %}"></script> 
   <script type="text/javascript" src="{% static 'js/jquery.mobile-menu.min.js' %}"></script> 
+  <script src="{% static 'js/subscriber.js' %}"></script>
   {% block js %}
   {% endblock %}
 </body>

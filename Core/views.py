@@ -29,14 +29,4 @@ def faq(request):
     return render(request, "faq.html", context)
 
 def index(request):
-    if request.method == "POST":
-        sub_form = SubscriptionForm(request.POST)
-        if sub_form.is_valid():
-            sub_form.save()
-            return redirect('index')
-    else: 
-        sub_form = SubscriptionForm()
-    context = {
-        "form": sub_form
-    }
-    return render(request, "index.html", context)
+    return render(request, "index.html")

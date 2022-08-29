@@ -13,7 +13,7 @@ def send_email_to_subscribers():
                 "products" : products
             })
     subject = 'New Products From Our Website'
-    mail = EmailMultiAlternatives(subject=subject, body=message, from_email=settings.EMAIL_HOST_USER, to=email_list)
+    mail = EmailMultiAlternatives(subject=subject, body=message, from_email=settings.EMAIL_HOST_USER, to=[email_list,])
     mail.content_subtype = 'html'
     mail.send()
 

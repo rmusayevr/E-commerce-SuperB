@@ -5,5 +5,5 @@ from Core.forms import SubscriptionForm
 
 def base_data(request):
     data = {}
-    data["form"] = SubscriptionForm()
+    data["subscriber_form"] = SubscriptionForm()
     return data

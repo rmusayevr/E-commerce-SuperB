@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from Product.models import Product, Product_version, Category
+from Core.models import Subscription
 
 class CategorySerializer(serializers.ModelSerializer):
     
@@ -40,3 +41,10 @@ class ProductVersionSerializer(serializers.ModelSerializer):
             'product'
         ]
 
+class SubscriberSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Subscription
+        fields = [
+            'id', 
+            'email'
+        ]
