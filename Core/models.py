@@ -1,3 +1,4 @@
+from ipaddress import ip_address
 from django.db import models
 from django.contrib.auth import get_user_model
 User = get_user_model()
@@ -36,3 +37,13 @@ class ContactUs(models.Model):
     class Meta:
         verbose_name = "Contact Us Comment"
         verbose_name_plural = "Contact Us Comments"
+
+class BlockedIP(models.Model):
+    ip_addr = models.CharField(max_length=20, unique=True)
+
+    def __str__(self):
+        return self.ip_addr
+
+    class Meta:
+        verbose_name = "BlockedIP"
+        verbose_name_plural = "BlockedIPs"
