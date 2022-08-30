@@ -1,0 +1,4 @@
+[36mGET /[0m
+[36mGET / - 200[0m
+[36mGET /about_us/[0m
+[36mGET /about_us/ - 200[0m

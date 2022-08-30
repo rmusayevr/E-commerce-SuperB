@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    
     'rest_framework',
     'social_django',
     'django_celery_beat',
@@ -54,10 +54,11 @@ INSTALLED_APPS = [
     'Order.apps.OrderConfig',
     'Product.apps.ProductConfig',
     'User.apps.UserConfig',
+
 ]
 
 MIDDLEWARE = [
-    'SuperB.middleware.BlockIPMiddleware',
+    'SuperB.middlewares.block_middleware.BlockIPMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -65,8 +66,30 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'SuperB.middlewares.request_response_middleware.RequestLogMiddleware',
+    # 'logging_middleware.middlewares.DjangoLoggingMiddleware',
+    'request_logging.middleware.LoggingMiddleware',
     "corsheaders.middleware.CorsMiddleware",
 ]
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'SuperB/middlewares/logs.txt',
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['file'],
+            'level': 'INFO',  # change debug level as appropiate
+            'propagate': True,
+        },
+    },
+}
 
 CORS_ALLOW_ALL_ORIGINS = True
 
