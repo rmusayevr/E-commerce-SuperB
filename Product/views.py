@@ -46,4 +46,7 @@ class ProductDetailView(DetailView, CreateView):
             review = form.save(commit=False)
             review.version = Product_version.objects.get(pk=self.kwargs.get("pk"))
             review.save()
+            product = ProductStatistic.objects.get(product = self.get_object())
+            product.reviews += 1
+            product.save()
         return redirect('product_detail', pk=self.kwargs.get("pk"))
