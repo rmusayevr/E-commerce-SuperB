@@ -101,3 +101,14 @@ class Review(models.Model):
     class Meta:
         verbose_name = "Product Review"
         verbose_name_plural = "Product Reviews"
+
+class ProductStatistic(models.Model):
+    product = models.ForeignKey(Product_version, on_delete=models.CASCADE, related_name="product_statistic")
+    reviews = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return f"{self.product}'s stats"
+
+    class Meta:
+        verbose_name = "Product Statistic"
+        verbose_name_plural = "Product Statistics"

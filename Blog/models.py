@@ -22,10 +22,6 @@ class Authors(models.Model):
 
     def get_absolute_url(self):
         return reverse('author_blogs', kwargs={'slug':self.author_slug})
-
-    def save(self, *args, **kwargs):
-        self.author_slug = slugify(self.author)
-        super().save(*args, **kwargs)
     
     class Meta:
         verbose_name = "Author"
@@ -44,10 +40,6 @@ class Blogs(models.Model):
 
     def __str__(self):
         return self.title
-
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
-        super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse('blog_detail', kwargs={'slug':self.slug})
