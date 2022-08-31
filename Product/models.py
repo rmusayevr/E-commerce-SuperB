@@ -1,5 +1,4 @@
 from django.db import models
-from Order.models import basket
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -35,11 +34,10 @@ class Product_version(models.Model):
     color = models.CharField(max_length=50, null = True, blank = True)
     discount = models.BooleanField(default=False)
     new_price = models.FloatField(null=True, blank=True)
-    basket = models.ForeignKey(basket, on_delete=models.CASCADE, null=True, blank=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="product_version")
-
+    
     def __str__(self):
-        return f"{self.product.name}'s {self.color} version"
+        return f"{self.product.name}"
 
     class Meta:
         verbose_name = "Product Version"

@@ -1,40 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 User = get_user_model()
-
-# class country(models.Model):
-#     name = models.CharField(max_length=50)
-#     code = models.CharField(max_length=2)
-
-#     def __str__(self):
-#         return self.name
-
-#     class Meta:
-#         verbose_name = "Country"
-#         verbose_name_plural = "Countries"
-
-# class city(models.Model):
-#     name = models.CharField(max_length=50)
-#     city_code = models.CharField(max_length=4)
-#     country = models.ForeignKey("country", on_delete=models.CASCADE)
-
-#     def __str__(self):
-#         return self.name
-    
-#     class Meta:
-#         verbose_name = "City"
-#         verbose_name_plural = "Cities"
-
-# class province(models.Model):
-#     name = models.CharField(max_length=150)
-#     city = models.ForeignKey("city", on_delete=models.CASCADE)
-
-#     def __str__(self):
-#         return self.name
-
-#     class Meta:
-#         verbose_name = "Province"
-#         verbose_name_plural = "Provinces"
+from Product.models import Product_version
 
 class address_information(models.Model):
     first_name = models.CharField(max_length=30)
@@ -45,7 +12,6 @@ class address_information(models.Model):
     country = models.CharField(max_length=50, null=True, blank=True)
     city = models.CharField(max_length=100, null=True, blank=True)
     province = models.CharField(max_length=150, null=True, blank=True)
-    # province = models.ForeignKey("province", on_delete=models.CASCADE, null=True)  
     is_billing = models.BooleanField(default=False)
     is_shipping = models.BooleanField(default=False)  
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
@@ -67,7 +33,6 @@ class billing_addresses(models.Model):
     country = models.CharField(max_length=50, null=True, blank=True)
     city = models.CharField(max_length=100, null=True, blank=True)
     province = models.CharField(max_length=150, null=True, blank=True)
-    # province = models.ForeignKey("province", on_delete=models.CASCADE, null=True)  
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     zip = models.IntegerField()
 
@@ -98,8 +63,20 @@ class shipping_addresses(models.Model):
         verbose_name = "Shipping Address"
         verbose_name_plural = "Shipping Addresses"
 
+class Wishlist(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True, related_name="user_wishlist")
+    product_ver = models.ManyToManyField(Product_version, related_name="products_wishlist")
+
+    def __str__(self):
+        return self.product_ver
+
+    class Meta:
+        verbose_name = "Wishlist"
+        verbose_name_plural = "Wishlists"   
+
 class basket(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+    product = models.ManyToManyField(Product_version, related_name="products_basket")
 
     def __str__(self):
         return f"{self.user.username}'s basket"

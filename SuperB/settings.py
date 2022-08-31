@@ -72,24 +72,24 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
 ]
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'file': {
-            'level': 'INFO',
-            'class': 'logging.FileHandler',
-            'filename': 'SuperB/middlewares/logs.txt',
-        },
-    },
-    'loggers': {
-        'django.request': {
-            'handlers': ['file'],
-            'level': 'INFO',  # change debug level as appropiate
-            'propagate': True,
-        },
-    },
-}
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'file': {
+#             'level': 'INFO',
+#             'class': 'logging.FileHandler',
+#             'filename': 'SuperB/middlewares/logs.txt',
+#         },
+#     },
+#     'loggers': {
+#         'django.request': {
+#             'handlers': ['file'],
+#             'level': 'INFO',  # change debug level as appropiate
+#             'propagate': True,
+#         },
+#     },
+# }
 
 CORS_ALLOW_ALL_ORIGINS = True
 
@@ -230,7 +230,7 @@ EMAIL_HOST = "smtp.gmail.com"
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'rasmusayevhad@gmail.com'
-EMAIL_HOST_PASSWORD = 'chrwtshpbduwxdbh'
+EMAIL_HOST_PASSWORD = 'bamhigvgddlcroxo'
 
 LOGIN_URL = 'login/'
 LOGIN_REDIRECT_URL = '/'

@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from Product.models import Product, Product_version, Category
 from Core.models import Subscription
+from Order.models import Wishlist
 
 class CategorySerializer(serializers.ModelSerializer):
     
@@ -38,6 +39,15 @@ class ProductVersionSerializer(serializers.ModelSerializer):
             'color',    
             'discount', 
             'new_price', 
+            'product'
+        ]
+
+class WishlistSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Wishlist
+        fields = [
+            'user',
             'product'
         ]
 
