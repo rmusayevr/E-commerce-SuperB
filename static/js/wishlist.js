@@ -4,7 +4,6 @@ function getCookie(name) {
         const cookies = document.cookie.split(';');
         for (let i = 0; i < cookies.length; i++) {
             const cookie = cookies[i].trim();
-            // Does this cookie string begin with the name we want?
             if (cookie.substring(0, name.length + 1) === (name + '=')) {
                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
                 break;
@@ -41,4 +40,9 @@ for (let i = 0; i < wishlist_buttons.length; i++) {
     const ProductID = this.getAttribute('data');
     addProduct.addProductWishlist(ProductID);
   }
+}
+
+document.querySelector('.add-to-wishlist').onclick = function () {
+    const ProductID = this.getAttribute('data');
+    addProduct.addProductWishlist(ProductID);
 }

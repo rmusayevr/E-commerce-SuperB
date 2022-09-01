@@ -232,7 +232,7 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'rasmusayevhad@gmail.com'
 EMAIL_HOST_PASSWORD = 'bamhigvgddlcroxo'
 
-LOGIN_URL = 'login/'
+LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_URL = 'logout/'
 LOGOUT_REDIRECT_URL = '/'

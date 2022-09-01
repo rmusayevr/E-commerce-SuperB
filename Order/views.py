@@ -1,3 +1,4 @@
+from urllib import request
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from .forms import AddressInfoForm, BillingInfoForm, ShippingInfoForm
@@ -84,7 +85,14 @@ def checkout(request):
 def shopping_cart(request):
     return render(request, "shopping_cart.html")
 
-class WishlistView(ListView):
+class WishlistView(LoginRequiredMixin, ListView):
     model = Wishlist
     template_name = 'wishlist.html'
     quesyset =  Wishlist.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super(WishlistView, self).get_context_data(**kwargs)
+        user_wishlist =  Wishlist.objects.filter(user = self.request.user).first()
+        all_products = user_wishlist.product_ver.all()
+        context['items'] = all_products
+        return context

@@ -64,11 +64,11 @@ class shipping_addresses(models.Model):
         verbose_name_plural = "Shipping Addresses"
 
 class Wishlist(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True, related_name="user_wishlist")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="user_wishlist")
     product_ver = models.ManyToManyField(Product_version, related_name="products_wishlist")
 
     def __str__(self):
-        return self.product_ver
+        return f"{self.user}'s wishlist"
 
     class Meta:
         verbose_name = "Wishlist"

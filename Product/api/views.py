@@ -39,9 +39,8 @@ class WishlistAPI(APIView):
         if product:
             wishlist, created = Wishlist.objects.get_or_create(user = request.user)
             wishlist2 = Wishlist.objects.filter(user = request.user).first()
-            print(product)
-            print(wishlist2.product)
-            wishlist2.product.add(product)
+            # print(wishlist2.product_ver.first())
+            wishlist2.product_ver.add(product)
             message = {'success': True, 'message' : 'Product added to your wishlist.'}
             return Response(message, status = status.HTTP_201_CREATED)
         message = {'success' : False, 'message': 'Product not found.'}
