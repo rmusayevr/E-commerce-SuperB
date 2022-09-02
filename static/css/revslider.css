@@ -19,20 +19,7 @@ website:   	http://www.themepunch.com
 	font-weight: normal;
 	font-style: normal;
 }
-#thm-slideshow{ margin:auto; margin-top:-140px; position: relative;}
-
-#thm-slideshow:after {
-    display: block;
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 105px;
-    background: url(../images/strip.png) 50% 0 no-repeat;
-    z-index: 5;
-}
-
+#thm-slideshow{ margin:18px auto;}
 [class^="revicon-"]:before, [class*=" revicon-"]:before {
 	font-family: "revicons";
 	font-style: normal;
@@ -1312,7 +1299,7 @@ transform: scale(1.0);
 }
 .tp-tabs, .tp-thumbs, .tp-bullets {
 	position: absolute;
-	display: none;
+	display: block;
 	z-index: 1000;
 	top: 0px;
 	left: 0px;
@@ -1453,15 +1440,13 @@ website:   	http://www.themepunch.com
 	border-style:none;
 	border-width:0;
 	color:rgba(255,255,255,1.00);
-	font-family:'Raleway', sans-serif;
-	font-size:90px;
+	font-family:Raleway;
+	font-size:60px;
 	font-style:normal;
-	font-weight:300;
-	line-height:70px;
+	font-weight:800;
+	line-height:60px;
 	padding:10px 0;
 	text-decoration:none;
-	letter-spacing:5px;
-	text-transform:uppercase
 }
 
 .tp-caption.NotGeneric-SubTitle,.NotGeneric-SubTitle
@@ -1472,16 +1457,15 @@ website:   	http://www.themepunch.com
 	border-style:none;
 	border-width:0;
 	color:rgba(255,255,255,1.00);
-	font-family:'Raleway', sans-serif;
-	font-size:18px;
+	font-family:Raleway;
+	font-size:13px;
 	font-style:normal;
-	font-weight:300;
-	letter-spacing:2px;
+	font-weight:500;
+	letter-spacing:4px;
 	line-height:20px;
 	padding:0;
 	text-align:left;
 	text-decoration:none;
-	margin-top:25px
 }
 
 .tp-caption.NotGeneric-CallToAction,.NotGeneric-CallToAction
@@ -1726,7 +1710,6 @@ website:    http://www.themepunch.com
     -webkit-transform-origin:50% 100%;
     opacity:0;
     white-space:nowrap;
-	display:none
  }
 
 .metis .tp-bullet:hover .tp-bullet-title {
@@ -2046,14 +2029,13 @@ padding: 9px 10px; }
 
 
 .tp-caption a {
-    background:none;
-    padding:10px 15px;
+    background: #e24250;
+    padding: 10px 15px;
     color: #fff;
-    font-size: 12px;
+    border-radius: 3px;
+    font-size: 11px;
     text-transform: uppercase;
-    font-weight: 600;
-	font-family:'Raleway', sans-serif;
-	background:#C2A476
+    font-weight: bold;
 }
 
 #thm-slideshow .col-lg-8 {

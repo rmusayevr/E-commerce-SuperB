@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 from datetime import timedelta
 import os 
+from django.utils.translation import gettext_lazy as _
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -47,27 +50,26 @@ INSTALLED_APPS = [
     'social_django',
     'django_celery_beat',
     "corsheaders",
+    "rosetta",
     'rest_framework_simplejwt',
 
     'Blog.apps.BlogConfig',
     'Core.apps.CoreConfig',
     'Order.apps.OrderConfig',
     'Product.apps.ProductConfig',
-    'User.apps.UserConfig',
-
+    'User.apps.UserConfig'
 ]
 
 MIDDLEWARE = [
     'SuperB.middlewares.block_middleware.BlockIPMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'SuperB.middlewares.request_response_middleware.RequestLogMiddleware',
-    # 'logging_middleware.middlewares.DjangoLoggingMiddleware',
     'request_logging.middleware.LoggingMiddleware',
     "corsheaders.middleware.CorsMiddleware",
 ]
@@ -106,6 +108,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.i18n',
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
                 'Core.context_processors.base_data',
@@ -200,14 +203,25 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'az'
 
 TIME_ZONE = 'Asia/Baku'
 
 USE_I18N = True
 
+USE_L10N = True
+
 USE_TZ = True
 
+
+LANGUAGES = (
+    ('en', _('English')),
+    ('az', _('Azerbaijani')),
+)
+
+LOCALE_PATHS = [
+    BASE_DIR / 'locale/',
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/

@@ -28,6 +28,7 @@ class SubscriberAPI(ListCreateAPIView):
 class WishlistAPI(APIView):
     serializer_class = WishlistSerializer
     permission_classes = [IsAuthenticated]
+    http_method_names = ['get', 'post', 'delete']
 
     def get(self, request, *args, **kwargs):
         serializer = self.serializer_class(request.user.products_wishlist)
@@ -46,12 +47,16 @@ class WishlistAPI(APIView):
         message = {'success' : False, 'message': 'Product not found.'}
         return Response(message, status = status.HTTP_400_BAD_REQUEST)
 
+    def delete(self, request, *args, **kwargs):
+        ProductID = request.data.get('product')
+        if ProductID:
+            user_wishlist =  Wishlist.objects.filter(user = self.request.user).first()
+            product = user_wishlist.product_ver.filter(id = ProductID[0])
+            user_wishlist.product_ver.remove(product[0].id)
+        return Response(status = status.HTTP_200_OK)
 
     
-class WishlistDeleteAPIView(APIView):
-    serializer_class = WishlistSerializer
-    permission_classes = [IsAuthenticated]
 
-    def post(self, request, *args, **kwargs):
-        ProductID = request.data.get('ProductID')
-        Wishlist.objects.get(pk=ProductID).delete()
+
+    
+

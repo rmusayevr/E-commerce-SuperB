@@ -1,4 +1,6 @@
 {% load static %}
+{% load i18n %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -164,10 +166,10 @@
         <div class="mm-toggle"><i class="fa fa-reorder"></i><span class="mm-label">Menu</span> </div>
       </div>
       <ul class="nav hidden-xs menu-item menu-item-left">
-        <li class="level0 parent drop-menu active"><a href="{% url 'index' %}"><span>Home</span></a></li>
-        <li class="level0 parent drop-menu"><a href="#"><span>Pages</span> </a>
+        <li class="level0 parent drop-menu active"><a href="{% url 'index' %}"><span>{% trans 'Home' %}</span></a></li>
+        <li class="level0 parent drop-menu"><a href="#"><span>{% trans 'Pages' %}</span> </a>
           <ul class="level1" style="display: none;">
-            <li class="level1 first"><a href="grid.html"><span>Grid</span></a></li>
+            <li class="level1 first"><a href="grid.html"><span>{% trans Grid %}</span></a></li>
             <li class="level1 nav-10-2"> <a href="list.html"> <span>List</span> </a> </li>
             <li class="level1 nav-10-3"> <a href="{% url 'product_list' %}"> <span>Product Detail</span> </a> </li>
             <li class="level1 nav-10-4"> <a href="{% url 'shopping_cart' %}"> <span>Shopping Cart</span> </a> </li>
@@ -197,11 +199,11 @@
             <li class="level1"><a href="{% url 'error' %}"><span>404 Error Page</span></a> </li>
           </ul>
         </li>
-        <li class="level0 parent drop-menu"><a href="{% url 'about_us' %}"><span>About Us</span></a></li>
-        <li class="level0 parent drop-menu"><a href="{% url 'blogs' %}"><span>Blogs</span></a></li>
+        <li class="level0 parent drop-menu"><a href="{% url 'about_us' %}"><span>{% trans 'About Us' %}</span></a></li>
+        <li class="level0 parent drop-menu"><a href="{% url 'blogs' %}"><span>{% trans 'Blogs' %}</span></a></li>
       </ul>
       <ul class="nav hidden-xs menu-item menu-item-right">
-        <li class="level0 parent drop-menu"><a href="grid.html" class="level-top"><span>Women</span></a>
+        <li class="level0 parent drop-menu"><a href="grid.html" class="level-top"><span>{% trans 'Women' %}</span></a>
           <ul class="level1" style="display: none;">
             <li class="level1"><a href="#.html" class=""><span>Handbags</span></a></li>
             <li class="level1"><a href="#.html"><span>Jackets</span></a></li>
@@ -210,7 +212,7 @@
             <li class="level1"><a href="#.html"><span>Dresses</span></a></li>
           </ul>
         </li>
-        <li class="level0 parent drop-menu"><a href="grid.html" class="level-top"><span>Men</span></a>
+        <li class="level0 parent drop-menu"><a href="grid.html" class="level-top"><span>{% trans 'Men' %}</span></a>
           <ul class="level1" style="display: none;">
             <li class="level1"><a href="#.html" class=""><span>Shoes</span></a></li>
             <li class="level1"><a href="#.html"><span>Shirts</span></a></li>
@@ -219,7 +221,7 @@
             <li class="level1"><a href="#/sunglasses.html"><span>Sunglasses</span></a></li>
           </ul>
         </li>
-        <li class="level0 parent drop-menu"><a href="grid.html" class="level-top"><span>Kids</span></a>
+        <li class="level0 parent drop-menu"><a href="grid.html" class="level-top"><span>{% trans 'Kids' %}</span></a>
           <ul class="level1" style="display: none;">
             <li class="level1"><a href="#.html" class=""><span>Shoes</span></a></li>
             <li class="level1"><a href="#.html"><span>Dresses</span></a></li>
@@ -228,7 +230,7 @@
             <li class="level1"><a href="#/sunglasses.html"><span>Sweatshirts</span></a></li>
           </ul>
         </li>
-        <li class="level0 parent drop-menu"><a href="{% url 'faq' %}"><span>FAQ</span></a></li>
+        <li class="level0 parent drop-menu"><a href="{% url 'faq' %}"><span>{% trans 'FAQ' %}</span></a></li>
       </ul>
       </div>
   </nav>

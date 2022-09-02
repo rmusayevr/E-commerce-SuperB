@@ -94,7 +94,7 @@
                       <dd class="even">
                         <ol>
                           {% for manufacturer in manufacturers %}
-                            <li><a href="#" class="manufacturer-category" data = '{{ manufacturer.manufacturer }}'>{{ manufacturer.manufacturer }} </a> ({{ manufacturer.count }}) </li>
+                            <li class="manufacturer-category" data = '{{ manufacturer.manufacturer }}'>{{ manufacturer.manufacturer }} ({{ manufacturer.count }}) </li>
                           {% endfor %}
                         </ol>
                       </dd>
@@ -102,7 +102,7 @@
                       <dd class="odd">
                         <ol>
                           {% for color in colors %}
-                            <li><a href="#" class="color-category" data = '{{ color.color }}'>{{ color.color }}</a> ({{ color.count }}) </li>
+                            <li class="color-category" data = '{{ color.color }}'>{{ color.color }} ({{ color.count }}) </li>
                           {% endfor %}
                         </ol>
                       </dd>
@@ -121,4 +121,5 @@
   <script type="text/javascript" src="{% static 'js/slider.js' %}"></script> 
   <script src="{% static 'js/product_list.js' %}"></script>
   <script src="{% static 'js/wishlist.js' %}"></script>
+  
 {% endblock %}

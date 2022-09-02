@@ -43,12 +43,12 @@ class ProductVersionSerializer(serializers.ModelSerializer):
         ]
 
 class WishlistSerializer(serializers.ModelSerializer):
-
+    
     class Meta:
         model = Wishlist
         fields = [
             'user',
-            'product'
+            'product_ver'
         ]
 
 class SubscriberSerializer(serializers.ModelSerializer):

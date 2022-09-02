@@ -37,23 +37,25 @@
                             </tr>
                           </thead>
                           <tbody>
-                            {% for item in items %}
-                              <tr id="item_31" class="first odd">
-                                <td class="wishlist-cell0 customer-wishlist-item-image"><a title="Softwear Women's Designer" href="#" class="product-image"> <img width="150" height="150" alt="Softwear Women's Designer" src="{{ item.cover_image.url }}"> </a></td>
-                                <td class="wishlist-cell1 customer-wishlist-item-info"><h3 class="product-name"><a title="Softwear Women's Designer" href="#">{{ item.product.name }}</a></h3>
-                                  <div class="description std">
-                                    <div class="inner">{{ item.product.overview }}</div>
-                                  </div>
-                                <td data-rwd-label="Price" class="wishlist-cell3 customer-wishlist-item-price"><div class="cart-cell">
-                                    <div class="price-box"> <span class="regular-price"> <span class="price">${{ item.price }}</span> </span> </div>
-                                  </div></td>
-                                <td class="wishlist-cell4 customer-wishlist-item-cart"><div class="cart-cell">
-                                    <button class="button btn-cart" title="Add to Cart" type="button"><span><span>Add to Cart</span></span></button>
-                                  </div>
-                                  <p><a href="#" class="">Edit</a></p></td>
-                                <td class="wishlist-cell5 customer-wishlist-item-remove last"><a class="remove-item" title="Clear Cart" href="#" data="{{ item.id }}"><span><span></span></span></a></td>
-                              </tr>
-                            {% endfor %}
+                            {% if items %}
+                              {% for item in items %}
+                                <tr id="item_31" class="first odd">
+                                  <td class="wishlist-cell0 customer-wishlist-item-image"><a title="Softwear Women's Designer" href="#" class="product-image"> <img width="150" height="150" alt="Softwear Women's Designer" src="{{ item.cover_image.url }}"> </a></td>
+                                  <td class="wishlist-cell1 customer-wishlist-item-info"><h3 class="product-name"><a title="Softwear Women's Designer" href="#">{{ item.product.name }}</a></h3>
+                                    <div class="description std">
+                                      <div class="inner">{{ item.product.overview }}</div>
+                                    </div>
+                                  <td data-rwd-label="Price" class="wishlist-cell3 customer-wishlist-item-price"><div class="cart-cell">
+                                      <div class="price-box"> <span class="regular-price"> <span class="price">${{ item.price }}</span> </span> </div>
+                                    </div></td>
+                                  <td class="wishlist-cell4 customer-wishlist-item-cart"><div class="cart-cell">
+                                      <button class="button btn-cart" title="Add to Cart" type="button"><span><span>Add to Cart</span></span></button>
+                                    </div>
+                                    <p><a href="#" class="">Edit</a></p></td>
+                                  <td class="wishlist-cell5 customer-wishlist-item-remove last"><a class="remove-item btn" title="Clear Cart" href="#" data="{{ item.id }}"><span><span></span></span></a></td>
+                                </tr>
+                              {% endfor %}
+                            {% endif %}
                           </tbody>
                         </table>
                       </div>
@@ -102,5 +104,6 @@
   <script type="text/javascript" src="{% static 'js/parallax.js' %}"></script> 
   <script type="text/javascript" src="{% static 'js/jquery.flexslider.js' %}"></script>  
   <script type="text/javascript" src="{% static 'js/cloud-zoom.js' %}"></script>
+  <script src="{% static 'js/wishlist.js' %}"></script>
 {% endblock %}
 

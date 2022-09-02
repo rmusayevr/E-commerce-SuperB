@@ -93,6 +93,7 @@ class WishlistView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super(WishlistView, self).get_context_data(**kwargs)
         user_wishlist =  Wishlist.objects.filter(user = self.request.user).first()
-        all_products = user_wishlist.product_ver.all()
-        context['items'] = all_products
+        if user_wishlist:
+            all_products = user_wishlist.product_ver.all()
+            context['items'] = all_products
         return context

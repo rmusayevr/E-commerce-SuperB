@@ -15,10 +15,27 @@ function getCookie(name) {
 const csrftoken = getCookie('csrftoken');
 
 const addProduct = {
-
     addProductWishlist(ProductID) {
         return fetch(`${location.origin}/api/wishlist/`, {
             method: 'POST',
+            headers: {
+                'Content-type': 'application/json',
+                'X-CSRFToken': csrftoken,
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify({
+                'product': [ 
+                    ProductID
+                ]
+            })
+        });
+    }
+}
+
+const deleteProduct = {
+    deleteProductWishlist(ProductID) {
+        return fetch(`${location.origin}/api/wishlist`, {
+            method: 'DELETE',
             headers: {
                 'Content-type': 'application/json',
                 'X-CSRFToken': csrftoken,
@@ -42,7 +59,15 @@ for (let i = 0; i < wishlist_buttons.length; i++) {
   }
 }
 
-document.querySelector('.add-to-wishlist').onclick = function () {
+let delete_buttons = document.getElementsByClassName('remove-item');
+for (let i = 0; i < delete_buttons.length; i++) {
+  delete_buttons[i].onclick = function () {
+    const ProductID = this.getAttribute('data');
+    deleteProduct.deleteProductWishlist(ProductID)
+  }
+}
+
+document.querySelector('#add-wishlist').onclick = function () {
     const ProductID = this.getAttribute('data');
     addProduct.addProductWishlist(ProductID);
 }
