@@ -1,5 +1,5 @@
-{% load static %}
 {% load i18n %}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -48,30 +48,27 @@
           <div class="row"> 
             <!-- Header Language -->
             <div class="col-xs-7 col-sm-6">
-              <div class="dropdown block-language-wrapper hidden-xs"> <a role="button" data-toggle="dropdown" data-target="#" class="block-language dropdown-toggle" href="#"> <img src="{% static 'images/english.png' %}" alt="language"> English <span class="caret"></span> </a>
+              <div class="dropdown block-language-wrapper hidden-xs"> <a role="button" data-toggle="dropdown" data-target="#" class="block-language dropdown-toggle" href="#">{% trans 'Languages' %} <span class="caret"></span> </a>
                 <ul class="dropdown-menu" role="menu">
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="{% static 'images/english.png' %}" alt="language"> English </a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="{% static 'images/francais.png' %}" alt="language"> French </a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="{% static 'images/german.png' %}" alt="language"> German </a></li>
-                </ul>
+                  {% get_current_language as CURRENT_LANGUAGE %}
+                  {% get_available_languages as AVAILABLE_LANGUAGES %}
+                  {% get_language_info_list for AVAILABLE_LANGUAGES as languages %}
+                    {% for language in languages %}
+                      <li>
+                        <a href="/{{ language.code }}/"
+                          class="dropdown-item {% if language.code == CURRENT_LANGUAGE %} active {% endif %}">
+                          {{ language.name_local }}
+                        </a>
+                      </li>
+                    {% endfor %}
               </div>
               <!-- End Header Language -->  
-              <!-- Header Currency -->
-              <div class="dropdown block-currency-wrapper hidden-xs"> <a role="button" data-toggle="dropdown" data-target="#" class="block-currency dropdown-toggle" href="#"> USD <span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> $ - Dollar </a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> £ - Pound </a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> € - Euro </a></li>
-                </ul>
-              </div>
-              <!-- End Header Currency -->
-              <div class="welcome-msg hidden-xs"> Default welcome msg! </div>
             </div>
             <div class="col-xs-5 col-sm-6"> 
               <div class="top-cart-contain pull-right"> 
             <!-- Top Cart -->
             <div class="mini-cart">
-              <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"><a href="#">  My Cart <span class="cart_count">2</span></a></div>
+              <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"><a href="#">{% trans 'My Cart' %} <span class="cart_count">2</span></a></div>
               <div>
                 <div class="top-cart-content" style="display: none;">
                   <div class="actions">
@@ -136,15 +133,12 @@
               <!-- Header Top Links -->
               <div class="toplinks">
                 <div class="links">
-                  <div class="myaccount"><a title="My Account" href="{% url 'index' %}"><span class="hidden-xs">My Account</span></a></div>
-                  <div class="check"><a title="Checkout" href="{% url 'checkout' %}"><span class="hidden-xs">Checkout</span></a></div>
-                  <div class="demo"><a title="Blog" href="{% url 'blogs' %}"><span class="hidden-xs">Blog</span></a></div>
                   <!-- Header Company -->
                   <!-- End Header Company -->
                   {% if user.is_authenticated %}
-                    <div class="logout"><a href="{% url 'logout' %}"><span class="hidden-xs">Log Out</span></a></div>    
+                    <div class="logout"><a href="{% url 'logout' %}"><span class="hidden-xs">{% trans 'Log Out' %}</span></a></div>    
                   {% else %}
-                    <div class="login"><a href="{% url 'login' %}"><span class="hidden-xs">Log In</span></a></div>    
+                    <div class="login"><a href="{% url 'login' %}"><span class="hidden-xs">{% trans 'Log In'}</span></a></div>    
                   {% endif %}              
                 </div>         
               </div>

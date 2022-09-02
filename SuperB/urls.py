@@ -10,7 +10,7 @@ from rest_framework_simplejwt.views import (
 )
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path(_('admin/'), admin.site.urls),
     path('', include('Blog.urls')),
     path('', include('Core.urls')),
     path('', include('Order.urls')),
@@ -22,7 +22,9 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh')
 ] 
 
-
+urlpatterns += i18n_patterns (
+    path('', include('Core.urls'))
+)
 urlpatterns +=  static(settings.STATIC_URL, document_root = settings.STATIC_ROOT) 
 
 urlpatterns +=  static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

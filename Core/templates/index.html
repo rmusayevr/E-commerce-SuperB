@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load static %}
 {% block title %}
   <title>Superb Premium</title>
@@ -320,7 +321,7 @@
       <section class="featured-pro container wow bounceInUp animated">
         <div class="slider-items-products container">
           <div class="new_title center">
-            <h2>Superb Products</h2>
+            <h2>{% trans 'SuperB Products' %}</h2>
             <div class="starSeparator"></div>
           </div>
           <div id="featured-slider" class="product-flexslider hidden-buttons">
@@ -371,9 +372,9 @@
                         <!--Begin Tab Nav -->
                         <div class="thm-pdt-nav">
                           <ul class="pdt-nav">
-                            <li class="item-nav" data-type="order" data-catid="" data-orderby="best_sales" data-href="pdt_best_sales"><span class="title-navi">Best Seller</span></li>
-                            <li class="item-nav tab-loaded tab-nav-actived" data-type="order" data-catid="" data-orderby="new_arrivals" data-href="pdt_new_arrivals"><span class="title-navi">New Arrivals</span></li>
-                            <li class="item-nav" data-type="order" data-catid="" data-orderby="featured" data-href="pdt_featured"><span class="title-navi">Featured</span></li>
+                            <li class="item-nav" data-type="order" data-catid="" data-orderby="best_sales" data-href="pdt_best_sales"><span class="title-navi">{% trans 'Best Seller' %}</span></li>
+                            <li class="item-nav tab-loaded tab-nav-actived" data-type="order" data-catid="" data-orderby="new_arrivals" data-href="pdt_new_arrivals"><span class="title-navi">{% trans 'New Arrivals' %}</span></li>
+                            <li class="item-nav" data-type="order" data-catid="" data-orderby="featured" data-href="pdt_featured"><span class="title-navi">{% trans 'Featured' %}</span></li>
                           </ul>
                         </div>
                         <!-- End Tab Nav --> 
@@ -514,7 +515,7 @@
       <section class="latest-blog wow bounceInUp animated">
         <div class="container">
           <div class="new_title center">
-            <h1>Latest Blog</h1>
+            <h1>{% trans 'Latest Blogs' %}</h1>
             <div class="starSeparator"></div>
           </div>
           <div class="row">

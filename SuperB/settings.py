@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 from datetime import timedelta
 import os 
-from django.utils.translation import gettext_lazy as _
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -38,6 +37,7 @@ INSTALLED_APPS = [
     'jazzmin',
     'crispy_forms',
     'bootstrap5',
+    "modeltranslation",
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -61,7 +61,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'SuperB.middlewares.block_middleware.BlockIPMiddleware',
+    # 'SuperB.middlewares.block_middleware.BlockIPMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -203,9 +203,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'az'
+LANGUAGE_CODE = 'en'
 
-TIME_ZONE = 'Asia/Baku'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -214,9 +214,10 @@ USE_L10N = True
 USE_TZ = True
 
 
+gettext = lambda s: s
 LANGUAGES = (
-    ('en', _('English')),
-    ('az', _('Azerbaijani')),
+    ('az', gettext('Azerbaijan')),
+    ('en', gettext('English')),
 )
 
 LOCALE_PATHS = [
