@@ -14,7 +14,6 @@ from pathlib import Path
 from datetime import timedelta
 import os 
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,27 +36,27 @@ INSTALLED_APPS = [
     'jazzmin',
     'crispy_forms',
     'bootstrap5',
+    
     "modeltranslation",
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
     'rest_framework',
+    'rest_framework_simplejwt',
     'social_django',
     'django_celery_beat',
     "corsheaders",
     "rosetta",
-    'rest_framework_simplejwt',
+    'Product.apps.ProductConfig',
 
     'Blog.apps.BlogConfig',
     'Core.apps.CoreConfig',
     'Order.apps.OrderConfig',
-    'Product.apps.ProductConfig',
-    'User.apps.UserConfig'
+    'User.apps.UserConfig',
 ]
 
 MIDDLEWARE = [
@@ -224,6 +223,8 @@ LOCALE_PATHS = [
     BASE_DIR / 'locale/',
 ]
 
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
+MODELTRANSLATION_LANGUAGES = ('en', 'az')
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
