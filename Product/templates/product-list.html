@@ -28,9 +28,9 @@
                         </div>
                         <div class="price-box"> 
                           {% if product.in_sale %}
-                            <p class="special-price"> <span class="price-label"></span> <span class="price"> {{ product.new_price }}</span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> {{ product.price }} </span> </p>
+                            <p class="special-price"> <span class="price-label"></span> <span class="price"> {{ product.new_price|stringformat:".2f"  }}</span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> {{ product.price|stringformat:".2f"  }} </span> </p>
                           {% else %}
-                            <p class="special-price"> <span class="price-label"></span> <span class="price"> {{ product.price }}</span> </p>
+                            <p class="special-price"> <span class="price-label"></span> <span class="price"> {{ product.price|stringformat:".2f"  }}</span> </p>
                           {% endif %}
                         </div>
                         <div class="actions">
@@ -41,23 +41,30 @@
                     {% endfor %}
                   </ol>
                 </div>
-                <div class="pagination">
-                  <span class="step-links">
-                      {% if page_obj.has_previous %}
-                          <a href="?page=1">&laquo; first</a>
-                          <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-                      {% endif %}
-              
-                      <span class="current">
-                          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                      </span>
-              
-                      {% if page_obj.has_next %}
-                          <a href="?page={{ page_obj.next_page_number }}">next</a>
-                          <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-                      {% endif %}
-                  </span>
-                </div>
+                {% if is_paginated %}
+                    <div class="row mt-5">
+                        <div class="col text-center">
+                            <div class="block-27">
+                                <ul>
+                                    {% if page_obj.has_previous %}
+                                        <li><a href="?page={{ page_obj.previous_page_number }}">&lt;</a></li>
+                                    {% endif %}
+                                    {% for page in paginator.page_range %}
+                                        {% if page_obj.number == page %}
+                                            <li class="active"><span>{{ page }}</span></li>
+                                        {% else %}
+                                            <li><a href="?page={{page}}">{{page}}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if page_obj.has_next %}
+                                        <li><a href="?page={{ page_obj.next_page_number }}">&gt;</a></li>
+                                    {% endif %}
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
               </article>
                 <!--	///*///======    End article  ========= //*/// --> 
           </div>

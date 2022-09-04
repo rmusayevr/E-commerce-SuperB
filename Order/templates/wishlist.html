@@ -39,18 +39,21 @@
                           <tbody>
                               {% for item in items %}
                                 <tr id="item_31" class="first odd">
-                                  <td class="wishlist-cell0 customer-wishlist-item-image"><a title="Softwear Women's Designer" href="#" class="product-image"> <img width="150" height="150" alt="Softwear Women's Designer" src="{{ item.cover_image.url }}"> </a></td>
-                                  <td class="wishlist-cell1 customer-wishlist-item-info"><h3 class="product-name"><a title="Softwear Women's Designer" href="#">{{ item.name }}</a></h3>
+                                  <td class="wishlist-cell0 customer-wishlist-item-image"><a title="Softwear Women's Designer" href="{% url 'product_detail' item.pk %}" class="product-image"> <img width="150" height="150" alt="Softwear Women's Designer" src="{{ item.cover_image.url }}"> </a></td>
+                                  <td class="wishlist-cell1 customer-wishlist-item-info"><h3 class="product-name"><a title="Softwear Women's Designer" href="{% url 'product_detail' item.pk %}">{{ item.name }}</a></h3>
                                     <div class="description std">
                                       <div class="inner">{{ item.overview }}</div>
                                     </div>
                                   <td data-rwd-label="Price" class="wishlist-cell3 customer-wishlist-item-price"><div class="cart-cell">
-                                      <div class="price-box"> <span class="regular-price"> <span class="price">${{ item.price }}</span> </span> </div>
-                                    </div></td>
+                                    {% if item.in_sale %}
+                                      <p class="special-price"> <span class="price-label"></span> <span class="price"> {{ item.new_price|stringformat:".2f"  }}</span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> {{ item.price|stringformat:".2f"  }} </span> </p>
+                                    {% else %}
+                                      <p class="special-price"> <span class="price-label"></span> <span class="price"> {{ item.price|stringformat:".2f"  }}</span> </p>
+                                    {% endif %}
+                                  </td>
                                   <td class="wishlist-cell4 customer-wishlist-item-cart"><div class="cart-cell">
                                       <button class="button btn-cart" title="Add to Cart" type="button"><span><span>Add to Cart</span></span></button>
                                     </div>
-                                    <p><a href="#" class="">Edit</a></p></td>
                                   <td class="wishlist-cell5 customer-wishlist-item-remove last"><a class="remove-item btn" title="Clear Cart" href="#" data="{{ item.id }}"><span><span></span></span></a></td>
                                 </tr>
                               {% endfor %}

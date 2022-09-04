@@ -1271,6 +1271,36 @@ ul.vertnav-top li > a > span > .cat-label {
 	font-size: 14px;
 	line-height: 18px;
 }
+
+.block-27 ul {
+    padding: 0;
+    margin: 0;
+}
+
+.block-27 ul li {
+    display: inline-block;
+    margin-bottom: 4px;
+    font-weight: 400;
+}
+
+.block-27 ul li a,
+.block-27 ul li span {
+    color: #1f1f1f;
+    text-align: center;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    border: 1px solid #e6e6e6;
+}
+
+.block-27 ul li.active a,
+.block-27 ul li.active span {
+    background: #1f1f1f;
+    color: #fff;
+    border: 1px solid transparent;
+}
 /* Category blocks */
 .nav-block {
 	margin-top: 0;

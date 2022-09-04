@@ -42,10 +42,16 @@
                     </div>
                     <div class="price-block">
                       <div class="price-box">
-                        <p class="special-price"> <span class="price-label">Special Price</span> <span id="product-price-48" class="price"> $309.99 </span> </p>
-                        <p class="old-price"> <span class="price-label">Regular Price:</span> <span class="price"> ${{ product.price }} </span> </p>
+                        {% if product.in_sale %}
+                            <p class="special-price"> <span class="price-label"></span> <span class="price"> {{ product.new_price|stringformat:".2f"  }}</span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> {{ product.price|stringformat:".2f"  }} </span> </p>
+                          {% else %}
+                            <p class="special-price"> <span class="price-label"></span> <span class="price"> {{ product.price|stringformat:".2f"  }}</span> </p>
+                          {% endif %}
                       </div>
                       <p class="availability in-stock pull-right"><span>In Stock</span></p>
+                      {% for color in colors %}
+                        <p>{{color}}</p>
+                      {% endfor %}
                     </div>
                     <div class="short-description">
                       <h2>Quick Overview</h2>
