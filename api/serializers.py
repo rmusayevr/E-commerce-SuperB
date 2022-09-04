@@ -11,6 +11,7 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'name',
+            'p_category'
         ]
 
 class ProductVersionSerializer(serializers.ModelSerializer):
@@ -46,6 +47,17 @@ class ProductReadSerializer(serializers.ModelSerializer):
     def get_product_ver(self, obj):
         return ProductVersionSerializer().data
 
+class ProductVersionReadSerializer(serializers.ModelSerializer):
+    product = ProductReadSerializer()
+
+    class Meta:
+        model = Product_version
+        fields = [
+            'id', 
+            'color',    
+            'quantity',
+            'product'
+        ]
 
 class WishlistSerializer(serializers.ModelSerializer):
     

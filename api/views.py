@@ -5,7 +5,7 @@ from Core.models import Subscription
 from Order.models import Wishlist
 from .serializers import (
                     ProductReadSerializer, 
-                    ProductVersionSerializer,
+                    ProductVersionReadSerializer,
                     SubscriberSerializer,
                     WishlistSerializer
                 )
@@ -19,7 +19,7 @@ class ProductAPI(ListAPIView):
 
 class ProductVersionAPI(ListAPIView):
     queryset = Product_version.objects.all()
-    serializer_class = ProductVersionSerializer
+    serializer_class = ProductVersionReadSerializer
 
 class SubscriberAPI(ListCreateAPIView):
     queryset = Subscription.objects.all()

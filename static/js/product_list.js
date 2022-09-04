@@ -1,31 +1,30 @@
 const categoryFilter = {
-  url: `${location.origin}/api/product_versions/`,
+  url: `${location.origin}/api/products/`,
 
   filterProduct(categoryId) {
     let url = this.url;
     if (categoryId) {
       url += `?categoryId=${categoryId}`;
     }
-    console.log(url);
     fetch(url).then(response => response.json()).then(data => {
       document.getElementById('products-list').innerHTML = ''
       for (let i in data) {;
-        for (let x in data[i]['product'].category) {
-          if (data[i]['product']['category'][x] == categoryId) {
+        for (let x in data[i].category) {
+          if (data[i]['category'][x] == categoryId || data[i]['p_category'] == categoryId) {
             document.getElementById('products-list').innerHTML += `
             <li class="item first">
-              <div class="product-image"> <a href="{% url 'product_detail' product.pk %}" title="HTC Rhyme Sense"> <img class="small-image" src="${data[i]['cover_image']}" alt="HTC Rhyme Sense" width="150px" height="325px"> </a> </div>
+              <div class="product-image"> <a href="/product/${data[i].id}" title="HTC Rhyme Sense"> <img class="small-image" src="${data[i]['cover_image']}" alt="HTC Rhyme Sense" width="150px" height="325px"> </a> </div>
               <div class="product-shop">
-                <h2 class="product-name"><a href="{% url 'product_detail' product.pk %}" title="HTC Rhyme Sense">${data[i]['product']['name']}</a></h2>
+                <h2 class="product-name"><a href="/product/${data[i].id}" title="HTC Rhyme Sense">${data[i]['name']}</a></h2>
                 <div class="desc std">
-                  <p>${data[i]['product']['overview']}</p>
+                  <p>${data[i]['overview']}</p>
                 </div>
                 <div class="price-box"> 
                   <p class="special-price"> <span class="price-label"></span> <span class="price"> ${data[i]['price']}</span> </p>
                 </div>
                 <div class="actions">
                   <button class="button btn-cart ajx-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button>
-                  <span class="add-to-links"> <a title="Add to Wishlist" class="button link-wishlist" href="#"><span>Add to Wishlist</span></a> </span> </div>
+                  <span class="add-to-links"> <a title="Add to Wishlist" class="button link-wishlist" href="#" data="${data[i].id}"><span data="${data[i].id}">Add to Wishlist</span></a> </span> </div>
               </div>
             </li>
             `
@@ -37,7 +36,6 @@ const categoryFilter = {
 }
 
 let filterCategory = document.getElementsByClassName('category-field');
-
 for (let i = 0; i < filterCategory.length; i++) {
   filterCategory[i].onclick = function () {
     const categoryId = this.getAttribute('data');
@@ -59,9 +57,9 @@ const manufacturerFilter = {
           if (data[i]['manufacturer'] == manufacturerId) {
             document.getElementById('products-list').innerHTML += `
             <li class="item first">
-              <div class="product-image"> <a href="{% url 'product_detail' product.pk %}" title="HTC Rhyme Sense"> <img class="small-image" src="${data[i]['cover_image']}" alt="HTC Rhyme Sense" width="150px" height="325px"> </a> </div>
+              <div class="product-image"> <a href="/product/${data[i].id}" title="HTC Rhyme Sense"> <img class="small-image" src="${data[i]['cover_image']}" alt="HTC Rhyme Sense" width="150px" height="325px"> </a> </div>
               <div class="product-shop">
-                <h2 class="product-name"><a href="{% url 'product_detail' product.pk %}" title="HTC Rhyme Sense">${data[i]['name']}</a></h2>
+                <h2 class="product-name"><a href="/product/${data[i].id}" title="HTC Rhyme Sense">${data[i]['name']}</a></h2>
                 <div class="desc std">
                   <p>${data[i]['overview']}</p>
                 </div>
@@ -70,7 +68,7 @@ const manufacturerFilter = {
                 </div>
                 <div class="actions">
                   <button class="button btn-cart ajx-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button>
-                  <span class="add-to-links"> <a title="Add to Wishlist" class="button link-wishlist" href="#"><span>Add to Wishlist</span></a> </span> </div>
+                  <span class="add-to-links"> <a title="Add to Wishlist" class="button link-wishlist" href="#" data="${data[i].id}"><span data="${data[i].id}">Add to Wishlist</span></a> </span> </div>
               </div>
             </li>
             `
@@ -86,6 +84,7 @@ for (let i = 0; i < filterManufacturer.length; i++) {
     manufacturerFilter.filterManufacturerProduct(ManufacturerId);
   }
 }
+
 const colorFilter = {
   url: `${location.origin}/api/product_versions/`,
 
@@ -100,9 +99,9 @@ const colorFilter = {
           if (data[i]['color'] == ColorId) {
             document.getElementById('products-list').innerHTML += `
             <li class="item first">
-              <div class="product-image"> <a href="{% url 'product_detail' product.pk %}" title="HTC Rhyme Sense"> <img class="small-image" src="${data[i]['product']['cover_image']}" alt="HTC Rhyme Sense" width="150px" height="325px"> </a> </div>
+              <div class="product-image"> <a href="/product/${data[i].id}" title="HTC Rhyme Sense"> <img class="small-image" src="${data[i]['product']['cover_image']}" alt="HTC Rhyme Sense" width="150px" height="325px"> </a> </div>
               <div class="product-shop">
-                <h2 class="product-name"><a href="{% url 'product_detail' product.pk %}" title="HTC Rhyme Sense">${data[i]['product']['name']}</a></h2>
+                <h2 class="product-name"><a href="/product/${data[i].id}" title="HTC Rhyme Sense">${data[i]['product']['name']}</a></h2>
                 <div class="desc std">
                   <p>${data[i]['product']['overview']}</p>
                 </div>
@@ -111,7 +110,7 @@ const colorFilter = {
                 </div>
                 <div class="actions">
                   <button class="button btn-cart ajx-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button>
-                  <span class="add-to-links"> <a title="Add to Wishlist" class="button link-wishlist" href="#"><span>Add to Wishlist</span></a> </span> </div>
+                  <span class="add-to-links"> <a title="Add to Wishlist" class="button link-wishlist" href="#" data="${data[i].id}"><span data="${data[i].id}">Add to Wishlist</span></a> </span> </div>
               </div>
             </li>
             `

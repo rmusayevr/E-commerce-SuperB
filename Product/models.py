@@ -58,7 +58,7 @@ class Product_version(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="product_version")
     
     def __str__(self):
-        return f"{self.product.name}"
+        return f"{self.product.name}'s {self.color} version"
 
     class Meta:
         verbose_name = "Product Version"
