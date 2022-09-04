@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from drf_yasg.utils import swagger_serializer_method
 from Product.models import Product, Product_version, Category
 from Core.models import Subscription
 from Order.models import Wishlist
@@ -23,7 +24,7 @@ class ProductVersionSerializer(serializers.ModelSerializer):
 
 class ProductReadSerializer(serializers.ModelSerializer):
     category = CategorySerializer()
-    product = serializers.SerializerMethodField()
+    product_ver = serializers.SerializerMethodField()
 
     class Meta:
         model = Product 
@@ -37,12 +38,13 @@ class ProductReadSerializer(serializers.ModelSerializer):
             'price', 
             'discount', 
             'new_price', 
-            'category'
+            'category',
+            'product_ver'
         ]
 
-    def get_product(self, obj):
-        serializer = ProductVersionSerializer(obj.recipes.all(), context=self.context, many=True)
-        return serializer.data
+    @swagger_serializer_method(serializer_or_field=ProductVersionSerializer(many=True))
+    def get_product_ver(self, obj):
+        return ProductVersionSerializer().data
 
 
 class WishlistSerializer(serializers.ModelSerializer):

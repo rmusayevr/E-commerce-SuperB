@@ -33,11 +33,11 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
+    "modeltranslation",
     'jazzmin',
     'crispy_forms',
     'bootstrap5',
     
-    "modeltranslation",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -51,8 +51,8 @@ INSTALLED_APPS = [
     'django_celery_beat',
     "corsheaders",
     "rosetta",
-    'Product.apps.ProductConfig',
 
+    'Product.apps.ProductConfig',
     'Blog.apps.BlogConfig',
     'Core.apps.CoreConfig',
     'Order.apps.OrderConfig',
@@ -225,6 +225,7 @@ LOCALE_PATHS = [
 
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
 MODELTRANSLATION_LANGUAGES = ('en', 'az')
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
