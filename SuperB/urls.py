@@ -10,6 +10,7 @@ from rest_framework_simplejwt.views import (
 )
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('', include('Blog.urls')),
     path('', include('Core.urls')),
     path('', include('Order.urls')),
@@ -22,7 +23,6 @@ urlpatterns = [
 ] 
 
 urlpatterns += i18n_patterns (
-    path('admin/', admin.site.urls),
     path('', include('Core.urls'))
 )
 

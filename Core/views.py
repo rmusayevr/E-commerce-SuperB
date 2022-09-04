@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
+from django.views.generic import CreateView, ListView
 from .models import FAQ
-from .forms import ContactUsForm, SubscriptionForm
+from .forms import ContactUsForm
 
 def error(request):
     return render(request, "404error.html")
@@ -8,25 +9,14 @@ def error(request):
 def about_us(request):
     return render(request, "about_us.html")
 
-def contact_us(request):
-    if request.method == "POST":
-        contact_us_form = ContactUsForm(request.POST)
-        if contact_us_form.is_valid():
-            contact_us_form.save()
-            return redirect('contact_us')
-    else: 
-        contact_us_form = ContactUsForm()
-    context = {
-        "form": contact_us_form
-    }
-    return render(request, "contact_us.html", context)
+class ContactUs(CreateView):
+    template_name = 'contact_us.html'
+    form_class = ContactUsForm
 
-def faq(request):
-    faqs = FAQ.objects.all()
-    context = {
-        "faqs": faqs
-    }
-    return render(request, "faq.html", context)
+class FAQ(ListView):
+    template_name = 'faq.html'
+    model = FAQ
+    context_object_name = 'faqs'
 
 def index(request):
     return render(request, "index.html")

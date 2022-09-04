@@ -1,5 +1,5 @@
-from ipaddress import ip_address
 from django.db import models
+from django.urls import reverse
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
@@ -33,6 +33,9 @@ class ContactUs(models.Model):
 
     def __str__(self):
         return f"{self.first_name}'s comment"
+    
+    def get_absolute_url(self):
+        return reverse('contact_us')
 
     class Meta:
         verbose_name = "Contact Us Comment"
