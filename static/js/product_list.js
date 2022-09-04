@@ -46,7 +46,7 @@ for (let i = 0; i < filterCategory.length; i++) {
 }
 
 const manufacturerFilter = {
-  url: `${location.origin}/api/product_versions/`,
+  url: `${location.origin}/api/products/`,
 
   filterManufacturerProduct(manufacturerId) {
     let url = this.url;
@@ -56,14 +56,14 @@ const manufacturerFilter = {
     fetch(url).then(response => response.json()).then(data => {
       document.getElementById('products-list').innerHTML = ''
       for (let i in data) {
-          if (data[i]['product']['manufacturer'] == manufacturerId) {
+          if (data[i]['manufacturer'] == manufacturerId) {
             document.getElementById('products-list').innerHTML += `
             <li class="item first">
               <div class="product-image"> <a href="{% url 'product_detail' product.pk %}" title="HTC Rhyme Sense"> <img class="small-image" src="${data[i]['cover_image']}" alt="HTC Rhyme Sense" width="150px" height="325px"> </a> </div>
               <div class="product-shop">
-                <h2 class="product-name"><a href="{% url 'product_detail' product.pk %}" title="HTC Rhyme Sense">${data[i]['product']['name']}</a></h2>
+                <h2 class="product-name"><a href="{% url 'product_detail' product.pk %}" title="HTC Rhyme Sense">${data[i]['name']}</a></h2>
                 <div class="desc std">
-                  <p>${data[i]['product']['overview']}</p>
+                  <p>${data[i]['overview']}</p>
                 </div>
                 <div class="price-box"> 
                   <p class="special-price"> <span class="price-label"></span> <span class="price"> ${data[i]['price']}</span> </p>
@@ -100,14 +100,14 @@ const colorFilter = {
           if (data[i]['color'] == ColorId) {
             document.getElementById('products-list').innerHTML += `
             <li class="item first">
-              <div class="product-image"> <a href="{% url 'product_detail' product.pk %}" title="HTC Rhyme Sense"> <img class="small-image" src="${data[i]['cover_image']}" alt="HTC Rhyme Sense" width="150px" height="325px"> </a> </div>
+              <div class="product-image"> <a href="{% url 'product_detail' product.pk %}" title="HTC Rhyme Sense"> <img class="small-image" src="${data[i]['product']['cover_image']}" alt="HTC Rhyme Sense" width="150px" height="325px"> </a> </div>
               <div class="product-shop">
                 <h2 class="product-name"><a href="{% url 'product_detail' product.pk %}" title="HTC Rhyme Sense">${data[i]['product']['name']}</a></h2>
                 <div class="desc std">
                   <p>${data[i]['product']['overview']}</p>
                 </div>
                 <div class="price-box"> 
-                  <p class="special-price"> <span class="price-label"></span> <span class="price"> ${data[i]['price']}</span> </p>
+                  <p class="special-price"> <span class="price-label"></span> <span class="price"> ${data[i]['product']['price']}</span> </p>
                 </div>
                 <div class="actions">
                   <button class="button btn-cart ajx-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button>

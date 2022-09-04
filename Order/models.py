@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 User = get_user_model()
-from Product.models import Product_version
+from Product.models import Product
 
 class address_information(models.Model):
     first_name = models.CharField(max_length=30)
@@ -65,7 +65,7 @@ class shipping_addresses(models.Model):
 
 class Wishlist(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="user_wishlist")
-    product_ver = models.ManyToManyField(Product_version, related_name="products_wishlist")
+    product_ver = models.ManyToManyField(Product, related_name="products_wishlist")
 
     def __str__(self):
         return f"{self.user}'s wishlist"
@@ -76,7 +76,7 @@ class Wishlist(models.Model):
 
 class basket(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
-    product = models.ManyToManyField(Product_version, related_name="products_basket")
+    product = models.ManyToManyField(Product, related_name="products_basket")
 
     def __str__(self):
         return f"{self.user.username}'s basket"

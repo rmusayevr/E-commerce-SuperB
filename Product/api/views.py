@@ -31,16 +31,15 @@ class WishlistAPI(APIView):
     http_method_names = ['get', 'post', 'delete']
 
     def get(self, request, *args, **kwargs):
-        serializer = self.serializer_class(request.user.products_wishlist)
+        serializer = self.serializer_class(request.user.user_wishlist)
         return Response(serializer.data, status = status.HTTP_200_OK)
 
     def post(self, request, *args, **kwargs):
         product_id = request.data.get('product')[0]
-        product = Product_version.objects.filter(pk=product_id).first()
+        product = Product.objects.filter(pk=product_id).first()
         if product:
             wishlist, created = Wishlist.objects.get_or_create(user = request.user)
             wishlist2 = Wishlist.objects.filter(user = request.user).first()
-            # print(wishlist2.product_ver.first())
             wishlist2.product_ver.add(product)
             message = {'success': True, 'message' : 'Product added to your wishlist.'}
             return Response(message, status = status.HTTP_201_CREATED)

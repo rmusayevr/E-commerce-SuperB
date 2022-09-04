@@ -12,8 +12,18 @@ class CategorySerializer(serializers.ModelSerializer):
             'name',
         ]
 
+class ProductVersionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Product_version
+        fields = [
+            'id', 
+            'color',    
+        ]
+
 class ProductReadSerializer(serializers.ModelSerializer):
     category = CategorySerializer()
+    product = serializers.SerializerMethodField()
 
     class Meta:
         model = Product 
@@ -21,26 +31,19 @@ class ProductReadSerializer(serializers.ModelSerializer):
             'id', 
             'name', 
             'overview',
+            'details',
+            'cover_image',
             'manufacturer',
+            'price', 
+            'discount', 
+            'new_price', 
             'category'
         ]
 
-class ProductVersionSerializer(serializers.ModelSerializer):
-    product = ProductReadSerializer()
+    def get_product(self, obj):
+        serializer = ProductVersionSerializer(obj.recipes.all(), context=self.context, many=True)
+        return serializer.data
 
-    class Meta:
-        model = Product_version
-        fields = [
-            'id', 
-            'cover_image',
-            'price', 
-            'quantity', 
-            'details',
-            'color',    
-            'discount', 
-            'new_price', 
-            'product'
-        ]
 
 class WishlistSerializer(serializers.ModelSerializer):
     
