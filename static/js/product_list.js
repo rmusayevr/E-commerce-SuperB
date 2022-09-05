@@ -20,11 +20,11 @@ const categoryFilter = {
                   <p>${data[i]['overview']}</p>
                 </div>
                 <div class="price-box"> 
-                  <p class="special-price"> <span class="price-label"></span> <span class="price"> ${data[i]['price']}</span> </p>
+                  <p class="special-price"> <span class="price-label"></span> <span class="price"> ${data[i]['price'].toFixed(2)}</span> </p>
                 </div>
                 <div class="actions">
-                  <button class="button btn-cart ajx-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button>
-                  <span class="add-to-links"> <a title="Add to Wishlist" class="button link-wishlist" href="#" data="${data[i].id}"><span data="${data[i].id}">Add to Wishlist</span></a> </span> </div>
+                <button class="button btn-cart ajx-cart" title="Add to Cart" type="button" data="${data[i].id}"><span data="${data[i].id}">Add to Cart</span></button>
+                <span class="add-to-links"> <a title="Add to Wishlist" class="button link-wishlist" href="#" data="${data[i].id}"><span data="${data[i].id}">Add to Wishlist</span></a> </span> </div>
               </div>
             </li>
             `
@@ -64,7 +64,7 @@ const manufacturerFilter = {
                   <p>${data[i]['overview']}</p>
                 </div>
                 <div class="price-box"> 
-                  <p class="special-price"> <span class="price-label"></span> <span class="price"> ${data[i]['price']}</span> </p>
+                  <p class="special-price"> <span class="price-label"></span> <span class="price"> ${data[i]['price'].toFixed(2)}</span> </p>
                 </div>
                 <div class="actions">
                   <button class="button btn-cart ajx-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button>
@@ -106,7 +106,7 @@ const colorFilter = {
                   <p>${data[i]['product']['overview']}</p>
                 </div>
                 <div class="price-box"> 
-                  <p class="special-price"> <span class="price-label"></span> <span class="price"> ${data[i]['product']['price']}</span> </p>
+                  <p class="special-price"> <span class="price-label"></span> <span class="price"> ${data[i]['product']['price'].toFixed(2)}</span> </p>
                 </div>
                 <div class="actions">
                   <button class="button btn-cart ajx-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button>

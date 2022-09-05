@@ -75,7 +75,7 @@ class Wishlist(models.Model):
         verbose_name_plural = "Wishlists"   
 
 class basket(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="user_basket")
     product = models.ManyToManyField(Product, related_name="products_basket")
 
     def __str__(self):

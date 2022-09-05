@@ -2,7 +2,7 @@ from rest_framework import serializers
 from drf_yasg.utils import swagger_serializer_method
 from Product.models import Product, Product_version, Category
 from Core.models import Subscription
-from Order.models import Wishlist
+from Order.models import Wishlist, basket
 
 class CategorySerializer(serializers.ModelSerializer):
     
@@ -66,6 +66,15 @@ class WishlistSerializer(serializers.ModelSerializer):
         fields = [
             'user',
             'product_ver'
+        ]
+
+class BasketSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = basket
+        fields = [
+            'user',
+            'product'
         ]
 
 class SubscriberSerializer(serializers.ModelSerializer):

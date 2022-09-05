@@ -1,13 +1,10 @@
-from urllib import request
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from .forms import AddressInfoForm, BillingInfoForm, ShippingInfoForm
-from .models import Wishlist, billing_addresses, shipping_addresses
+from .models import Wishlist, basket, billing_addresses, shipping_addresses
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView, ListView
-from django.contrib.auth import get_user_model
-from User.models import User
 
 
 class BillingInfo(LoginRequiredMixin, CreateView):
@@ -81,14 +78,21 @@ class AddressInfo(LoginRequiredMixin, CreateView):
 def checkout(request):
     return render(request, "checkout.html")
 
-@login_required
-def shopping_cart(request):
-    return render(request, "shopping_cart.html")
+class BasketView(LoginRequiredMixin, ListView):
+    model = basket
+    template_name = 'shopping_cart.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(BasketView, self).get_context_data(**kwargs)
+        user_basket =  basket.objects.filter(user = self.request.user).first()
+        if user_basket:
+            all_products = user_basket.product.all()
+            context['baskets'] = all_products
+        return context
+    
 class WishlistView(LoginRequiredMixin, ListView):
     model = Wishlist
     template_name = 'wishlist.html'
-    quesyset =  Wishlist.objects.all()
 
     def get_context_data(self, **kwargs):
         context = super(WishlistView, self).get_context_data(**kwargs)

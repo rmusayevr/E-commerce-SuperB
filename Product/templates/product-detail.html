@@ -49,9 +49,7 @@
                           {% endif %}
                       </div>
                       <p class="availability in-stock pull-right"><span>In Stock</span></p>
-                      {% for color in colors %}
-                        <p>{{color}}</p>
-                      {% endfor %}
+                      
                     </div>
                     <div class="short-description">
                       <h2>Quick Overview</h2>
@@ -66,12 +64,11 @@
                             <button onClick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty )) result.value++;return false;" class="increase items-count" type="button"><i class="fa fa-plus">&nbsp;</i></button>
                           </div>
                         </div>
-                        <button onClick="productAddToCartForm.submit(this)" class="button btn-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button>
+                        <button onClick="productAddToCartForm.submit(this)" class="button btn-cart" id="add-to-basket" title="Add to Cart" type="button" data="{{ product.pk }}"><span data="{{ product.pk }}">Add to Cart</span></button>
                       </div>
                       <div class="email-addto-box">
-                        <p class="email-friend"><a href="#" class=""><span>Email to a Friend</span></a></p>
                         <ul class="add-to-links">
-                          <li class="link-wishlist" style="cursor: pointer;" id="add-wishlist" data="{{ product.pk }}"><span>Add to Wishlist</span></li>
+                          <li class="link-wishlist" style="cursor: pointer;" id="add-wishlist" data="{{ product.pk }}"><span data="{{ product.pk }}">Add to Wishlist</span></li>
                         </ul>
                       </div>
                     </div>
@@ -325,4 +322,4 @@
   <script type="text/javascript" src="{% static 'js/cloud-zoom.js' %}"></script>
   <script src="{% static 'js/wishlist.js' %}"></script>
 
-{% endblock %}
+  {% endblock %}

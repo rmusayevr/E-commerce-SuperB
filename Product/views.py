@@ -34,7 +34,6 @@ class ProductDetailView(DetailView, CreateView):
     def get_context_data(self, **kwargs):
         context = super(ProductDetailView, self).get_context_data(**kwargs)
         context['images'] = Images_of_product.objects.filter(version__pk = self.kwargs.get("pk"))
-        context['image'] = Images_of_product.objects.filter(version__pk = self.kwargs.get("pk")).first()
         context['reviews'] = Review.objects.filter(product__pk = self.kwargs.get("pk")).all()[:3]
         context['colors'] = Product_version.objects.filter(product__pk = self.kwargs.get("pk")).values_list('color', flat=True)
         return context
