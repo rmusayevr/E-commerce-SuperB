@@ -27,12 +27,14 @@ class SubscriberAPI(ListCreateAPIView):
     serializer_class = SubscriberSerializer
 
 class WishlistAPI(APIView):
+    queryset = Wishlist.objects.all()
     serializer_class = WishlistSerializer
     permission_classes = [IsAuthenticated]
     http_method_names = ['get', 'post', 'delete']
 
     def get(self, request, *args, **kwargs):
-        serializer = self.serializer_class(request.user.user_wishlist)
+        obj, created = Wishlist.objects.get_or_create(user = request.user)
+        serializer = self.serializer_class(obj)
         return Response(serializer.data, status = status.HTTP_200_OK)
 
     def post(self, request, *args, **kwargs):
@@ -61,7 +63,8 @@ class BasketAPI(APIView):
     http_method_names = ['get', 'post', 'delete']
 
     def get(self, request, *args, **kwargs):
-        serializer = self.serializer_class(request.user.user_basket)
+        obj, created = basket.objects.get_or_create(user = request.user)
+        serializer = self.serializer_class(obj)
         return Response(serializer.data, status = status.HTTP_200_OK)
 
     def post(self, request, *args, **kwargs):

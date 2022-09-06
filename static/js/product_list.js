@@ -13,9 +13,9 @@ const categoryFilter = {
           if (data[i]['category'][x] == categoryId || data[i]['p_category'] == categoryId) {
             document.getElementById('products-list').innerHTML += `
             <li class="item first">
-              <div class="product-image"> <a href="/product/${data[i].id}" title="HTC Rhyme Sense"> <img class="small-image" src="${data[i]['cover_image']}" alt="HTC Rhyme Sense" width="150px" height="325px"> </a> </div>
+              <div class="product-image"> <a href="/product/${data[i]['id']}" title="HTC Rhyme Sense"> <img class="small-image" src="${data[i]['cover_image']}" alt="HTC Rhyme Sense" width="150px" height="325px"> </a> </div>
               <div class="product-shop">
-                <h2 class="product-name"><a href="/product/${data[i].id}" title="HTC Rhyme Sense">${data[i]['name']}</a></h2>
+                <h2 class="product-name"><a href="/product/${data[i]['id']}" title="HTC Rhyme Sense">${data[i]['name']}</a></h2>
                 <div class="desc std">
                   <p>${data[i]['overview']}</p>
                 </div>
@@ -23,8 +23,8 @@ const categoryFilter = {
                   <p class="special-price"> <span class="price-label"></span> <span class="price"> ${data[i]['price'].toFixed(2)}</span> </p>
                 </div>
                 <div class="actions">
-                <button class="button btn-cart ajx-cart" title="Add to Cart" type="button" data="${data[i].id}"><span data="${data[i].id}">Add to Cart</span></button>
-                <span class="add-to-links"> <a title="Add to Wishlist" class="button link-wishlist" href="#" data="${data[i].id}"><span data="${data[i].id}">Add to Wishlist</span></a> </span> </div>
+                <button class="button btn-cart ajx-cart" title="Add to Cart" type="button" data="${data[i]['id']}"><span data="${data[i]['id']}">Add to Cart</span></button>
+                <span class="add-to-links" onclick = "functionFilter()" > <button type="button" title="Add to Wishlist" class="button link-wishlist" data="${data[i]['id']}"><span data="${data[i]['id']}">Add to Wishlist</span></button> </span> </div>
               </div>
             </li>
             `
@@ -57,9 +57,9 @@ const manufacturerFilter = {
           if (data[i]['manufacturer'] == manufacturerId) {
             document.getElementById('products-list').innerHTML += `
             <li class="item first">
-              <div class="product-image"> <a href="/product/${data[i].id}" title="HTC Rhyme Sense"> <img class="small-image" src="${data[i]['cover_image']}" alt="HTC Rhyme Sense" width="150px" height="325px"> </a> </div>
+              <div class="product-image"> <a href="/product/${data[i]['id']}" title="HTC Rhyme Sense"> <img class="small-image" src="${data[i]['cover_image']}" alt="HTC Rhyme Sense" width="150px" height="325px"> </a> </div>
               <div class="product-shop">
-                <h2 class="product-name"><a href="/product/${data[i].id}" title="HTC Rhyme Sense">${data[i]['name']}</a></h2>
+                <h2 class="product-name"><a href="/product/${data[i]['id']}" title="HTC Rhyme Sense">${data[i]['name']}</a></h2>
                 <div class="desc std">
                   <p>${data[i]['overview']}</p>
                 </div>
@@ -67,8 +67,8 @@ const manufacturerFilter = {
                   <p class="special-price"> <span class="price-label"></span> <span class="price"> ${data[i]['price'].toFixed(2)}</span> </p>
                 </div>
                 <div class="actions">
-                  <button class="button btn-cart ajx-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button>
-                  <span class="add-to-links"> <a title="Add to Wishlist" class="button link-wishlist" href="#" data="${data[i].id}"><span data="${data[i].id}">Add to Wishlist</span></a> </span> </div>
+                <button class="button btn-cart ajx-cart" title="Add to Cart" type="button" data="${data[i]['id']}"><span data="${data[i]['id']}">Add to Cart</span></button>
+                <span class="add-to-links" onclick = "functionFilter()" > <button type="button" title="Add to Wishlist" class="button link-wishlist" data="${data[i]['id']}"><span data="${data[i]['id']}">Add to Wishlist</span></button> </span> </div>
               </div>
             </li>
             `
@@ -99,9 +99,9 @@ const colorFilter = {
           if (data[i]['color'] == ColorId) {
             document.getElementById('products-list').innerHTML += `
             <li class="item first">
-              <div class="product-image"> <a href="/product/${data[i].id}" title="HTC Rhyme Sense"> <img class="small-image" src="${data[i]['product']['cover_image']}" alt="HTC Rhyme Sense" width="150px" height="325px"> </a> </div>
+              <div class="product-image"> <a href="/product/${data[i]['product']['id']}" title="HTC Rhyme Sense"> <img class="small-image" src="${data[i]['product']['cover_image']}" alt="HTC Rhyme Sense" width="150px" height="325px"> </a> </div>
               <div class="product-shop">
-                <h2 class="product-name"><a href="/product/${data[i].id}" title="HTC Rhyme Sense">${data[i]['product']['name']}</a></h2>
+                <h2 class="product-name"><a href="/product/${data[i]['product']['id']}" title="HTC Rhyme Sense">${data[i]['product']['name']}</a></h2>
                 <div class="desc std">
                   <p>${data[i]['product']['overview']}</p>
                 </div>
@@ -109,8 +109,8 @@ const colorFilter = {
                   <p class="special-price"> <span class="price-label"></span> <span class="price"> ${data[i]['product']['price'].toFixed(2)}</span> </p>
                 </div>
                 <div class="actions">
-                  <button class="button btn-cart ajx-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button>
-                  <span class="add-to-links"> <a title="Add to Wishlist" class="button link-wishlist" href="#" data="${data[i].id}"><span data="${data[i].id}">Add to Wishlist</span></a> </span> </div>
+                  <button class="button btn-cart ajx-cart" title="Add to Cart" type="button" data="${data[i]['product']['id']}"><span data="${data[i]['product']['id']}">Add to Cart</span></button>
+                  <span class="add-to-links" onclick = "functionFilter()" > <button type="button" title="Add to Wishlist" class="button link-wishlist" data="${data[i]['product']['id']}"><span data="${data[i]['product']['id']}">Add to Wishlist</span></button> </span> </div>
               </div>
             </li>
             `

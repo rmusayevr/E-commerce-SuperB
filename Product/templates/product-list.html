@@ -34,8 +34,8 @@
                           {% endif %}
                         </div>
                         <div class="actions">
-                          <button class="button btn-cart ajx-cart" title="Add to Cart" type="button" data="{{ product.id }}"><span data="{{ product.id }}">Add to Cart</span></button>
-                          <span class="add-to-links"> <a title="Add to Wishlist" class="button link-wishlist" href="#" data="{{ product.id }}"><span data="{{ product.id }}">Add to Wishlist</span></a> </span> </div>
+                          <button class="button btn-cart ajx-cart" title="Add to Cart" type="button" data="{{ product.pk }}"><span data="{{ product.pk }}">Add to Cart</span></button>
+                          <span class="add-to-links" onclick = "functionFilter()" > <button type="button" title="Add to Wishlist" class="button link-wishlist" data="{{ product.pk }}"><span data="{{ product.pk }}">Add to Wishlist</span></button> </span> </div>
                       </div>
                     </li>
                     {% endfor %}
@@ -128,4 +128,5 @@
   <script type="text/javascript" src="{% static 'js/slider.js' %}"></script> 
   <script src="{% static 'js/product_list.js' %}"></script>
   <script src="{% static 'js/wishlist.js' %}"></script>
+
 {% endblock %}

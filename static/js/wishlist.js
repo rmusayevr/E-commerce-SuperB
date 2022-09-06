@@ -50,13 +50,15 @@ const deleteProduct = {
     }
 }
 
-
-let wishlist_buttons = document.getElementsByClassName('link-wishlist');
-for (let i = 0; i < wishlist_buttons.length; i++) {
-  wishlist_buttons[i].onclick = function () {
-    const ProductID = this.getAttribute('data');
-    addProduct.addProductWishlist(ProductID);
-  }
+function functionFilter() {
+    let wishlist_buttons = document.getElementsByClassName('link-wishlist');
+    for (let i = 0; i < wishlist_buttons.length; i++) {
+    wishlist_buttons[i].onclick = function()  {
+        const ProductID = this.getAttribute('data');
+        console.log(ProductID);
+        addProduct.addProductWishlist(ProductID);
+    }
+    }
 }
 
 let delete_buttons = document.getElementsByClassName('remove-item');

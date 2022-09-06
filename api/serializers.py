@@ -60,7 +60,7 @@ class ProductVersionReadSerializer(serializers.ModelSerializer):
         ]
 
 class WishlistSerializer(serializers.ModelSerializer):
-    
+
     class Meta:
         model = Wishlist
         fields = [
