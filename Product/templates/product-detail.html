@@ -64,11 +64,11 @@
                             <button onClick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty )) result.value++;return false;" class="increase items-count" type="button"><i class="fa fa-plus">&nbsp;</i></button>
                           </div>
                         </div>
-                        <button onClick="productAddToCartForm.submit(this)" class="button btn-cart" id="add-to-basket" title="Add to Cart" type="button" data="{{ product.pk }}"><span data="{{ product.pk }}">Add to Cart</span></button>
+                        <button onclick = "functionAddToBasket($(this).attr('data'))" class="button btn-cart" id="add-to-basket" title="Add to Cart" type="button" data="{{ product.pk }}"><span>Add to Cart</span></button>
                       </div>
                       <div class="email-addto-box">
                         <ul class="add-to-links">
-                          <li class="link-wishlist" style="cursor: pointer;" id="add-wishlist" data="{{ product.pk }}"><span data="{{ product.pk }}">Add to Wishlist</span></li>
+                          <li class="link-wishlist" onclick = "functionAddToWishlist($(this).attr('data'))" style="cursor: pointer;" id="add-wishlist" data="{{ product.pk }}"><span>Add to Wishlist</span></li>
                         </ul>
                       </div>
                     </div>

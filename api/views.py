@@ -50,7 +50,8 @@ class WishlistAPI(APIView):
         return Response(message, status = status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, *args, **kwargs):
-        ProductID = request.data.get('product')
+        ProductID = request.data.get('product')[0]
+        print(ProductID)
         if ProductID:
             user_wishlist =  Wishlist.objects.filter(user = self.request.user).first()
             product = user_wishlist.product_ver.filter(id = ProductID[0])
@@ -80,11 +81,10 @@ class BasketAPI(APIView):
         return Response(message, status = status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, *args, **kwargs):
-        ProductID = request.data.get('product')
+        ProductID = request.data.get('product')[0]
         if ProductID:
             user_basket =  basket.objects.filter(user = self.request.user).first()
             product = user_basket.product.filter(id = ProductID[0])
-            print(product)
             user_basket.product.remove(product[0].id)
 
         return Response(status = status.HTTP_200_OK)

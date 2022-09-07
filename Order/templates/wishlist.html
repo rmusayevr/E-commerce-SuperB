@@ -51,9 +51,9 @@
                                     {% endif %}
                                   </td>
                                   <td class="wishlist-cell4 customer-wishlist-item-cart"><div class="cart-cell">
-                                      <button class="button btn-cart" title="Add to Cart" type="button"><span><span>Add to Cart</span></span></button>
+                                      <button class="button btn-cart" title="Add to Cart" onclick = "functionAddToBasket($(this).attr('data'))" type="button" data="{{ item.id }}"><span><span>Add to Cart</span></span></button>
                                     </div>
-                                  <td class="wishlist-cell5 customer-wishlist-item-remove last"><a class="remove-item btn" title="Clear Cart" href="{% url 'wishlist' %}" data="{{ item.id }}"><span><span></span></span></a></td>
+                                  <td class="wishlist-cell5 customer-wishlist-item-remove last"><a class="remove-item btn" title="Clear Cart" onclick = "removeWishlist($(this).attr('data'))" href="{% url 'wishlist' %}" data="{{ item.id }}"><span><span></span></span></a></td>
                                 </tr>
                               {% endfor %}
                           </tbody>

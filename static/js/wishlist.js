@@ -50,30 +50,6 @@ const deleteProduct = {
     }
 }
 
-function functionFilter() {
-    let wishlist_buttons = document.getElementsByClassName('link-wishlist');
-    for (let i = 0; i < wishlist_buttons.length; i++) {
-    wishlist_buttons[i].onclick = function()  {
-        const ProductID = this.getAttribute('data');
-        console.log(ProductID);
-        addProduct.addProductWishlist(ProductID);
-    }
-    }
-}
-
-let delete_buttons = document.getElementsByClassName('remove-item');
-for (let i = 0; i < delete_buttons.length; i++) {
-  delete_buttons[i].onclick = function () {
-    const ProductID = this.getAttribute('data');
-    deleteProduct.deleteProductWishlist(ProductID)
-  }
-}
-
-// document.querySelector('#add-wishlist').onclick = function () {
-//     const ProductID = this.getAttribute('data');
-//     addProduct.addProductWishlist(ProductID);
-// }
-
 const addProduct_Basket = {
     addProductBasket(ProductID) {
         return fetch(`${location.origin}/api/basket/`, {
@@ -110,25 +86,18 @@ const deleteProduct_Basket = {
     }
 }
 
+function functionAddToWishlist(ProductID) {
+    addProduct.addProductWishlist(ProductID);
+}
 
-let basket_buttons = document.getElementsByClassName('ajx-cart');
-for (let i = 0; i < basket_buttons.length; i++) {
-  basket_buttons[i].onclick = function () {
-    const ProductID = this.getAttribute('data');
+function functionAddToBasket(ProductID) {
     addProduct_Basket.addProductBasket(ProductID);
-  }
 }
 
-let delete_buttons_basket = document.getElementsByClassName('basket-remove');
-for (let i = 0; i < delete_buttons_basket.length; i++) {
-    delete_buttons_basket[i].onclick = function () {
-    const ProductID = this.getAttribute('data');
-    console.log(ProductID);
+function removeWishlist(ProductID) {
+    deleteProduct.deleteProductWishlist(ProductID)
+}
+
+function removeBasket(ProductID) {
     deleteProduct_Basket.deleteProductBasket(ProductID)
-  }
 }
-
-// document.querySelector('#add-to-basket').onclick = function () {
-//     const ProductID = this.getAttribute('data');
-//     addProduct_Basket.addProductBasket(ProductID);
-// }

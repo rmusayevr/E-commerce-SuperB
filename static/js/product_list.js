@@ -23,8 +23,8 @@ const categoryFilter = {
                   <p class="special-price"> <span class="price-label"></span> <span class="price"> ${data[i]['price'].toFixed(2)}</span> </p>
                 </div>
                 <div class="actions">
-                <button class="button btn-cart ajx-cart" title="Add to Cart" type="button" data="${data[i]['id']}"><span data="${data[i]['id']}">Add to Cart</span></button>
-                <span class="add-to-links" onclick = "functionFilter()" > <button type="button" title="Add to Wishlist" class="button link-wishlist" data="${data[i]['id']}"><span data="${data[i]['id']}">Add to Wishlist</span></button> </span> </div>
+                <button class="button btn-cart ajx-cart" onclick = "functionAddToBasket($(this).attr('data'))" title="Add to Cart" type="button" data="${data[i]['id']}"><span>Add to Cart</span></button>
+                <span class="add-to-links" onclick = "functionAddToWishlist($(this).attr('data'))" data="${data[i]['id']}"> <button type="button" title="Add to Wishlist" class="button link-wishlist"><span>Add to Wishlist</span></button> </span> </div>
               </div>
             </li>
             `
@@ -67,8 +67,8 @@ const manufacturerFilter = {
                   <p class="special-price"> <span class="price-label"></span> <span class="price"> ${data[i]['price'].toFixed(2)}</span> </p>
                 </div>
                 <div class="actions">
-                <button class="button btn-cart ajx-cart" title="Add to Cart" type="button" data="${data[i]['id']}"><span data="${data[i]['id']}">Add to Cart</span></button>
-                <span class="add-to-links" onclick = "functionFilter()" > <button type="button" title="Add to Wishlist" class="button link-wishlist" data="${data[i]['id']}"><span data="${data[i]['id']}">Add to Wishlist</span></button> </span> </div>
+                <button class="button btn-cart ajx-cart" onclick = "functionAddToBasket($(this).attr('data'))" title="Add to Cart" type="button" data="${data[i]['id']}"><span>Add to Cart</span></button>
+                <span class="add-to-links" onclick = "functionAddToWishlist($(this).attr('data'))" data="${data[i]['id']}"> <button type="button" title="Add to Wishlist" class="button link-wishlist"><span>Add to Wishlist</span></button> </span> </div>
               </div>
             </li>
             `
@@ -109,8 +109,8 @@ const colorFilter = {
                   <p class="special-price"> <span class="price-label"></span> <span class="price"> ${data[i]['product']['price'].toFixed(2)}</span> </p>
                 </div>
                 <div class="actions">
-                  <button class="button btn-cart ajx-cart" title="Add to Cart" type="button" data="${data[i]['product']['id']}"><span data="${data[i]['product']['id']}">Add to Cart</span></button>
-                  <span class="add-to-links" onclick = "functionFilter()" > <button type="button" title="Add to Wishlist" class="button link-wishlist" data="${data[i]['product']['id']}"><span data="${data[i]['product']['id']}">Add to Wishlist</span></button> </span> </div>
+                  <button class="button btn-cart ajx-cart" onclick = "functionAddToBasket($(this).attr('data'))" title="Add to Cart" type="button" data="${data[i]['product']['id']}"><span>Add to Cart</span></button>
+                  <span class="add-to-links" onclick = "functionAddToWishlist($(this).attr('data'))" data="${data[i]['product']['id']}"> <button type="button" title="Add to Wishlist" class="button link-wishlist"><span>Add to Wishlist</span></button> </span> </div>
               </div>
             </li>
             `

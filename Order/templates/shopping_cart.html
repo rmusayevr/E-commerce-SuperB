@@ -57,7 +57,7 @@
                         <td class="a-center hidden-table"><span class="cart-price"> <span class="price">$29.95</span> </span></td>
                         <td class="a-center movewishlist"><input maxlength="12" class="input-text qty" title="Qty" size="4" value="1" name=""></td>
                         <td class="a-center movewishlist"><span class="cart-price"> <span class="price">$29.95</span> </span></td>
-                        <td class="a-center last"><a class="button remove-item basket-remove" title="Remove item" href="{% url 'shopping_cart' %}" data="{{ item.pk }}"><span data="{{ item.pk }}"><span data="{{ item.pk }}">Remove item</span></span></a></td>
+                        <td class="a-center last"><a class="button remove-item basket-remove" title="Remove item" onclick = "removeBasket($(this).attr('data'))" href="{% url 'shopping_cart' %}" data="{{ item.pk }}"><span><span>Remove item</span></span></a></td>
                       </tr>
                     {% endfor %}
                   </tbody>

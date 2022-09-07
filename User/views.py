@@ -11,7 +11,7 @@ from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import send_mail
-from SuperB.settings import EMAIL_HOST_USER
+# from SuperB.settings import EMAIL_HOST_USER
 from django.contrib.auth.views import (PasswordChangeView, 
                                         PasswordResetView, 
                                         PasswordResetConfirmView, 
@@ -51,12 +51,12 @@ class RegisterView(CreateView):
                     'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                     'token': account_activation_token.make_token(user),
                 })
-            from_email = EMAIL_HOST_USER
+            # from_email = EMAIL_HOST_USER
             to_email = request.POST['email']
             send_mail(
                 subject,
                 message,
-                from_email,
+                # from_email,
                 [to_email, ]
             )
             
