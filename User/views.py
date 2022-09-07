@@ -1,4 +1,3 @@
-from urllib import request
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from .forms import (UserRegisterForm, 
@@ -7,11 +6,12 @@ from .forms import (UserRegisterForm,
                     AccountInformationForm, 
                     CustomPasswordResetForm, 
                     CustomSetPasswordForm)
-from django.contrib.auth import get_user_model
 from django.utils.encoding import force_str, force_bytes
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode
 from django.contrib.sites.shortcuts import get_current_site
+from django.core.mail import send_mail
+from SuperB.settings import EMAIL_HOST_USER
 from django.contrib.auth.views import (PasswordChangeView, 
                                         PasswordResetView, 
                                         PasswordResetConfirmView, 
@@ -43,18 +43,24 @@ class RegisterView(CreateView):
             user.is_active = False
             user.save()
 
+            subject = 'Activate Your SuperB Account'
             current_site = get_current_site(request)
-            subject = 'Activate Your MySite Account'
             message = render_to_string('email/confirmation_email.html', {
-                'user': user,
-                'domain': current_site.domain,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                'token': account_activation_token.make_token(user),
-            })
-            user.email_user(subject, message)
-
+                    'user': user,
+                    'domain': current_site.domain,
+                    'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                    'token': account_activation_token.make_token(user),
+                })
+            from_email = EMAIL_HOST_USER
+            to_email = request.POST['email']
+            send_mail(
+                subject,
+                message,
+                from_email,
+                [to_email, ]
+            )
+            
             messages.success(request, ('Please Confirm your email to complete registration.'))
-
             return redirect('login')
 
         return render(request, self.template_name, {'form': form})
