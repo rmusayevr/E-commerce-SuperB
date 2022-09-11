@@ -28,9 +28,9 @@
                         </div>
                         <div class="price-box"> 
                           {% if product.in_sale %}
-                            <p class="special-price"> <span class="price-label"></span> <span class="price"> {{ product.new_price|stringformat:".2f"  }}</span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> {{ product.price|stringformat:".2f"  }} </span> </p>
+                            <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ product.new_price|stringformat:".2f"  }}</span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> ${{ product.price|stringformat:".2f"  }} </span> </p>
                           {% else %}
-                            <p class="special-price"> <span class="price-label"></span> <span class="price"> {{ product.price|stringformat:".2f"  }}</span> </p>
+                            <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ product.price|stringformat:".2f"  }}</span> </p>
                           {% endif %}
                         </div>
                         <div class="actions">
@@ -77,11 +77,11 @@
                   <div class="box-content box-category">
                     <ul>
                       {% for category in categories %}
-                        <li> <a class="category-field" data="{{ category.id }}" href="#">{{ category.name }}</a> <span class="subDropdown plus"></span>
+                        <li> <a class="category-field" data="{{ category.id }}" href="#?category={{category.name}}">{{ category.name }}</a> <span class="subDropdown plus"></span>
                           <ul class="level0_455" style="display:none">
                             {% for s_category in s_categories %}
                               {% if s_category.p_category == category %}
-                                <li><a class="category-field" data="{{ s_category.id }}" href="#">{{ s_category.name }}</a></li>
+                                <li><a class="category-field" data="{{ s_category.id }}" href="#?category={{category.name}}-{{s_category.name}}">{{ s_category.name }}</a></li>
                               {% endif %}
                             {% endfor %}
                           </ul>

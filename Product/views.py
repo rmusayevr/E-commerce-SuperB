@@ -28,8 +28,12 @@ class ProductDetailView(DetailView, CreateView):
     context_object_name = "product"
     form_class = ReviewForm
 
+
     def get_object(self, queryset=None):
-        return Product.objects.get(pk=self.kwargs.get("pk"))
+        product = Product.objects.get(pk=self.kwargs.get("pk"))
+        product.read_count += 1
+        product.save()
+        return product
         
     def get_context_data(self, **kwargs):
         context = super(ProductDetailView, self).get_context_data(**kwargs)
@@ -44,7 +48,7 @@ class ProductDetailView(DetailView, CreateView):
             review = form.save(commit=False)
             review.product = Product.objects.get(pk=self.kwargs.get("pk"))
             review.save()
-            product = ProductStatistic.objects.get(product = self.get_object())
-            product.reviews += 1
+            product = Product.objects.get(pk=self.kwargs.get("pk"))
+            product.review_count += 1
             product.save()
         return redirect('product_detail', pk=self.kwargs.get("pk"))

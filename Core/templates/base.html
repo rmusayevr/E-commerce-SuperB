@@ -67,38 +67,34 @@
             <div class="col-xs-5 col-sm-6"> 
               <div class="top-cart-contain pull-right"> 
             <!-- Top Cart -->
-            <div class="mini-cart">
-              <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"><a href="#">{% trans 'My Cart' %} <span class="cart_count">2</span></a></div>
-              <div>
-                <div class="top-cart-content" style="display: none;">
-                  <div class="actions">
-                    <button class="btn-checkout" title="Checkout" type="button"><span>Checkout</span></button>
-                    <a href="#" class="view-cart" ><span>View Cart</span></a> </div>
-                  <!--block-subtitle-->
-                  <ul class="mini-products-list" id="cart-sidebar">
-                    <li class="item first">
-                      <div class="item-inner"><a class="product-image" title="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" href="#l"><img alt="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" src="{% static 'products-images/p4.jpg' %}"></a>
-                        <div class="product-details">
-                          <div class="access"><a class="btn-remove1" title="Remove This Item" href="#">Remove</a> <a class="btn-edit" title="Edit item" href="#"><i class="icon-pencil"></i><span class="hidden">Edit item</span></a> </div>
-                          <!--access--> <strong>1</strong> x <span class="price">$179.99</span>
-                          <p class="product-name"><a href="#">timi &amp; leslie Sophia Diaper Bag...</a></p>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="item last">
-                      <div class="item-inner"><a class="product-image" title="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" href="#"><img alt="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" src="{% static 'products-images/p3.jpg' %}"></a>
-                        <div class="product-details">
-                          <div class="access"><a class="btn-remove1" title="Remove This Item" href="#">Remove</a> <a class="btn-edit" title="Edit item" href="#"><i class="icon-pencil"></i><span class="hidden">Edit item</span></a> </div>
-                          <!--access--> <strong>1</strong> x <span class="price">$80.00</span>
-                          <p class="product-name"><a href="#">JP Lizzy Satchel Designer Diaper Ba...</a></p>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                  <!--actions--> 
+            {% if user.is_authenticated %}
+              <div class="mini-cart">
+                <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"><a href="{% url 'shopping_cart' %}">{% trans 'My Cart' %} </div>
+                <div>
+                  <div class="top-cart-content">
+                    <!--block-subtitle-->
+                      <ul class="mini-products-list" id="cart-sidebar">
+                        {% for item in basket_items %}
+                          <li class="item first">
+                            <div class="item-inner"><a class="product-image" title="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" href="{% url 'product_detail' pk=item.pk %}"><img alt="{{ item.name }}" src="{{ item.cover_image.url }}"></a>
+                              <div class="product-details">
+                                {% if item.in_sale %}
+                                  <strong>{{item.quantity}}</strong> x <span class="price">${{item.new_price}}</span>
+                                {% else %}
+                                  <strong>{{item.quantity}}</strong> x <span class="price">${{item.price}}</span>
+                                {% endif %}
+                                <p class="product-name"><a href="{% url 'product_detail' pk=item.pk %}">{{ item.name }}</a></p>
+                              </div>
+                            </div>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    <!--actions--> 
+                  </div>
                 </div>
               </div>
-            </div>
+            {% endif %}
+
             <!-- Top Cart -->
             <div id="ajaxconfig_info" style="display:none"><a href="#/"></a>
               <input value="" type="hidden">
@@ -163,32 +159,29 @@
         <li class="level0 parent drop-menu active"><a href="{% url 'index' %}"><span>{% trans 'Home' %}</span></a></li>
         <li class="level0 parent drop-menu"><a href="#"><span>{% trans 'Pages' %}</span> </a>
           <ul class="level1" style="display: none;">
-            <li class="level1 first"><a href="grid.html"><span>{% trans Grid %}</span></a></li>
-            <li class="level1 nav-10-2"> <a href="list.html"> <span>List</span> </a> </li>
-            <li class="level1 nav-10-3"> <a href="{% url 'product_list' %}"> <span>Product Detail</span> </a> </li>
-            <li class="level1 nav-10-4"> <a href="{% url 'shopping_cart' %}"> <span>Shopping Cart</span> </a> </li>
+            <li class="level1 nav-10-2"> <a href="{% url 'product_list' %}"> <span>Product List</span> </a> </li>
+            <li class="level1 nav-10-3"> <a href="{% url 'shopping_cart' %}"> <span>Shopping Cart</span> </a> </li>
             <li class="level1 first parent"><a href="{% url 'checkout' %}"><span>Checkout</span></a> 
               <!--sub sub category-->
               <ul class="level2 right-sub" style="top: 0px; left: 165px; display: none;">
-                <li class="level2 nav-2-1-1 first"><a href="checkout_method.html"><span>Checkout Method</span></a></li>
+                <li class="level2 nav-2-1-1 first"><a href="{% url 'shipping_info' %}"><span>Checkout Shipping Info</span></a></li>
                 <li class="level2 nav-2-1-5 last"><a href="{% url 'billing_info' %}"><span>Checkout Billing Info</span></a></li>
               </ul>
               <!--sub sub category--> 
             </li>
             <li class="level1 nav-10-4"> <a href="{% url 'wishlist' %}"> <span>Wishlist</span> </a> </li>
-            <li class="level1 first parent"><a href="dashboard.html"><span>Dashboard</span></a> 
-              <!--sub sub category-->
-              <ul class="level2 right-sub" style="top: 0px; left: 165px; display: none;">
+            <li class="level1"> <a href="multiple_addresses.html"> <span>Multiple Addresses</span> </a> 
+               <!--sub sub category-->
+               <ul class="level2 right-sub" style="top: 0px; left: 165px; display: none;">
                 <li class="level2 nav-2-1-5 last"><a href="{% url 'address_book' %}"><span>Address Book</span></a></li>
-                <li class="level2 nav-2-1-1 first"><a href="{% url 'address_info' %}"><span>Contact Information</span></a></li>
+                <li class="level2 nav-2-1-1 first"><a href="{% url 'address_info' %}"><span>Address Information</span></a></li>
               </ul>
               <!--sub sub category--> 
             </li>
-            <li class="level1"> <a href="multiple_addresses.html"> <span>Multiple Addresses</span> </a> </li>
             <li class="level1"> <a href="{% url 'about_us' %}"> <span>About us</span> </a> </li>
             <li class="level1"> <a href="{% url 'faq' %}"> <span>FAQ</span> </a> </li>
             <li class="level1"> <a href="{% url 'login' %}"> <span>Login</span> </a> </li>
-            <li class="level1"><a href="{% url 'blogs' %}"><span>Blog</span></a></li>
+            <li class="level1"><a href="{% url 'blogs' %}"><span>Blogs</span></a></li>
             <li class="level1"><a href="{% url 'contact_us' %}"><span>Contact us</span></a> </li>
             <li class="level1"><a href="{% url 'error' %}"><span>404 Error Page</span></a> </li>
           </ul>

@@ -57,3 +57,9 @@ class ShippingInfoForm(forms.ModelForm):
             'province': forms.TextInput(attrs={'class': 'input-text'}),
             'zip': forms.TextInput(attrs={'class': 'input-text'}),
         }
+
+class GetQuantityForm(forms.Form):
+    quantity = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'input-text qty',
+                                                                'size': '4',
+                                                                'value': 1,
+                                                                'min': 1}))

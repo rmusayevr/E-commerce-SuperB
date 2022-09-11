@@ -1,10 +1,13 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from .forms import AddressInfoForm, BillingInfoForm, ShippingInfoForm
+
+from Product.models import Product
+from .forms import AddressInfoForm, BillingInfoForm, ShippingInfoForm, GetQuantityForm
 from .models import Wishlist, basket, billing_addresses, shipping_addresses
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView, ListView
+from django.views.generic.edit import FormMixin
 
 
 class BillingInfo(LoginRequiredMixin, CreateView):
@@ -78,16 +81,25 @@ class AddressInfo(LoginRequiredMixin, CreateView):
 def checkout(request):
     return render(request, "checkout.html")
 
-class BasketView(LoginRequiredMixin, ListView):
+class BasketView(LoginRequiredMixin, FormMixin, ListView):
     model = basket
     template_name = 'shopping_cart.html'
+    form_class = GetQuantityForm
 
+    
+        
     def get_context_data(self, **kwargs):
         context = super(BasketView, self).get_context_data(**kwargs)
         user_basket =  basket.objects.filter(user = self.request.user).first()
         if user_basket:
             all_products = user_basket.product.all()
             context['baskets'] = all_products
+        
+        grand_total = 0
+        products = Product.objects.filter(products_basket__user__username = self.request.user.username).all()
+        for product in products:
+            grand_total += product.get_subtotal()
+        context['grand_total'] = grand_total
         return context
     
 class WishlistView(LoginRequiredMixin, ListView):

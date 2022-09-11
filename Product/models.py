@@ -36,17 +36,29 @@ class Product(models.Model):
     in_sale = models.BooleanField(default=False)
     discount = models.IntegerField(choices=discounts, null=True, blank=True)
     new_price = models.FloatField(null=True, blank=True)
+    quantity = models.PositiveIntegerField(default=0)
+    date = models.DateTimeField(auto_now_add=True)
+    read_count = models.PositiveIntegerField(default=0)
     overview = models.TextField()
     details = models.TextField()
+    review_count = models.PositiveIntegerField(default=0)
     category = models.ForeignKey("Category", on_delete=models.CASCADE, related_name="product_category", null=True, blank=True)
     
     def __str__(self):
         return self.name
-    
+
     def save(self, *args, **kwargs):
         if self.in_sale:
             self.new_price = self.price - self.price*(self.discount/100)
         return super().save()
+
+    def get_subtotal(self):
+        if self.in_sale:
+            subtotal = self.new_price*self.quantity
+        else:
+            subtotal = self.price*self.quantity
+
+        return subtotal
 
     class Meta:
         verbose_name = "Product"
@@ -99,13 +111,3 @@ class Review(models.Model):
         verbose_name = "Product Review"
         verbose_name_plural = "Product Reviews"
 
-class ProductStatistic(models.Model):
-    product = models.ForeignKey(Product_version, on_delete=models.CASCADE, related_name="product_statistic")
-    reviews = models.PositiveIntegerField(default=0)
-
-    def __str__(self):
-        return f"{self.product}'s stats"
-
-    class Meta:
-        verbose_name = "Product Statistic"
-        verbose_name_plural = "Product Statistics"

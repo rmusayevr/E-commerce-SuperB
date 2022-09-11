@@ -71,9 +71,12 @@ class BasketAPI(APIView):
     def post(self, request, *args, **kwargs):
         product_id = request.data.get('product')[0]
         product = Product.objects.filter(pk=product_id).first()
+        
         if product:
             for_basket, created = basket.objects.get_or_create(user = request.user)
             basket2 = basket.objects.filter(user = request.user).first()
+            product.quantity += 1
+            product.save()
             basket2.product.add(product)
             message = {'success': True, 'message' : 'Product added to your wishlist.'}
             return Response(message, status = status.HTTP_201_CREATED)
@@ -84,6 +87,10 @@ class BasketAPI(APIView):
         ProductID = request.data.get('product')[0]
         if ProductID:
             user_basket =  basket.objects.filter(user = self.request.user).first()
+            product_s = Product.objects.filter(pk=ProductID).first()
+            product_s.get_subtotal()
+            product_s.quantity = 0
+            product_s.save()
             product = user_basket.product.filter(id = ProductID[0])
             user_basket.product.remove(product[0].id)
 

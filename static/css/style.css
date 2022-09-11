@@ -2679,7 +2679,7 @@ ul.level1 {
 	width: 14.529914529915%;
 }
 .thm-producttabs .wide-5 .item {
-	width: 23.2%;
+	width: 22.2%;
 }
 .thm-producttabs .wide-4 .item {
 	width: 23.076923076923%;
@@ -2692,6 +2692,17 @@ ul.level1 {
 }
 .thm-producttabs .wide-1 .item {
 	width: 100%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
 @-webkit-keyframes bounceIn {
 0% {

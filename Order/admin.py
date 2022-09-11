@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import billing_addresses, shipping_addresses, address_information, Wishlist
+from .models import billing_addresses, shipping_addresses, address_information, Wishlist, basket
 
 
-# admin.site.register(basket)
+admin.site.register(basket)
 admin.site.register(billing_addresses)
 admin.site.register(shipping_addresses)
 admin.site.register(address_information)
