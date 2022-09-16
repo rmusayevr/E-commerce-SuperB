@@ -1,5 +1,5 @@
 from django import forms
-from .models import address_information, billing_addresses, shipping_addresses
+from .models import address_information, billing_addresses, shipping_addresses, order
 
 class AddressInfoForm(forms.ModelForm):
    
@@ -58,8 +58,10 @@ class ShippingInfoForm(forms.ModelForm):
             'zip': forms.TextInput(attrs={'class': 'input-text'}),
         }
 
-class GetQuantityForm(forms.Form):
-    quantity = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'input-text qty',
-                                                                'size': '4',
-                                                                'value': 1,
-                                                                'min': 1}))
+class OrderForm(forms.ModelForm):
+    class Meta:
+        model = order
+        fields = ['address']
+        widgets = {
+            'address': forms.Select(attrs={'class': 'address-select'})
+        }

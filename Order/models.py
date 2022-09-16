@@ -34,7 +34,7 @@ class billing_addresses(models.Model):
     city = models.CharField(max_length=100, null=True, blank=True)
     province = models.CharField(max_length=150, null=True, blank=True)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    zip = models.IntegerField()
+    zip = models.CharField(max_length=15)
 
     def __str__(self):
         return f"{self.first_name}'s billing address"
@@ -52,9 +52,8 @@ class shipping_addresses(models.Model):
     country = models.CharField(max_length=50, null=True, blank=True)
     city = models.CharField(max_length=100, null=True, blank=True)
     province = models.CharField(max_length=150, null=True, blank=True)
-    # province = models.ForeignKey("province", on_delete=models.CASCADE, null=True)  
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    zip = models.IntegerField()
+    zip = models.CharField(max_length=10)
      
     def __str__(self):
         return f"{self.first_name}'s shipping address"
@@ -77,6 +76,7 @@ class Wishlist(models.Model):
 class basket(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="user_basket")
     product = models.ManyToManyField(Product, related_name="products_basket")
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return f"{self.user.username}'s basket"
@@ -84,3 +84,14 @@ class basket(models.Model):
     class Meta:
         verbose_name = "Basket"
         verbose_name_plural = "Baskets"
+
+class order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_order")
+    address = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f"{self.user.username}'s order"
+
+    class Meta:
+        verbose_name = 'Order'
+        verbose_name_plural = 'Orders'

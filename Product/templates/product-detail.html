@@ -43,9 +43,9 @@
                     <div class="price-block">
                       <div class="price-box">
                         {% if product.in_sale %}
-                            <p class="special-price"> <span class="price-label"></span> <span class="price"> {{ product.new_price|stringformat:".2f"  }}</span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> {{ product.price|stringformat:".2f"  }} </span> </p>
+                            <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ product.new_price|stringformat:".2f"  }}</span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> ${{ product.price|stringformat:".2f"  }} </span> </p>
                           {% else %}
-                            <p class="special-price"> <span class="price-label"></span> <span class="price"> {{ product.price|stringformat:".2f"  }}</span> </p>
+                            <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ product.price|stringformat:".2f"  }}</span> </p>
                           {% endif %}
                       </div>
                       <p class="availability in-stock pull-right"><span>In Stock</span></p>
@@ -237,21 +237,18 @@
                 <div class="item">
                   <div class="item-inner">
                     <div class="item-img">
-                      <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="{{ r_item.image.url }}" alt="Retis lapen casen"></a>
-                        <div class="actions">
-                          <div class="link-wishlist"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Wishlist"><span>Add to Wishlist</span></a></div>
-                          <div class="add_cart">
-                            <button class="button btn-cart" type="button" data-toggle="tooltip" data-placement="right" title="" data-original-title="Add to Cart"><span>Add to Cart</span></button>
-                          </div>
-                        </div>
-                      </div>
+                      <div class="item-img-info"><a href="{% url 'product_detail' r_item.pk %}" title="Retis lapen casen" class="product-image"><img src="{{ r_item.cover_image.url }}" alt="Retis lapen casen"></a></div>
                     </div>
                     <div class="item-info">
                       <div class="info-inner">
-                        <div class="item-title"><a href="#" title="Retis lapen casen">{{ r_item.name }}</a> </div>
+                        <div class="item-title"><a href="{% url 'product_detail' r_item.pk %}" title="Retis lapen casen">{{ r_item.name }}</a> </div>
                         <div class="item-content">
                           <div class="item-price">
-                            <div class="price-box"><span class="regular-price"><span class="price">{{ r_item.price }}</span></span></div>
+                            {% if r_item.in_sale %}
+                              <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ r_item.new_price|stringformat:".2f"  }}</span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> ${{ r_item.price|stringformat:".2f"  }} </span> </p>
+                            {% else %}
+                              <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ r_item.price|stringformat:".2f"  }}</span> </p>
+                            {% endif %}
                           </div>
                         </div>
                       </div>
@@ -278,29 +275,18 @@
                 <div class="item">
                   <div class="item-inner">
                     <div class="item-img">
-                      <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="{{ u_item.image.url }}" alt="Retis lapen casen"></a>
-                        <div class="actions">
-                          <div class="link-wishlist"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Wishlist"><span>Add to Wishlist</span></a></div>
-                          <div class="add_cart">
-                            <button class="button btn-cart" type="button" data-toggle="tooltip" data-placement="right" title="" data-original-title="Add to Cart"><span>Add to Cart</span></button>
-                          </div>
-                        </div>
-                        <div class="rating">
-                          <div class="ratings">
-                            <div class="rating-box">
-                              <div class="rating" style="width:80%"></div>
-                            </div>
-                            <p class="rating-links"><a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
-                          </div>
-                        </div>
-                      </div>
+                      <div class="item-img-info"><a href="{% url 'product_detail' u_item.pk %}" title="Retis lapen casen" class="product-image"><img src="{{ u_item.cover_image.url }}" alt="Retis lapen casen"></a></div>
                     </div>
                     <div class="item-info">
                       <div class="info-inner">
-                        <div class="item-title"><a href="#" title="Retis lapen casen">{{ u_item.name }}</a> </div>
+                        <div class="item-title"><a href="{% url 'product_detail' u_item.pk %}" title="Retis lapen casen">{{ u_item.name }}</a> </div>
                         <div class="item-content">
                           <div class="item-price">
-                            <div class="price-box"><span class="regular-price"><span class="price">{{ u_item.price }}</span> </span> </div>
+                            {% if u_item.in_sale %}
+                              <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ u_item.new_price|stringformat:".2f"  }}</span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> ${{ u_item.price|stringformat:".2f"  }} </span> </p>
+                            {% else %}
+                              <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ u_item.price|stringformat:".2f"  }}</span> </p>
+                            {% endif %}
                           </div>
                         </div>
                       </div>

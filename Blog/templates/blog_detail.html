@@ -32,7 +32,7 @@
                       </div>  
                     </div>
                     <div class="entry-meta">
-                      <a href="{% url 'blogs' %}?author={{post.author.author_slug}}">
+                      <a href="{% url 'blogs' %}?author={{object.author.author_slug}}">
                         <span class="author-avatar byline"><img alt="" src="{{ object.author.author_image.url }}" class="avatar avatar-96 photo">{{ object.author }}</span> <span class="timestamp">{{ object.date|date:"F j, Y"}}</span>
                       </a>
                     </div>

@@ -57,7 +57,6 @@ class Product(models.Model):
             subtotal = self.new_price*self.quantity
         else:
             subtotal = self.price*self.quantity
-
         return subtotal
 
     class Meta:

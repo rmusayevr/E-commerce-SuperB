@@ -79,9 +79,9 @@
                             <div class="item-inner"><a class="product-image" title="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" href="{% url 'product_detail' pk=item.pk %}"><img alt="{{ item.name }}" src="{{ item.cover_image.url }}"></a>
                               <div class="product-details">
                                 {% if item.in_sale %}
-                                  <strong>{{item.quantity}}</strong> x <span class="price">${{item.new_price}}</span>
+                                  <strong>{{item.quantity}}</strong> x <span class="price">${{item.new_price|stringformat:".2f"}}</span>
                                 {% else %}
-                                  <strong>{{item.quantity}}</strong> x <span class="price">${{item.price}}</span>
+                                  <strong>{{item.quantity}}</strong> x <span class="price">${{item.price|stringformat:".2f"}}</span>
                                 {% endif %}
                                 <p class="product-name"><a href="{% url 'product_detail' pk=item.pk %}">{{ item.name }}</a></p>
                               </div>
@@ -190,7 +190,7 @@
         <li class="level0 parent drop-menu"><a href="{% url 'blogs' %}"><span>{% trans 'Blogs' %}</span></a></li>
       </ul>
       <ul class="nav hidden-xs menu-item menu-item-right">
-        <li class="level0 parent drop-menu"><a href="{% url 'product_list' %}" class="level-top"><span>{% trans 'Women' %}</span></a>
+        <li class="level0 parent drop-menu"><a href="{% url 'product_list' %}?category=Women" class="level-top"><span>{% trans 'Women' %}</span></a>
           <ul class="level1" style="display: none;">
             <li class="level1"><a href="#.html" class=""><span>Handbags</span></a></li>
             <li class="level1"><a href="#.html"><span>Jackets</span></a></li>
@@ -199,7 +199,7 @@
             <li class="level1"><a href="#.html"><span>Dresses</span></a></li>
           </ul>
         </li>
-        <li class="level0 parent drop-menu"><a href="{% url 'product_list' %}" class="level-top"><span>{% trans 'Men' %}</span></a>
+        <li class="level0 parent drop-menu"><a href="{% url 'product_list' %}?category=Men" class="level-top"><span>{% trans 'Men' %}</span></a>
           <ul class="level1" style="display: none;">
             <li class="level1"><a href="#.html" class=""><span>Shoes</span></a></li>
             <li class="level1"><a href="#.html"><span>Shirts</span></a></li>
@@ -208,7 +208,7 @@
             <li class="level1"><a href="#/sunglasses.html"><span>Sunglasses</span></a></li>
           </ul>
         </li>
-        <li class="level0 parent drop-menu"><a href="{% url 'product_list' %}" class="level-top"><span>{% trans 'Kids' %}</span></a>
+        <li class="level0 parent drop-menu"><a href="{% url 'product_list' %}?category=Kids" class="level-top"><span>{% trans 'Kids' %}</span></a>
           <ul class="level1" style="display: none;">
             <li class="level1"><a href="#.html" class=""><span>Shoes</span></a></li>
             <li class="level1"><a href="#.html"><span>Dresses</span></a></li>
@@ -581,6 +581,7 @@
   <script type="text/javascript" src="{% static 'js/owl.carousel.min.js' %}"></script> 
   <script type="text/javascript" src="{% static 'js/jquery.mobile-menu.min.js' %}"></script> 
   <script src="{% static 'js/subscriber.js' %}"></script>
+
   {% block js %}
   {% endblock %}
 </body>

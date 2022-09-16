@@ -23,8 +23,17 @@ class ProductVersionSerializer(serializers.ModelSerializer):
             'color',    
         ]
 
+class BasketReadSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = basket
+        fields = [
+            'is_active'
+        ]
+
 class ProductReadSerializer(serializers.ModelSerializer):
     category = CategorySerializer()
+    basket = serializers.SerializerMethodField()
     product_ver = serializers.SerializerMethodField()
 
     class Meta:
@@ -40,12 +49,17 @@ class ProductReadSerializer(serializers.ModelSerializer):
             'discount', 
             'new_price', 
             'category',
-            'product_ver'
+            'product_ver',
+            'basket'
         ]
 
     @swagger_serializer_method(serializer_or_field=ProductVersionSerializer(many=True))
     def get_product_ver(self, obj):
         return ProductVersionSerializer().data
+    
+    @swagger_serializer_method(serializer_or_field=BasketReadSerializer(many=True))
+    def get_basket(self, obj):
+        return BasketReadSerializer().data
 
 class ProductVersionReadSerializer(serializers.ModelSerializer):
     product = ProductReadSerializer()
@@ -68,13 +82,28 @@ class WishlistSerializer(serializers.ModelSerializer):
             'product_ver'
         ]
 
+class ProductBasketReadSerializer(serializers.ModelSerializer):
+     class Meta:
+        model = Product 
+        fields = [
+            'id', 
+            'name', 
+            'price',
+            'cover_image',
+            'in_sale',
+            'new_price',
+            'quantity',
+        ]
+
 class BasketSerializer(serializers.ModelSerializer):
-    
+    product = ProductBasketReadSerializer(read_only=True, many=True)
+
     class Meta:
         model = basket
         fields = [
             'user',
-            'product'
+            'product',
+            'is_active'
         ]
 
 class SubscriberSerializer(serializers.ModelSerializer):

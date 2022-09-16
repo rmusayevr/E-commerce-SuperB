@@ -31,24 +31,27 @@
                 <!--<a href="#">Edit</a> --> 
               </div>
               <div id="checkout-step-billing" class="step a-item" >
-                <form id="co-billing-form" >
+                <form id="co-billing-form" method="POST">
+                  {% csrf_token %}
                   <fieldset class="group-select">
                     <ul>
                       <li>
                         <label for="billing-address-select">Select a billing address from your address book or enter a new address.</label>
                         <br>
-                        <select name="" id="billing-address-select" class="address-select" title="" onChange="">
-                          <option value="1" selected="selected">pranali d, aundh, tyyrt, Alabama 46532, United States</option>
+                        <select name="address" id="billing-address-select" class="address-select">
+                          {% for address in addresses %}
+                            <option value="{{ address.id }}">{{ address.country}}, {{ address.city }}, {{address.province}}, {{ address.street_address }}</option>
+                          {% endfor %}
                         </select>
+                        <button type="submit" class="button submit" style="margin-left: 15px;"><span>Finish Order</span></button>
                         <p><a href="{% url 'address_info' %}">Add New Address</a></p>
                       </li>
                     </ul>
-                    <button type="button" class="button continue" ><span>Continue</span></button>
+                    <div id="paypal-button-container"></div>
                   </fieldset>
                 </form>
               </div>
             </li>
-            
           </ol>
         </div>
         <aside class="col-right sidebar col-sm-3">
@@ -56,7 +59,7 @@
             <div class="block-title ">Your Checkout</div>
             <div class="block-content">
               <dl>
-                <dt class="complete"> Billing Address <span class="separator">|</span> <a href="#">Change</a> </dt>
+                <dt class="complete"> Billing Address <span class="separator">|</span> <a href="{% url 'billing_info' %}">Change</a> </dt>
                 <dd class="complete">
                   <address>
                   John Smith<br>
@@ -69,7 +72,7 @@
                   F: 123456
                   </address>
                 </dd>
-                <dt class="complete"> Shipping Address <span class="separator">|</span> <a href="#">Change</a> </dt>
+                <dt class="complete"> Shipping Address <span class="separator">|</span> <a href="{% url 'shipping_info' %}">Change</a> </dt>
                 <dd class="complete">
                   <address>
                   Saraha Smith<br>
@@ -81,10 +84,6 @@
                   F: 123456
                   </address>
                 </dd>
-                <dt class="complete"> Shipping Method <span class="separator">|</span> <a href="#">Change</a> </dt>
-                <dd class="complete"> Flat Rate - Fixed <br>
-                  <span class="price">$49.00</span> </dd>
-                <dt> Payment Method </dt>
               </dl>
             </div>
           </div>
@@ -101,4 +100,51 @@
   <script type="text/javascript" src="{% static 'js/parallax.js' %}"></script> 
   <script type="text/javascript" src="{% static 'js/jquery.flexslider.js' %}"></script> 
   <script type="text/javascript" src="{% static 'js/cloud-zoom.js' %}"></script>
+  <!-- Include the PayPal JavaScript SDK -->
+  <script src="https://www.paypal.com/sdk/js?client-id=AQlCEAB8cVuLGijSY-0qsRMRWEYG9a-L4MKfPkWCVwufaNB9HsQ43ffhqxGHxdPBPuHl3rDcjJj3HPco&currency=USD"></script>
+
+  <script>
+
+      var total = '{{grand_total}}'
+
+      
+      // Render the PayPal button into #paypal-button-container
+      paypal.Buttons({
+          // Set up the transaction
+          createOrder: function(data, actions) {
+              return actions.order.create({
+                  purchase_units: [{
+                      amount: {
+                          value: total
+                      }
+                  }]
+              });
+          },
+
+          // Finalize the transaction
+          onApprove: function(data, actions) {
+              return actions.order.capture().then(function(orderData) {
+                  // Successful capture! For demo purposes:
+                  console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                  var transaction = orderData.purchase_units[0].payments.captures[0];
+                  alert('Transaction '+ transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
+                  $.ajax({
+                    type: "GET",
+                    url: '/checkout/',
+                    data: {
+                        "result": transaction.status,
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        // any process in data
+                        alert("successfull")
+                    },
+                    failure: function () {
+                        alert("failure");
+                    }
+                });
+              });
+          }
+      }).render('#paypal-button-container');
+  </script>
 {% endblock %}

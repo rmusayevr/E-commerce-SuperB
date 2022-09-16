@@ -50,8 +50,9 @@ class BlogDetailView(DetailView, CreateView):
         return redirect('blog_detail', slug=self.kwargs.get("slug"))
 
     def get_context_data(self, **kwargs):
+        print(kwargs)
         context = super(BlogDetailView, self).get_context_data(**kwargs)
-        context['r_blogs'] = Blogs.objects.filter(~Q(slug = self.kwargs.get("slug"))).all()[:5]
+        context['r_blogs'] = Blogs.objects.filter(Q(category = kwargs['object'].category), ~Q(slug = self.kwargs.get("slug"))).all()[:5]
         context['p_posts'] = Blogs.objects.order_by("-read_count").all()[:4]
         context['categories'] = Categories.objects.all()
         context['comments'] = Comments.objects.filter(blog__slug = self.kwargs.get("slug")).order_by("-date").all()[:5]

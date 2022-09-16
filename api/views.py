@@ -13,6 +13,7 @@ from .serializers import (
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
+from django.db.models import Q
 
 class ProductAPI(ListAPIView):
     queryset = Product.objects.all()
@@ -51,7 +52,6 @@ class WishlistAPI(APIView):
 
     def delete(self, request, *args, **kwargs):
         ProductID = request.data.get('product')[0]
-        print(ProductID)
         if ProductID:
             user_wishlist =  Wishlist.objects.filter(user = self.request.user).first()
             product = user_wishlist.product_ver.filter(id = ProductID[0])
@@ -64,17 +64,19 @@ class BasketAPI(APIView):
     http_method_names = ['get', 'post', 'delete']
 
     def get(self, request, *args, **kwargs):
-        obj, created = basket.objects.get_or_create(user = request.user)
+        obj, created = basket.objects.get_or_create(user = request.user, is_active = True)
+        basket1 = basket.objects.filter(Q(user = request.user), Q(is_active = True)).all()
+        if len(basket1) != 1:
+            basket1.last().delete()
         serializer = self.serializer_class(obj)
         return Response(serializer.data, status = status.HTTP_200_OK)
 
     def post(self, request, *args, **kwargs):
         product_id = request.data.get('product')[0]
         product = Product.objects.filter(pk=product_id).first()
-        
         if product:
-            for_basket, created = basket.objects.get_or_create(user = request.user)
-            basket2 = basket.objects.filter(user = request.user).first()
+            for_basket, created = basket.objects.get_or_create(user = request.user, is_active = True)
+            basket2 = basket.objects.filter(Q(user = request.user), Q(is_active = True)).first()
             product.quantity += 1
             product.save()
             basket2.product.add(product)
@@ -86,7 +88,7 @@ class BasketAPI(APIView):
     def delete(self, request, *args, **kwargs):
         ProductID = request.data.get('product')[0]
         if ProductID:
-            user_basket =  basket.objects.filter(user = self.request.user).first()
+            user_basket =  basket.objects.filter(user = self.request.user, is_active = True).first()
             product_s = Product.objects.filter(pk=ProductID).first()
             product_s.get_subtotal()
             product_s.quantity = 0

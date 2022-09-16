@@ -8,7 +8,7 @@ const categoryFilter = {
     }
     fetch(url).then(response => response.json()).then(data => {
       document.getElementById('products-list').innerHTML = ''
-      for (let i in data) {;
+      for (let i in data) {
         for (let x in data[i].category) {
           if (data[i]['category'][x] == categoryId || data[i]['p_category'] == categoryId) {
             document.getElementById('products-list').innerHTML += `
