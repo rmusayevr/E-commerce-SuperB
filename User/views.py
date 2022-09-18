@@ -11,7 +11,7 @@ from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import send_mail
-# from SuperB.settings import EMAIL_HOST_USER
+from SuperB.settings import EMAIL_HOST_USER
 from django.contrib.auth.views import (PasswordChangeView, 
                                         PasswordResetView, 
                                         PasswordResetConfirmView, 
@@ -35,35 +35,29 @@ class RegisterView(CreateView):
             return redirect('/')
         return super(RegisterView, self).dispatch(request, *args, **kwargs)
 
-    def post(self, request, *args, **kwargs):
-        form = self.form_class(request.POST)
-        if form.is_valid():
+    def form_valid(self, form):
+        form.instance.is_active = False
+        form.instance.save()
 
-            user = form.save(commit=False)
-            user.is_active = False
-            user.save()
-
-            subject = 'Activate Your SuperB Account'
-            current_site = get_current_site(request)
-            message = render_to_string('email/confirmation_email.html', {
-                    'user': user,
-                    'domain': current_site.domain,
-                    'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                    'token': account_activation_token.make_token(user),
-                })
-            # from_email = EMAIL_HOST_USER
-            to_email = request.POST['email']
-            send_mail(
-                subject,
-                message,
-                # from_email,
-                [to_email, ]
-            )
+        subject = 'Activate Your SuperB Account'
+        current_site = get_current_site(self.request)
+        message = render_to_string('email/confirmation_email.html', {
+                'user': form.instance,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(form.instance.pk)),
+                'token': account_activation_token.make_token(form.instance),
+            })
+        from_email = EMAIL_HOST_USER
+        to_email = self.request.POST['email']
+        send_mail(
+            subject,
+            message,
+            from_email,
+            [to_email, ]
+        )
             
-            messages.success(request, ('Please Confirm your email to complete registration.'))
-            return redirect('login')
-
-        return render(request, self.template_name, {'form': form})
+        messages.success(self.request, ('Please confirm your email to complete registration.'))
+        return redirect('login')
 
 class CustomLoginView(LoginView):
     form_class = UserLoginForm
@@ -97,7 +91,7 @@ class CustomPasswordResetConfirmView(PasswordResetConfirmView):
 class CustomPasswordChangeView(PasswordChangeView):
     form_class = PasswordChangeCustomForm
     template_name = 'change_password.html'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('change_password')
 
     def get_success_url(self):
         messages.success(self.request, 'Your password has been successfully changed!')
@@ -126,7 +120,8 @@ def account_information(request, username):
         edit_form = AccountInformationForm(request.POST, instance=account)
         if edit_form.is_valid():
             edit_form.save()
-            return redirect("index")
+            messages.success(request, 'Your information has been successfully changed!')
+            return redirect("change_info", username)
     else:
         edit_form = AccountInformationForm()
     context = {

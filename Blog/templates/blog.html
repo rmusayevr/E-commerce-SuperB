@@ -36,7 +36,7 @@
                           <span class="author-avatar byline"><img alt="" src="{{ post.author.author_image.url }}" class="avatar avatar-96 photo">{{ post.author }}</span> <span class="timestamp">{{ post.date|date:"F j, Y"}}</span>
                         </a>
                       </div>
-                      <p>{{ post.short_desc }}</p>
+                      <p>{{ post.desc|truncatechars:550 }}</p>
                       <a href="{{ post.get_absolute_url }}" class="continue-btn">Continue Reading <span>›</span></a>
                     </div>
                   {% endfor %}

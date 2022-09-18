@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.views.generic import CreateView, ListView
 from .models import FAQ
 from Blog.models import Blogs
@@ -24,6 +25,11 @@ class HomePage(ListView):
 class ContactUs(CreateView):
     template_name = 'contact_us.html'
     form_class = ContactUsForm
+
+    def form_valid(self, form):
+        form.save()
+        messages.success(self.request, 'Your comment has been sent successfully!')
+        return redirect('contact_us')
 
 class FAQ(ListView):
     template_name = 'faq.html'

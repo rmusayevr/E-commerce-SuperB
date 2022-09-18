@@ -484,7 +484,8 @@
                       <span class="author-avatar byline"><img alt="" src="{{ blog.author.author_image.url }}" class="avatar avatar-96 photo">{{ blog.author }}</span> <span class="timestamp">{{ blog.date|date:"F j, Y"}}</span>
                     </a>
                   </div>
-                  <p> {{ blog.short_desc }} </p>
+                  <p> {{ blog.desc|truncatechars:340 }} </p>
+                  <a href="{{ blog.get_absolute_url }}" class="continue-btn">Continue Reading <span>›</span></a>
                 </div>
               </div>
             {% endfor %}

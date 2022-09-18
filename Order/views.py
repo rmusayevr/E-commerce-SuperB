@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect,HttpResponse
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from Product.models import Product
 from django.db.models import Q
 from .forms import AddressInfoForm, BillingInfoForm, ShippingInfoForm, OrderForm
 from .models import Wishlist, basket, billing_addresses, shipping_addresses, order
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 from django.views.generic import CreateView, ListView
 from django.views.generic.edit import FormMixin
 
@@ -13,6 +14,13 @@ class BillingInfo(LoginRequiredMixin, CreateView):
     form_class = BillingInfoForm
     success_url = reverse_lazy('index')
     template_name = 'billing_info.html'
+    model = billing_addresses
+
+    def get_context_data(self, **kwargs):
+        context = super(BillingInfo, self).get_context_data(**kwargs)
+        context['shipping_address'] = shipping_addresses.objects.filter(user_id = self.request.user).last()
+        context['billing_address'] = billing_addresses.objects.filter(user_id = self.request.user).last()
+        return context
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
@@ -20,12 +28,20 @@ class BillingInfo(LoginRequiredMixin, CreateView):
             billing = form.save(commit=False)
             billing.user_id = self.request.user
             billing.save()
-        return redirect('index')
+        messages.success(self.request, ('Your billing information has been successfully saved!'))
+        return redirect('billing_info')
 
 class ShippingInfo(LoginRequiredMixin, CreateView):
     form_class = ShippingInfoForm
     success_url = reverse_lazy('index')
     template_name = 'shipping_info.html'
+    model = shipping_addresses
+
+    def get_context_data(self, **kwargs):
+        context = super(ShippingInfo, self).get_context_data(**kwargs)
+        context['shipping_address'] = shipping_addresses.objects.filter(user_id = self.request.user).last()
+        context['billing_address'] = billing_addresses.objects.filter(user_id = self.request.user).last()
+        return context
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
@@ -33,12 +49,20 @@ class ShippingInfo(LoginRequiredMixin, CreateView):
             shipping = form.save(commit=False)
             shipping.user_id = self.request.user
             shipping.save()
-        return redirect('index')
+        messages.success(self.request, ('Your shipping information has been successfully saved!'))
+        return redirect('shipping_info')
 
 class AddressInfo(LoginRequiredMixin, CreateView):
     form_class = AddressInfoForm
     success_url = reverse_lazy('index')
     template_name = 'address_info.html'
+    model = shipping_addresses
+
+    def get_context_data(self, **kwargs):
+        context = super(AddressInfo, self).get_context_data(**kwargs)
+        context['shipping_address'] = shipping_addresses.objects.filter(user_id = self.request.user).last()
+        context['billing_address'] = billing_addresses.objects.filter(user_id = self.request.user).last()
+        return context
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
@@ -74,7 +98,8 @@ class AddressInfo(LoginRequiredMixin, CreateView):
                     user_id = self.request.user
                 )
                 shipping.save()
-        return redirect('index')
+        messages.success(self.request, ('Your address information has been successfully saved!'))
+        return redirect('address_info')
 
 class CheckoutView(LoginRequiredMixin, FormMixin, ListView):
     template_name = 'checkout.html'
@@ -87,6 +112,8 @@ class CheckoutView(LoginRequiredMixin, FormMixin, ListView):
         
     def get_context_data(self, **kwargs):
         context = super(CheckoutView, self).get_context_data(**kwargs)
+        context['shipping_address'] = shipping_addresses.objects.filter(user_id = self.request.user).last()
+        context['billing_address'] = billing_addresses.objects.filter(user_id = self.request.user).last()
         result = self.request.GET.get('result')
         if result == "COMPLETED":
             user_basket =  basket.objects.filter(user = self.request.user, is_active = True).first()

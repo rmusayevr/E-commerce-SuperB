@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import redirect
 from django.db.models import Q 
 from django.views.generic import ListView, DetailView, CreateView
 from .models import *
@@ -41,12 +41,9 @@ class BlogDetailView(DetailView, CreateView):
     def get_object(self, queryset=None):
         return Blogs.objects.get(slug=self.kwargs.get("slug"))
 
-    def post(self, request, *args, **kwargs):
-        form = self.form_class(request.POST)
-        if form.is_valid():
-            comments = form.save(commit=False)
-            comments.blog = Blogs.objects.get(slug=self.kwargs.get("slug"))
-            comments.save()
+    def form_valid(self, form):
+        form.instance.blog = self.get_object()
+        form.instance.save()
         return redirect('blog_detail', slug=self.kwargs.get("slug"))
 
     def get_context_data(self, **kwargs):

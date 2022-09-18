@@ -23,107 +23,65 @@
               <div class="page-title">
                 <h1>Add New Address</h1>
               </div>
-              <form action="{% url 'address_info' %}" method="POST" id="form-validate">
+              <form method="POST" id="form-validate">
+                {% include 'messages.html' %}
                 {% csrf_token %}
+                {% if form.errors %}
+                  <div class="alert alert-danger alert-dismissible" role="alert">
+                      <div id="form_errors">
+                          {% for key, value in form.errors.items %}
+                              <strong>{{ value }}</strong>
+                          {% endfor %}
+                      </div>
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                {% endif %}
                 <ul class="row form-list">
                   <li class="col-md-6">
                     {{ form.first_name.label }}
                     {{ form.first_name }}
-                    {% for error in form.first_name.errors %}
-                      <span class="alert-danger">
-                        {{ error }}
-                      </span>
-                    {% endfor %}
                   </li>
                   <li class="col-md-6">
                     {{ form.last_name.label }}
                     {{ form.last_name }}
-                    {% for error in form.last_name.errors %}
-                      <span class="alert-danger">
-                        {{ error }}
-                      </span>
-                    {% endfor %}
                   </li>
                   <li class="col-md-6">
                     {{ form.telephone.label }}
                     {{ form.telephone }}
-                    {% for error in form.telephone.errors %}
-                      <span class="alert-danger">
-                        {{ error }}
-                      </span>
-                    {% endfor %}
                   </li>
                   <li class="col-md-6">
                     {{ form.email.label }}
                     {{ form.email }}
-                    {% for error in form.email.errors %}
-                      <span class="alert-danger">
-                        {{ error }}
-                      </span>
-                    {% endfor %}
                   </li>
                   <li class="col-md-6">
                     {{ form.country.label }}
                     {{ form.country }}
-                    {% for error in form.country.errors %}
-                      <span class="alert-danger">
-                        {{ error }}
-                      </span>
-                    {% endfor %}
                   </li>
                   <li class="col-md-6">
                     {{ form.city.label }}
                     {{ form.city }}
-                    {% for error in form.city.errors %}
-                      <span class="alert-danger">
-                        {{ error }}
-                      </span>
-                    {% endfor %}
                   </li>
                   <li class="col-md-6">
                     {{ form.province.label }}
                     {{ form.province }}
-                    {% for error in form.province.errors %}
-                      <span class="alert-danger">
-                        {{ error }}
-                      </span>
-                    {% endfor %}
                   </li>
                   <li class="col-md-6">
                     {{ form.zip.label }}
                     {{ form.zip }}
-                    {% for error in form.zip.errors %}
-                      <span class="alert-danger">
-                        {{ error }}
-                      </span>
-                    {% endfor %}
                   </li>
                   <li class="col-md-12">
                     {{ form.street_address.label }}
                     {{ form.street_address }}
-                    {% for error in form.street_address.errors %}
-                      <span class="alert-danger">
-                        {{ error }}
-                      </span>
-                    {% endfor %}
                   </li>
                   <li class="col-md-12">
                     {{ form.is_billing.label }}
                     {{ form.is_billing }}
-                    {% for error in form.is_billing.errors %}
-                      <span class="alert-danger">
-                        {{ error }}
-                      </span>
-                    {% endfor %}
                   </li>
                   <li class="col-md-12">
                     {{ form.is_shipping.label }}
                     {{ form.is_shipping }}
-                    {% for error in form.is_shipping.errors %}
-                      <span class="alert-danger">
-                        {{ error }}
-                      </span>
-                    {% endfor %}
                   </li>
                 </ul>
                 <div class="buttons-set">
@@ -132,31 +90,41 @@
               </form>
             </div>
           </div>
-          <aside class="col-right sidebar col-sm-3 animated" style="visibility: visible;">
-            <div class="block block-account">
-              <div class="block-title"> My Account </div>
+          <aside class="col-right sidebar col-sm-3">
+            <div class="block block-progress">
+              <div class="block-title ">Your Checkout</div>
               <div class="block-content">
-                <ul>
-                  <li><a href="#"><span> Account Dashboard</span></a></li>
-                  <li><a href="#"><span> Account Information</span></a></li>
-                  <li class="current"><a>Address Book</a></li>
-                  <li><a href="#"><span> My Orders</span></a></li>
-                  <li><a href="#"><span> Billing Agreements</span></a></li>
-                  <li><a href="#"><span> Recurring Profiles</span></a></li>
-                  <li><a href="#"><span> My Product Reviews</span></a></li>
-                  <li><a href="#"><span> My Tags</span></a></li>
-                  <li><a href="#"><span> My Wishlist</span></a></li>
-                  <li><a href="#"><span> My Applications</span></a></li>
-                  <li><a href="#"><span> Newsletter Subscriptions</span></a></li>
-                  <li class="last"><a href="#"><span> My Downloadable Products</span></a></li>
-                </ul>
+                <dl>
+                  <dt class="complete"> Billing Address <span class="separator">|</span> <a href="{% url 'billing_info' %}">Change</a> </dt>
+                  <dd class="complete">
+                    <address>
+                      {{ billing_address.first_name }} {{  billing_address.last_name }}<br>
+                      {{ billing_address.telephone }}<br>
+                      {{ billing_address.email }}<br>
+                      {{ billing_address.street_address }}<br>
+                      {{ billing_address.country }}<br>
+                      {{ billing_address.city }}<br>
+                      {{ billing_address.state }}
+                      {{ billing_address.zip }}
+                    </address>
+                  </dd>
+                  <dt class="complete"> Shipping Address <span class="separator">|</span> <a href="{% url 'shipping_info' %}">Change</a> </dt>
+                  <dd class="complete">
+                    <address>
+                      {{ shipping_address.first_name }} {{  shipping_address.last_name }}<br>
+                      {{ shipping_address.telephone }}<br>
+                      {{ shipping_address.email }}<br>
+                      {{ shipping_address.street_address }}<br>
+                      {{ shipping_address.country }}<br>
+                      {{ shipping_address.city }}<br>
+                      {{ shipping_address.state }}
+                      {{ shipping_address.zip }}
+                    </address>
+                  </dd>
+                </dl>
               </div>
-              <!--block-content--> 
             </div>
-            <!--block block-account--> 
-            
           </aside>
-          <!--col-right sidebar col-sm-3--> 
         </div>
       </div>
     </section>

@@ -16,70 +16,57 @@
         <div class="main container">
           <div class="account-login">
             <div class="page-title">
-              <h1>Login or Create an Account</h1>
+              <h1>Login</h1>
             </div>
             <fieldset class="col2-set">
               <legend>Login or Create an Account</legend>
-              <div class="col-1 new-users"><strong>New Customers</strong>
-                <div class="content">
-                  <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
-                  <div class="buttons-set">
-                    <button class="button create-account"><a href="{% url 'register' %}"><span>Create an Account</span></a></button>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-8 mx-auto social-container my-2 order-md-1">
-                    <button class="btn btn-danger mb-2">
-                        <a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a>
-                    </button>
-                    <button class="btn btn-primary mb-2">
-                        <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook
-                        </a>
-                    </button>
-                    <button class="btn btn-info mb-2">
-                        <a href="#">Login with LinkedIn</a>
-                    </button>
-                </div>
-            </div>
-              <div class="col-2 registered-users"><strong>Registered Customers</strong>
                 <div class="content">
                   <form method="POST" id="login-form">
+                    {% include 'messages.html' %}
                     {% csrf_token %}
+                    {% if form.errors %}
+                      <div class="alert alert-danger alert-dismissible" role="alert">
+                          <div id="form_errors">
+                              {% for key, value in form.errors.items %}
+                                  <strong>{{ value }}</strong>
+                              {% endfor %}
+                          </div>
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                    {% endif %}
                     <ul class="form-list row">
-                      <li class="col-md-8">
+                      <li class="col-md-6">
                         {{ form.username.label }}
                         {{ form.username }}
-                        {% for error in form.username.errors %}
-                          <span class="alert-danger">
-                            {{ error }}
-                          </span>
-                        {% endfor %}
                       </li>
-                      <li class="col-md-8">
+                      <li class="col-md-6">
                         {{ form.password.label }}
                         {{ form.password }}
-                        {% for error in form.password.errors %}
-                          <span class="alert-danger">
-                            {{ error }}
-                          </span>
-                        {% endfor %}
                       </li>
                     </ul>
                     <div class="buttons-set">
                       <button id="login" type="submit" class="button login"><span>Login</span></button>
                       <a class="forgot-word" href="{% url 'password_reset' %}">Forgot Your Password?</a>
+                      If you don't have an account, <a href="{% url 'register' %}"><span>Register</span></a>
                     </div>
+                    <br>
+                    <button class="btn btn-danger mb-2">
+                      <a href="{% url 'social:begin' 'google-oauth2' %}" style="color: white;">
+                        Login with Google
+                      </a>
+                    </button>
+                    <br><br>
+                    <button class="btn btn-primary mb-2">
+                        <a href="{% url 'social:begin' 'facebook' %}" style="color: white;">
+                          Login with Facebook 
+                        </a>
+                    </button>
                   </form>
                 </div>
-              </div>
             </fieldset>
           </div>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
         </div>
       </section>
       <!-- Main Container End --> 

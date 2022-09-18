@@ -16,83 +16,55 @@
         <div class="main container">
           <div class="account-login">
             <div class="page-title">
-              <h1>Login or Create an Account</h1>
+              <h1>Create an Account</h1>
             </div>
             <fieldset class="col2-set">
-              <legend>Login or Create an Account</legend>
-              <div class="col-1 new-users"><strong>Registered Customers</strong>
-                <div class="content">
-                  <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
-                  <div class="buttons-set">
-                    <button class="button create-account"><a href="{% url 'login' %}">Login</a></button>
-                  </div>
-                </div>
-              </div>
-              <div class="col-2 registered-users"><strong>New Customers</strong>
                 <div class="content">
                   <form method="POST">
                     {% csrf_token %}
+                    {% if form.errors %}
+                      <div class="alert alert-danger alert-dismissible" role="alert">
+                          <div id="form_errors">
+                              {% for key, value in form.errors.items %}
+                                  <strong>{{ value }}</strong>
+                              {% endfor %}
+                          </div>
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                    {% endif %}
                     <ul class="form-list row">
-                      <li class="col-md-8">
+                      <li class="col-md-6">
                         {{ form.first_name.label }}
                         {{ form.first_name }}
-                        {% for error in form.first_name.errors %}
-                          <span class="alert-danger">
-                            {{ error }}
-                          </span>
-                        {% endfor %}
                       </li>
-                      <li class="col-md-8">
+                      <li class="col-md-6">
                         {{ form.last_name.label }}
                         {{ form.last_name }}
-                        {% for error in form.last_name.errors %}
-                          <span class="alert-danger">
-                            {{ error }}
-                          </span>
-                        {% endfor %}
                       </li>
-                      <li class="col-md-8"> 
+                      <li class="col-md-6"> 
                         {{ form.email.label }}
                         {{ form.email }}
-                        {% for error in form.email.errors %}
-                          <span class="alert-danger">
-                            {{ error }}
-                          </span>
-                        {% endfor %}
                       </li>
-                      <li class="col-md-8">
+                      <li class="col-md-6">
                         {{ form.username.label }}
                         {{ form.username }}
-                        {% for error in form.username.errors %}
-                          <span class="alert-danger">
-                            {{ error }}
-                          </span>
-                        {% endfor %}
                       </li>
-                      <li class="col-md-8">
+                      <li class="col-md-6">
                         {{ form.password1.label }}
                         {{ form.password1 }}
-                        {% for error in form.password1.errors %}
-                          <span class="alert-danger">
-                            {{ error }}
-                          </span>
-                        {% endfor %}
                       </li>
-                      <li class="col-md-8">
+                      <li class="col-md-6">
                         {{ form.password2.label }}
                         {{ form.password2 }}
-                        {% for error in form.password2.errors %}
-                          <span class="alert-danger">
-                            {{ error }}
-                          </span>
-                        {% endfor %}
                       </li>
                     </ul>
                     <div class="buttons-set">
                       <button id="send2" type="submit" class="button login"><span>Register</span></button>
-                    </div> 
+                      If you have an account, <a href="{% url 'login' %}"><span>Login</span></a>
+                  </div>
                   </form>
-              </div>
             </fieldset>
           </div>
           <br>

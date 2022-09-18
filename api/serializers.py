@@ -46,6 +46,7 @@ class ProductReadSerializer(serializers.ModelSerializer):
             'cover_image',
             'manufacturer',
             'price', 
+            'in_sale',
             'discount', 
             'new_price', 
             'category',
