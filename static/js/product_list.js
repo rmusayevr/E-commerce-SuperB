@@ -1,5 +1,5 @@
 const categoryFilter = {
-  url: `${location.origin}/api/products/`,
+  url: `${location.origin}/api/product_versions/`,
 
   filterProduct(categoryId) {
     let url = this.url;
@@ -7,21 +7,22 @@ const categoryFilter = {
       url += `?categoryId=${categoryId}`;
     }
     fetch(url).then(response => response.json()).then(data => {
+      console.log(data);
       document.getElementById('products-list').innerHTML = ''
       for (let i in data) {
-        for (let x in data[i].category) {
-          if (data[i]['category'][x] == categoryId || data[i]['p_category'] == categoryId) {
-            if (data[i]['in_sale'] == true) {
+          for (let x in data[i]['product'].category) {
+          if (data[i]['product']['category'][x] == categoryId || data[i]['product']['p_category'] == categoryId) {
+            if (data[i]['product']['in_sale'] == true) {
               document.getElementById('products-list').innerHTML += `
                 <li class="item first">
-                  <div class="product-image"> <a href="/product/${data[i]['id']}" title="HTC Rhyme Sense"> <img class="small-image" src="${data[i]['cover_image']}" alt="HTC Rhyme Sense" width="150px" height="325px"> </a> </div>
+                  <div class="product-image"> <a href="${data[i]['product']['detail_url']}" title="HTC Rhyme Sense"> <img class="small-image" src="${data[i]['cover_image']}" alt="HTC Rhyme Sense" width="150px" height="325px"> </a> </div>
                   <div class="product-shop">
-                    <h2 class="product-name"><a href="/product/${data[i]['id']}" title="HTC Rhyme Sense">${data[i]['name']}</a></h2>
+                    <h2 class="product-name"><a href="${data[i]['product']['detail_url']}" title="HTC Rhyme Sense">${data[i]['product']['name']}</a></h2>
                     <div class="desc std">
-                      <p>${data[i]['overview']}</p>
+                      <p>${data[i]['product']['overview']}</p>
                     </div>
                     <div class="price-box"> 
-                      <p class="special-price"> <span class="price-label"></span> <span class="price">  $${data[i]['new_price'].toFixed(2)}</span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price">  $${data[i]['price'].toFixed(2)} </span> </p>
+                      <p class="special-price"> <span class="price-label"></span> <span class="price">  $${data[i]['product']['new_price'].toFixed(2)}</span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price">  $${data[i]['product']['price'].toFixed(2)} </span> </p>
                     </div>
                     <div class="actions">
                     <button class="button btn-cart ajx-cart" onclick = "functionAddToBasket($(this).attr('data'))" title="Add to Cart" type="button" data="${data[i]['id']}"><span>Add to Cart</span></button>
@@ -33,14 +34,14 @@ const categoryFilter = {
             else {
               document.getElementById('products-list').innerHTML += `
                 <li class="item first">
-                  <div class="product-image"> <a href="/product/${data[i]['id']}" title="HTC Rhyme Sense"> <img class="small-image" src="${data[i]['cover_image']}" alt="HTC Rhyme Sense" width="150px" height="325px"> </a> </div>
+                  <div class="product-image"> <a href="${data[i]['product']['detail_url']}" title="HTC Rhyme Sense"> <img class="small-image" src="${data[i]['cover_image']}" alt="HTC Rhyme Sense" width="150px" height="325px"> </a> </div>
                   <div class="product-shop">
-                    <h2 class="product-name"><a href="/product/${data[i]['id']}" title="HTC Rhyme Sense">${data[i]['name']}</a></h2>
+                    <h2 class="product-name"><a href="${data[i]['product']['detail_url']}" title="HTC Rhyme Sense">${data[i]['product']['name']}</a></h2>
                     <div class="desc std">
-                      <p>${data[i]['overview']}</p>
+                      <p>${data[i]['product']['overview']}</p>
                     </div>
                     <div class="price-box"> 
-                      <p class="special-price"> <span class="price-label"></span> <span class="price"> $${data[i]['price'].toFixed(2)}</span> </p>
+                      <p class="special-price"> <span class="price-label"></span> <span class="price"> $${data[i]['product']['price'].toFixed(2)}</span> </p>
                     </div>
                     <div class="actions">
                     <button class="button btn-cart ajx-cart" onclick = "functionAddToBasket($(this).attr('data'))" title="Add to Cart" type="button" data="${data[i]['id']}"><span>Add to Cart</span></button>
@@ -65,7 +66,7 @@ for (let i = 0; i < filterCategory.length; i++) {
 }
 
 const manufacturerFilter = {
-  url: `${location.origin}/api/products/`,
+  url: `${location.origin}/api/product_versions/`,
 
   filterManufacturerProduct(manufacturerId) {
     let url = this.url;
@@ -75,18 +76,19 @@ const manufacturerFilter = {
     fetch(url).then(response => response.json()).then(data => {
       document.getElementById('products-list').innerHTML = ''
       for (let i in data) {
-        if (data[i]['manufacturer'] == manufacturerId) {
-          if (data[i]['in_sale'] == true) {
+        console.log(data[i]);
+        if (data[i]['product']['manufacturer']['name'] == manufacturerId) {
+          if (data[i]['product']['in_sale'] == true) {
             document.getElementById('products-list').innerHTML += `
               <li class="item first">
-                <div class="product-image"> <a href="/product/${data[i]['id']}" title="HTC Rhyme Sense"> <img class="small-image" src="${data[i]['cover_image']}" alt="HTC Rhyme Sense" width="150px" height="325px"> </a> </div>
+                <div class="product-image"> <a href="${data[i]['product']['detail_url']}" title="HTC Rhyme Sense"> <img class="small-image" src="${data[i]['cover_image']}" alt="HTC Rhyme Sense" width="150px" height="325px"> </a> </div>
                 <div class="product-shop">
-                  <h2 class="product-name"><a href="/product/${data[i]['id']}" title="HTC Rhyme Sense">${data[i]['name']}</a></h2>
+                  <h2 class="product-name"><a href="${data[i]['product']['detail_url']}" title="HTC Rhyme Sense">${data[i]['product']['name']}</a></h2>
                   <div class="desc std">
-                    <p>${data[i]['overview']}</p>
+                    <p>${data[i]['product']['overview']}</p>
                   </div>
                   <div class="price-box"> 
-                    <p class="special-price"> <span class="price-label"></span> <span class="price">  $${data[i]['new_price'].toFixed(2)}</span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price">  $${data[i]['price'].toFixed(2)} </span> </p>
+                    <p class="special-price"> <span class="price-label"></span> <span class="price">  $${data[i]['product']['new_price'].toFixed(2)}</span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price">  $${data[i]['product']['price'].toFixed(2)} </span> </p>
                   </div>
                   <div class="actions">
                   <button class="button btn-cart ajx-cart" onclick = "functionAddToBasket($(this).attr('data'))" title="Add to Cart" type="button" data="${data[i]['id']}"><span>Add to Cart</span></button>
@@ -98,14 +100,14 @@ const manufacturerFilter = {
           else {
             document.getElementById('products-list').innerHTML += `
               <li class="item first">
-                <div class="product-image"> <a href="/product/${data[i]['id']}" title="HTC Rhyme Sense"> <img class="small-image" src="${data[i]['cover_image']}" alt="HTC Rhyme Sense" width="150px" height="325px"> </a> </div>
+                <div class="product-image"> <a href="${data[i]['product']['detail_url']}" title="HTC Rhyme Sense"> <img class="small-image" src="${data[i]['cover_image']}" alt="HTC Rhyme Sense" width="150px" height="325px"> </a> </div>
                 <div class="product-shop">
-                  <h2 class="product-name"><a href="/product/${data[i]['id']}" title="HTC Rhyme Sense">${data[i]['name']}</a></h2>
+                  <h2 class="product-name"><a href="${data[i]['product']['detail_url']}" title="HTC Rhyme Sense">${data[i]['product']['name']}</a></h2>
                   <div class="desc std">
-                    <p>${data[i]['overview']}</p>
+                    <p>${data[i]['product']['overview']}</p>
                   </div>
                   <div class="price-box"> 
-                    <p class="special-price"> <span class="price-label"></span> <span class="price"> $${data[i]['price'].toFixed(2)}</span> </p>
+                    <p class="special-price"> <span class="price-label"></span> <span class="price"> $${data[i]['product']['price'].toFixed(2)}</span> </p>
                   </div>
                   <div class="actions">
                   <button class="button btn-cart ajx-cart" onclick = "functionAddToBasket($(this).attr('data'))" title="Add to Cart" type="button" data="${data[i]['id']}"><span>Add to Cart</span></button>
@@ -138,19 +140,19 @@ const colorFilter = {
     }
     fetch(url).then(response => response.json()).then(data => {
       document.getElementById('products-list').innerHTML = ''
-      for (let i in data) {
-        if (data[i]['color'] == ColorId) {
-          if (data[i]['in_sale'] == true) {
+      for (let i in data) {console.log(ColorId);
+        if (data[i]['color']['name'] == ColorId) {
+          if (data[i]['product']['in_sale'] == true) {
             document.getElementById('products-list').innerHTML += `
               <li class="item first">
-                <div class="product-image"> <a href="/product/${data[i]['id']}" title="HTC Rhyme Sense"> <img class="small-image" src="${data[i]['cover_image']}" alt="HTC Rhyme Sense" width="150px" height="325px"> </a> </div>
+                <div class="product-image"> <a href="${data[i]['product']['detail_url']}" title="HTC Rhyme Sense"> <img class="small-image" src="${data[i]['cover_image']}" alt="HTC Rhyme Sense" width="150px" height="325px"> </a> </div>
                 <div class="product-shop">
-                  <h2 class="product-name"><a href="/product/${data[i]['id']}" title="HTC Rhyme Sense">${data[i]['name']}</a></h2>
+                  <h2 class="product-name"><a href="${data[i]['product']['detail_url']}" title="HTC Rhyme Sense">${data[i]['product']['name']}</a></h2>
                   <div class="desc std">
-                    <p>${data[i]['overview']}</p>
+                    <p>${data[i]['product']['overview']}</p>
                   </div>
                   <div class="price-box"> 
-                    <p class="special-price"> <span class="price-label"></span> <span class="price">  $${data[i]['new_price'].toFixed(2)}</span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price">  $${data[i]['price'].toFixed(2)} </span> </p>
+                    <p class="special-price"> <span class="price-label"></span> <span class="price">  $${data[i]['product']['new_price'].toFixed(2)}</span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price">  $${data[i]['product']['price'].toFixed(2)} </span> </p>
                   </div>
                   <div class="actions">
                   <button class="button btn-cart ajx-cart" onclick = "functionAddToBasket($(this).attr('data'))" title="Add to Cart" type="button" data="${data[i]['id']}"><span>Add to Cart</span></button>
@@ -162,14 +164,14 @@ const colorFilter = {
           else {
             document.getElementById('products-list').innerHTML += `
               <li class="item first">
-                <div class="product-image"> <a href="/product/${data[i]['id']}" title="HTC Rhyme Sense"> <img class="small-image" src="${data[i]['cover_image']}" alt="HTC Rhyme Sense" width="150px" height="325px"> </a> </div>
+                <div class="product-image"> <a href="${data[i]['product']['detail_url']}" title="HTC Rhyme Sense"> <img class="small-image" src="${data[i]['cover_image']}" alt="HTC Rhyme Sense" width="150px" height="325px"> </a> </div>
                 <div class="product-shop">
-                  <h2 class="product-name"><a href="/product/${data[i]['id']}" title="HTC Rhyme Sense">${data[i]['name']}</a></h2>
+                  <h2 class="product-name"><a href="${data[i]['product']['detail_url']}" title="HTC Rhyme Sense">${data[i]['product']['name']}</a></h2>
                   <div class="desc std">
-                    <p>${data[i]['overview']}</p>
+                    <p>${data[i]['product']['overview']}</p>
                   </div>
                   <div class="price-box"> 
-                    <p class="special-price"> <span class="price-label"></span> <span class="price"> $${data[i]['price'].toFixed(2)}</span> </p>
+                    <p class="special-price"> <span class="price-label"></span> <span class="price"> $${data[i]['product']['price'].toFixed(2)}</span> </p>
                   </div>
                   <div class="actions">
                   <button class="button btn-cart ajx-cart" onclick = "functionAddToBasket($(this).attr('data'))" title="Add to Cart" type="button" data="${data[i]['id']}"><span>Add to Cart</span></button>

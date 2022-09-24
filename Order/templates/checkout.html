@@ -102,7 +102,7 @@
   <script type="text/javascript" src="{% static 'js/jquery.flexslider.js' %}"></script> 
   <script type="text/javascript" src="{% static 'js/cloud-zoom.js' %}"></script>
   <!-- Include the PayPal JavaScript SDK -->
-  <script src="https://www.paypal.com/sdk/js?client-id=AQlCEAB8cVuLGijSY-0qsRMRWEYG9a-L4MKfPkWCVwufaNB9HsQ43ffhqxGHxdPBPuHl3rDcjJj3HPco&currency=USD"></script>
+  <script src="https://www.paypal.com/sdk/js?client-id=AYkU8j2Opan95ziIYLyhE-ZH9gDgQg5eiBvUyafLqEfBy4_VthuPMCc0vz0P_PF8DKE6177t2c4KQ30r&currency=USD"></script>
 
   <script>
 
@@ -144,8 +144,10 @@
                         alert("failure");
                     }
                 });
-              });
+              }
+            );
           }
       }).render('#paypal-button-container');
+      
   </script>
 {% endblock %}

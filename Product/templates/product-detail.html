@@ -32,7 +32,7 @@
                   </div>
                   <div class="product-shop col-sm-8 col-xs-12">
                     <div class="product-name">
-                      <h1>{{ product.name }}</h1>
+                      <h1>{{ product.product.name }}</h1>
                     </div>
                     <div class="ratings">
                       <div class="rating-box">
@@ -42,27 +42,41 @@
                     </div>
                     <div class="price-block">
                       <div class="price-box">
-                        {% if product.in_sale %}
-                            <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ product.new_price|stringformat:".2f"  }}</span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> ${{ product.price|stringformat:".2f"  }} </span> </p>
+                        {% if product.product.in_sale %}
+                            <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ product.product.new_price|stringformat:".2f"  }}</span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> ${{ product.product.price|stringformat:".2f"  }} </span> </p>
                           {% else %}
-                            <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ product.price|stringformat:".2f"  }}</span> </p>
+                            <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ product.product.price|stringformat:".2f"  }}</span> </p>
                           {% endif %}
                       </div>
                       <p class="availability in-stock pull-right"><span>In Stock</span></p>
                     </div>
                     <div class="short-description">
                       <h2>Quick Overview</h2>
-                      <p>{{ product.overview }}</p>
+                      <p>{{ product.product.overview }}</p>
                     </div>
                     <div class="add-to-box">
                       <div class="add-to-cart">
-                        <button onclick = "functionAddToBasket($(this).attr('data'))" class="button btn-cart" id="add-to-basket" title="Add to Cart" type="button" data="{{ product.pk }}"><span>Add to Cart</span></button>
+                        <div class="pull-left">
+                          <div class="custom pull-left">
+                            <button onClick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty )) result.value--;return false;" class="reduced items-count" type="button"><i class="fa fa-minus">&nbsp;</i></button>
+                            <input type="text" class="input-text qty" title="Qty" value="1" maxlength="12" id="qty" name="qty">
+                            <button onClick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty )) result.value++;return false;" class="increase items-count" type="button"><i class="fa fa-plus">&nbsp;</i></button>
+                          </div>
+                        </div>
+                        <button onclick = "AddToBasketInDetail($(this).attr('data'))" class="button btn-cart" id="add-to-basket" title="Add to Cart" type="button" data="{{ product.pk }}"><span>Add to Cart</span></button>
                       </div>
                       <div class="email-addto-box">
                         <ul class="add-to-links">
                           <li class="link-wishlist" onclick = "functionAddToWishlist($(this).attr('data'))" style="cursor: pointer;" id="add-wishlist" data="{{ product.pk }}"><span>Add to Wishlist</span></li>
                         </ul>
                       </div>
+                    </div>
+                    <div>
+                      <ul class="list-unstyled" style="margin-top: 30px; padding-left: 10px;">
+                        {% for color in colors %}
+                          <li><a href="{% url 'product_detail' color.pk %}" style="font-size: 20px;">{{ color.color.name }}</a></li>
+                        {% endfor %}
+                      </ul>
                     </div>
                   </div>
                 </form>
@@ -76,7 +90,7 @@
                   <div id="productTabContent" class="tab-content">
                     <div class="tab-pane fade in active" id="product_tabs_description">
                       <div class="std">
-                        <p>{{ product.details }}</p>
+                        <p>{{ product.product.details }}</p>
                       </div>
                     </div>
                     <div class="tab-pane fade" id="reviews_tabs">

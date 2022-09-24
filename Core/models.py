@@ -14,15 +14,15 @@ class FAQ(models.Model):
         verbose_name = "FAQ"
         verbose_name_plural = "FAQs"
 
-class Subscription(models.Model):
+class Subscriber(models.Model):
     email = models.EmailField()
     
     def __str__(self):
             return self.email
 
     class Meta:
-        verbose_name = "Subscription"
-        verbose_name_plural = "Subscriptions"
+        verbose_name = "Subscriber"
+        verbose_name_plural = "Subscribers"
 
 class ContactUs(models.Model):
     first_name = models.CharField(max_length=30)

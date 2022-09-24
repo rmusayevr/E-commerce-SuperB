@@ -22,15 +22,15 @@
                     <li class="item first">
                       <div class="product-image"> <a href="{% url 'product_detail' product.pk %}" title="HTC Rhyme Sense"> <img class="small-image" src="{{ product.cover_image.url }}" alt="HTC Rhyme Sense" width="150px" height="325px"> </a> </div>
                       <div class="product-shop">
-                        <h2 class="product-name"><a href="{% url 'product_detail' product.pk %}" title="HTC Rhyme Sense">{{ product.name }}</a></h2>
+                        <h2 class="product-name"><a href="{% url 'product_detail' product.pk %}" title="HTC Rhyme Sense">{{ product.product.name }}</a></h2>
                         <div class="desc std">
-                          <p>{{ product.overview }}</p>
+                          <p>{{ product.product.overview }}</p>
                         </div>
                         <div class="price-box"> 
-                          {% if product.in_sale %}
-                            <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ product.new_price|stringformat:".2f"  }}</span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> ${{ product.price|stringformat:".2f"  }} </span> </p>
+                          {% if product.product.in_sale %}
+                            <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ product.product.new_price|stringformat:".2f"  }}</span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> ${{ product.product.price|stringformat:".2f"  }} </span> </p>
                           {% else %}
-                            <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ product.price|stringformat:".2f"  }}</span> </p>
+                            <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ product.product.price|stringformat:".2f"  }}</span> </p>
                           {% endif %}
                         </div>
                         <div class="actions">
@@ -101,7 +101,7 @@
                       <dd class="even">
                         <ol>
                           {% for manufacturer in manufacturers %}
-                            <li class="manufacturer-category" data = '{{ manufacturer.manufacturer }}'>{{ manufacturer.manufacturer }} </li>
+                            <li class="manufacturer-category" data = '{{ manufacturer.name }}'>{{ manufacturer.name }} </li>
                           {% endfor %}
                         </ol>
                       </dd>
@@ -109,7 +109,7 @@
                       <dd class="odd">
                         <ol>
                           {% for color in colors %}
-                            <li class="color-category" data = '{{ color.color }}'>{{ color.color }} ({{ color.count }}) </li>
+                            <li class="color-category" data = '{{ color.color_id__name }}'>{{ color.color_id__name }} ({{ color.count }}) </li>
                           {% endfor %}
                         </ol>
                       </dd>

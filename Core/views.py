@@ -2,24 +2,24 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views.generic import CreateView, ListView
 from .models import FAQ
-from Blog.models import Blogs
-from Product.models import Product
+from Blog.models import Blog
+from Product.models import Product_version
 from .forms import ContactUsForm
 
 class HomePage(ListView):
     template_name = 'index.html'
-    model = Blogs
+    model = Blog
     context_object_name = 'blogs'
 
     def get_queryset(self):
-        return Blogs.objects.order_by("-date").all()[:2]
+        return Blog.objects.order_by("-date").all()[:2]
 
     def get_context_data(self, **kwargs):
         context = super(HomePage, self).get_context_data(**kwargs)
-        context['items'] = Product.objects.order_by("-date").all()[:10]
-        context['featured_items'] = Product.objects.order_by("-read_count").all()[:4]
-        context['best_items'] = Product.objects.order_by("-review_count").all()[:4]
-        context['new_items'] = Product.objects.order_by("-date").all()[:4]
+        context['items'] = Product_version.objects.order_by('product',"date").all().distinct('product')[:10]
+        context['featured_items'] = Product_version.objects.order_by('product', "read_count").all().distinct('product')[:4]
+        context['best_items'] = Product_version.objects.order_by('product', "review_count").all().distinct('product')[:4]
+        context['new_items'] = Product_version.objects.order_by('product', "date").all().distinct('product')[:4]
         return context
 
 class ContactUs(CreateView):

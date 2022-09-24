@@ -13,15 +13,15 @@ class ProductListView(ListView):
     def get_queryset(self):
         category = self.request.GET.get("category")
         if category:
-            return Product.objects.filter(category__name = category).order_by("-date").all()
-        return Product.objects.all()
+            return Product_version.objects.filter(product__category__name = category).order_by('product', "date").all().distinct('product')
+        return Product_version.objects.order_by('product', "date").all().distinct('product')
 
     def get_context_data(self, **kwargs):
         context = super(ProductListView, self).get_context_data(**kwargs)
         context['categories'] = Category.objects.filter(is_navbar = "True").all()
         context['s_categories'] = Category.objects.filter(is_navbar = "False").all() 
-        context['manufacturers'] = Product.objects.values_list("manufacturer", flat=True).distinct().values('manufacturer')
-        context['colors'] = Product_version.objects.values_list("color", flat=True).distinct().values('color').annotate(count = Count('color'))
+        context['manufacturers'] = Manufacturer.objects.all()
+        context['colors'] = Product_version.objects.values_list("color_id__name", flat=True).distinct().values('color_id__name').annotate(count = Count('color_id__name'))
         return context
 
 class ProductDetailView(DetailView, CreateView):
@@ -31,29 +31,28 @@ class ProductDetailView(DetailView, CreateView):
     context_object_name = "product"
     form_class = ReviewForm
 
-
     def get_object(self, queryset=None):
-        product = Product.objects.get(pk=self.kwargs.get("pk"))
+        product = Product_version.objects.get(pk=self.kwargs.get("pk"))
         product.read_count += 1
         product.save()
         return product
         
     def get_context_data(self, **kwargs):
         context = super(ProductDetailView, self).get_context_data(**kwargs)
-        context['images'] = Images_of_product.objects.filter(version__pk = self.kwargs.get("pk"))
-        context['r_items'] = Product.objects.filter(Q(category = kwargs['object'].category), ~Q(pk = self.kwargs.get("pk"))).all()[:10]
-        context['u_items'] = Product.objects.order_by("-review_count").filter(~Q(pk = self.kwargs.get("pk"))).all()[:5]
+        context['images'] = Images_of_product.objects.filter(product__pk = self.kwargs.get("pk"))
+        context['r_items'] = Product_version.objects.filter(Q(product__category__p_category__name = kwargs['object'].product.category.p_category) | Q(product__category__name = kwargs['object'].product.category), ~Q(pk = self.kwargs.get("pk")), ~Q(product = kwargs["object"].product)).all()[:15]
+        context['u_items'] = Product_version.objects.order_by("-review_count").filter(~Q(pk = self.kwargs.get("pk")), ~Q(product = kwargs["object"].product)).all()[:5]
         context['reviews'] = Review.objects.filter(product__pk = self.kwargs.get("pk")).all()[:3]
-        context['colors'] = Product_version.objects.filter(product__pk = self.kwargs.get("pk")).values_list('color', flat=True)
+        context['colors'] = Product_version.objects.filter(product = kwargs["object"].product).all()
         return context
     
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
         if form.is_valid():
             review = form.save(commit=False)
-            review.product = Product.objects.get(pk=self.kwargs.get("pk"))
+            review.product = Product_version.objects.get(pk=self.kwargs.get("pk"))
             review.save()
-            product = Product.objects.get(pk=self.kwargs.get("pk"))
+            product = Product_version.objects.get(pk=self.kwargs.get("pk"))
             product.review_count += 1
             product.save()
         return redirect('product_detail', pk=self.kwargs.get("pk"))

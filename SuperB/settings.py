@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'rest_framework_swagger',
     'rest_framework_simplejwt',
     'social_django',
     'django_celery_beat',
@@ -60,7 +61,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    # 'SuperB.middlewares.block_middleware.BlockIPMiddleware',
+    'SuperB.middlewares.block_middleware.BlockIPMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -172,7 +173,7 @@ WSGI_APPLICATION = 'SuperB.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('POSTGRES_DB', 'pgdb'),
+        'NAME': os.environ.get('POSTGRES_DB', 'postgresdb'),
         'USER': os.environ.get('POSTGRES_USER', 'postgres'),
         'PASSWORD': os.environ.get('POSTGRES_PASSWORD', '12345'),
         'HOST': os.environ.get('POSTGRES_HOST', 'localhost'),

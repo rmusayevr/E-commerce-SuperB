@@ -71,19 +71,23 @@
               <div class="mini-cart">
                 <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"><a href="{% url 'shopping_cart' %}">{% trans 'My Cart' %} </div>
                 <div>
-                  <div class="top-cart-content">
+                  <div class="top-cart-content" style="display: none;" id="top-cart">
+                    <div class="actions">
+                      <button class="btn-checkout" title="Checkout" type="button"><span>Checkout</span></button>
+                      <a href="#" class="view-cart" ><span>View Cart</span></a> 
+                    </div>
                     <!--block-subtitle-->
                       <ul class="mini-products-list" id="cart-sidebar">
                         {% for item in basket_items %}
                           <li class="item first">
-                            <div class="item-inner"><a class="product-image" title="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" href="{% url 'product_detail' pk=item.pk %}"><img alt="{{ item.name }}" src="{{ item.cover_image.url }}"></a>
+                            <div class="item-inner"><a class="product-image" title="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" href="{% url 'product_detail' pk=item.product.pk %}"><img alt="{{ item.product.name }}" src="{{ item.product.cover_image.url }}"></a>
                               <div class="product-details">
-                                {% if item.in_sale %}
-                                  <strong>{{item.quantity}}</strong> x <span class="price">${{item.new_price|stringformat:".2f"}}</span>
+                                {% if item.product.product.in_sale %}
+                                  <strong>{{item.quantity}}</strong> x <span class="price">${{item.product.product.new_price|stringformat:".2f"}}</span>
                                 {% else %}
-                                  <strong>{{item.quantity}}</strong> x <span class="price">${{item.price|stringformat:".2f"}}</span>
+                                  <strong>{{item.quantity}}</strong> x <span class="price">${{item.product.product.price|stringformat:".2f"}}</span>
                                 {% endif %}
-                                <p class="product-name"><a href="{% url 'product_detail' pk=item.pk %}">{{ item.name }}</a></p>
+                                <p class="product-name"><a href="{% url 'product_detail' pk=item.product.pk %}">{{ item.product.product.name }}</a></p>
                               </div>
                             </div>
                           </li>
@@ -132,9 +136,12 @@
                   <!-- Header Company -->
                   <!-- End Header Company -->
                   {% if user.is_authenticated %}
+                    <div class="logout"><a href="{% url 'change_info' user.username %}"><span class="hidden-xs">Change Account Information</span></a></div>    
+                    <div class="logout"><a href="{% url 'change_password' %}"><span class="hidden-xs">Change Password</span></a></div>    
                     <div class="logout"><a href="{% url 'logout' %}"><span class="hidden-xs">{% trans 'Log Out' %}</span></a></div>    
                   {% else %}
-                    <div class="login"><a href="{% url 'login' %}"><span class="hidden-xs">{% trans 'Log In'}</span></a></div>    
+                    <div class="login"><a href="{% url 'login' %}"><span class="hidden-xs">Log In</span></a></div> 
+                    <div class="login"><a href="{% url 'register' %}"><span class="hidden-xs">Register</span></a></div>    
                   {% endif %}              
                 </div>         
               </div>
@@ -204,8 +211,8 @@
             <li class="level1"><a href="#.html" class=""><span>Shoes</span></a></li>
             <li class="level1"><a href="#.html"><span>Shirts</span></a></li>
             <li class="level1"><a href="#.html"><span>Jackets</span></a></li>
-            <li class="level1"><a href="#.html"><span>Watches</span></a></li>
-            <li class="level1"><a href="#/sunglasses.html"><span>Sunglasses</span></a></li>
+            <li class="level1"><a href="#.html"><span>Socks</span></a></li>
+            <li class="level1"><a href="#/sunglasses.html"><span>Jeans</span></a></li>
           </ul>
         </li>
         <li class="level0 parent drop-menu"><a href="{% url 'product_list' %}?category=Kids" class="level-top"><span>{% trans 'Kids' %}</span></a>
@@ -213,8 +220,8 @@
             <li class="level1"><a href="#.html" class=""><span>Shoes</span></a></li>
             <li class="level1"><a href="#.html"><span>Dresses</span></a></li>
             <li class="level1"><a href="#.html"><span>T-Shirts</span></a></li>
-            <li class="level1"><a href="#.html"><span>Shorts</span></a></li>
-            <li class="level1"><a href="#/sunglasses.html"><span>Sweatshirts</span></a></li>
+            <li class="level1"><a href="#.html"><span>Jeans</span></a></li>
+            <li class="level1"><a href="#/sunglasses.html"><span>Backpacks</span></a></li>
           </ul>
         </li>
         <li class="level0 parent drop-menu"><a href="{% url 'faq' %}"><span>{% trans 'FAQ' %}</span></a></li>

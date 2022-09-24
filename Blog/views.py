@@ -6,40 +6,40 @@ from .forms import CommentForm
 
 class BlogView(ListView):
     template_name = "blog.html"
-    model = Blogs
+    model = Blog
     context_object_name = "posts"
 
     def get_queryset(self):
         category = self.request.GET.get("category")
         author = self.request.GET.get("author")
         if category:
-            self.queryset = Blogs.objects.filter(category__name = category).order_by("-date").all()[:4]
+            self.queryset = Blog.objects.filter(category__name = category).order_by("-date").all()[:4]
         elif author:
-            self.queryset = Blogs.objects.filter(author__author_slug = author).order_by("-date").all()[:4]
+            self.queryset = Blog.objects.filter(author__author_slug = author).order_by("-date").all()[:4]
         else:
-            self.queryset = Blogs.objects.order_by("-date").all()[:4]
+            self.queryset = Blog.objects.order_by("-date").all()[:4]
         return self.queryset
 
     def get_context_data(self, **kwargs):
         context = super(BlogView, self).get_context_data(**kwargs)
-        context['p_posts'] = Blogs.objects.order_by("-read_count").all()[:4]
-        context['categories'] = Categories.objects.all()
+        context['p_posts'] = Blog.objects.order_by("-read_count").all()[:4]
+        context['categories'] = Category.objects.all()
         return context
 
 class BlogDetailView(DetailView, CreateView):
     template_name = 'blog_detail.html'
     slug_url_kwarg = 'slug'
-    model = Blogs
+    model = Blog
     form_class = CommentForm
 
     def get(self, request, *args, **kwargs):
-        blog = Blogs.objects.get(slug=self.kwargs.get("slug"))
+        blog = Blog.objects.get(slug=self.kwargs.get("slug"))
         blog.read_count += 1
         blog.save()
         return super().get(request, *args, **kwargs)
 
     def get_object(self, queryset=None):
-        return Blogs.objects.get(slug=self.kwargs.get("slug"))
+        return Blog.objects.get(slug=self.kwargs.get("slug"))
 
     def form_valid(self, form):
         form.instance.blog = self.get_object()
@@ -49,8 +49,8 @@ class BlogDetailView(DetailView, CreateView):
     def get_context_data(self, **kwargs):
         print(kwargs)
         context = super(BlogDetailView, self).get_context_data(**kwargs)
-        context['r_blogs'] = Blogs.objects.filter(Q(category = kwargs['object'].category), ~Q(slug = self.kwargs.get("slug"))).all()[:5]
-        context['p_posts'] = Blogs.objects.order_by("-read_count").all()[:4]
-        context['categories'] = Categories.objects.all()
-        context['comments'] = Comments.objects.filter(blog__slug = self.kwargs.get("slug")).order_by("-date").all()[:5]
+        context['r_blog'] = Blog.objects.filter(Q(category = kwargs['object'].category), ~Q(slug = self.kwargs.get("slug"))).all()[:5]
+        context['p_posts'] = Blog.objects.order_by("-read_count").all()[:4]
+        context['categories'] = Category.objects.all()
+        context['comments'] = Comment.objects.filter(blog__slug = self.kwargs.get("slug")).order_by("-date").all()[:5]
         return context

@@ -1,5 +1,5 @@
 from django import forms
-from .models import ContactUs, Subscription
+from .models import ContactUs, Subscriber
 
 class ContactUsForm(forms.ModelForm):
 
@@ -14,10 +14,10 @@ class ContactUsForm(forms.ModelForm):
             'comment': forms.Textarea(attrs={'class': 'input-text', 'rows': 5, 'cols': 3})
         }
 
-class SubscriptionForm(forms.ModelForm):
+class SubscriberForm(forms.ModelForm):
     
     class Meta:
-        model = Subscription
+        model = Subscriber
         fields = ['email']
         widgets = {
             'email': forms.EmailInput(attrs={'class': 'input-text required-entry validate-email',

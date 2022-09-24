@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -12,6 +13,16 @@ class Category(models.Model):
         verbose_name = "Category"
         verbose_name_plural = "Categories"
 
+class Manufacturer(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f"Products of {self.name}"
+
+    class Meta:
+        verbose_name = "Product Manufacturer"
+        verbose_name_plural = "Product Manufacturers"
+
 class Product(models.Model):
     discounts = (
         (5, '5'),
@@ -23,53 +34,55 @@ class Product(models.Model):
         (35, '35'),
         (40, '40'),
         (45, '45'),
-        (50, '50'),
-        (55, '55'),
-        (60, '60'),
-        (65, '65'),
-        (70, '70'),
+        (50, '50')
     )
+
     name = models.CharField(max_length=100)
-    manufacturer = models.CharField(max_length=50)
-    cover_image = models.ImageField(upload_to="product_images")
     price = models.FloatField()
     in_sale = models.BooleanField(default=False)
     discount = models.IntegerField(choices=discounts, null=True, blank=True)
     new_price = models.FloatField(null=True, blank=True)
-    quantity = models.PositiveIntegerField(default=0)
-    date = models.DateTimeField(auto_now_add=True)
-    read_count = models.PositiveIntegerField(default=0)
     overview = models.TextField()
     details = models.TextField()
-    review_count = models.PositiveIntegerField(default=0)
-    category = models.ForeignKey("Category", on_delete=models.CASCADE, related_name="product_category", null=True, blank=True)
+    manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE, related_name="product_manufacturer", null=True, blank=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="product_category")
     
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse('product_detail', kwargs={"pk": self.pk})
 
     def save(self, *args, **kwargs):
         if self.in_sale:
             self.new_price = self.price - self.price*(self.discount/100)
         return super().save()
 
-    def get_subtotal(self):
-        if self.in_sale:
-            subtotal = self.new_price*self.quantity
-        else:
-            subtotal = self.price*self.quantity
-        return subtotal
-
     class Meta:
         verbose_name = "Product"
         verbose_name_plural = "Products"
-        
+
+class Color(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f"{self.name} color"
+
+    class Meta:
+        verbose_name = "Product Color"
+        verbose_name_plural = "Product Colors"
+
 class Product_version(models.Model):
-    quantity = models.IntegerField()
-    color = models.CharField(max_length=50)
+    quantity = models.PositiveIntegerField()
+    review_count = models.PositiveIntegerField(default=0)
+    date = models.DateTimeField(auto_now_add=True)
+    read_count = models.PositiveIntegerField(default=0)
+    cover_image = models.ImageField(upload_to="product_images")
+    color = models.ForeignKey(Color, on_delete=models.CASCADE, related_name="product_color")
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="product_version")
     
     def __str__(self):
-        return f"{self.product.name}'s {self.color} version"
+        return f"{self.product.name}'s {self.color.name} version"
 
     class Meta:
         verbose_name = "Product Version"
@@ -77,10 +90,10 @@ class Product_version(models.Model):
 
 class Images_of_product(models.Model):
     image = models.ImageField(upload_to="product_images")
-    version = models.ForeignKey(Product_version, on_delete=models.CASCADE, related_name="product_images")
+    product = models.ForeignKey(Product_version, on_delete=models.CASCADE, related_name="product_images")
 
     def __str__(self):
-        return f"{self.version}'s images"
+        return f"{self.product}'s images"
 
     class Meta:
         verbose_name = "Product Image"
@@ -101,7 +114,7 @@ class Review(models.Model):
     summary = models.CharField(max_length=50)
     product_review = models.TextField()
     review_date = models.DateField(auto_now_add=True)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="product_review")
+    product = models.ForeignKey(Product_version, on_delete=models.CASCADE, related_name="product_review")
 
     def __str__(self):
         return f"{self.nickname}'s reviews"

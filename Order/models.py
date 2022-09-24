@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 User = get_user_model()
-from Product.models import Product
+from Product.models import Product, Product_version
 
 class address_information(models.Model):
     first_name = models.CharField(max_length=30)
@@ -62,9 +62,9 @@ class shipping_addresses(models.Model):
         verbose_name = "Shipping Address"
         verbose_name_plural = "Shipping Addresses"
 
-class Wishlist(models.Model):
+class wishlist(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="user_wishlist")
-    product_ver = models.ManyToManyField(Product, related_name="products_wishlist")
+    product = models.ManyToManyField(Product_version, related_name="products_wishlist")
 
     def __str__(self):
         return f"{self.user}'s wishlist"
@@ -73,9 +73,28 @@ class Wishlist(models.Model):
         verbose_name = "Wishlist"
         verbose_name_plural = "Wishlists"   
 
+class basket_item(models.Model):
+    quantity = models.PositiveIntegerField(default=0)
+    product = models.ForeignKey(Product_version, on_delete=models.CASCADE, null=True, blank=True, related_name="product_basket_item")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="user_basket_item")
+
+    def __str__(self):
+        return f"{self.user.username}'s basket item"
+
+    def get_subtotal(self):
+        if self.product.product.in_sale:
+            subtotal = self.product.product.new_price*self.quantity
+        else:
+            subtotal = self.product.product.price*self.quantity
+        return subtotal
+
+    class Meta:
+        verbose_name = "Basket Item"
+        verbose_name_plural = "Basket Items"
+
 class basket(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="user_basket")
-    product = models.ManyToManyField(Product, related_name="products_basket")
+    items = models.ManyToManyField(basket_item, related_name="basket_items")
     is_active = models.BooleanField(default=True)
 
     def __str__(self):

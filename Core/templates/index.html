@@ -326,13 +326,13 @@
                     </div>
                     <div class="item-info">
                       <div class="info-inner">
-                        <div class="item-title"> <a title="Retis lapen casen" href="{% url 'product_detail' pk=item.pk %}"> {{ item.name }} </a> </div>
+                        <div class="item-title"> <a title="Retis lapen casen" href="{% url 'product_detail' pk=item.pk %}"> {{ item.product.name }} </a> </div>
                         <div class="item-content">
                           <div class="item-price">
-                            {% if item.in_sale %}
-                              <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ item.new_price|stringformat:".2f"  }}</span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> ${{ item.price|stringformat:".2f"  }} </span> </p>
+                            {% if item.product.in_sale %}
+                              <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ item.product.new_price|stringformat:".2f"  }}</span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> ${{ item.product.price|stringformat:".2f"  }} </span> </p>
                             {% else %}
-                              <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ item.price|stringformat:".2f"  }}</span> </p>
+                              <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ item.product.price|stringformat:".2f"  }}</span> </p>
                             {% endif %}
                           </div>
                         </div>
@@ -378,13 +378,13 @@
                                     </div>
                                     <div class="item-info">
                                       <div class="info-inner">
-                                        <div class="item-title"><a href="{% url 'product_detail' pk=best_item.pk %}" title="Retis lapen casen">{{ best_item.name }}</a> </div>
+                                        <div class="item-title"><a href="{% url 'product_detail' pk=best_item.pk %}" title="Retis lapen casen">{{ best_item.product.name }}</a> </div>
                                         <div class="item-content">
                                           <div class="item-price">
-                                            {% if best_item.in_sale %}
-                                              <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ best_item.new_price|stringformat:".2f"  }}</span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> ${{ best_item.price|stringformat:".2f"  }} </span> </p>
+                                            {% if best_item.product.in_sale %}
+                                              <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ best_item.product.new_price|stringformat:".2f"  }}</span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> ${{ best_item.product.price|stringformat:".2f"  }} </span> </p>
                                             {% else %}
-                                              <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ best_item.price|stringformat:".2f"  }}</span> </p>
+                                              <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ best_item.product.price|stringformat:".2f"  }}</span> </p>
                                             {% endif %}
                                           </div>
                                         </div>
@@ -405,13 +405,13 @@
                                     </div>
                                     <div class="item-info">
                                       <div class="info-inner">
-                                        <div class="item-title"><a href="{% url 'product_detail' pk=new_item.pk %}" title="Retis lapen casen">{{ new_item.name }}</a> </div>
+                                        <div class="item-title"><a href="{% url 'product_detail' pk=new_item.pk %}" title="Retis lapen casen">{{ new_item.product.name }}</a> </div>
                                         <div class="item-content">
                                           <div class="item-price">
-                                            {% if new_item.in_sale %}
-                                              <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ new_item.new_price|stringformat:".2f"  }}</span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> ${{ new_item.price|stringformat:".2f"  }} </span> </p>
+                                            {% if new_item.product.in_sale %}
+                                              <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ new_item.product.new_price|stringformat:".2f"  }}</span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> ${{ new_item.product.price|stringformat:".2f"  }} </span> </p>
                                             {% else %}
-                                              <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ new_item.price|stringformat:".2f"  }}</span> </p>
+                                              <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ new_item.product.price|stringformat:".2f"  }}</span> </p>
                                             {% endif %}
                                           </div>
                                         </div>
@@ -432,13 +432,13 @@
                                     </div>
                                     <div class="item-info">
                                       <div class="info-inner">
-                                        <div class="item-title"><a href="{% url 'product_detail' pk=featured_item.pk %}" title="Retis lapen casen">{{ featured_item.name }}</a> </div>
+                                        <div class="item-title"><a href="{% url 'product_detail' pk=featured_item.pk %}" title="Retis lapen casen">{{ featured_item.product.name }}</a> </div>
                                         <div class="item-content">
                                           <div class="item-price">
-                                            {% if featured_item.in_sale %}
-                                              <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ featured_item.new_price|stringformat:".2f"  }}</span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> ${{ featured_item.price|stringformat:".2f"  }} </span> </p>
+                                            {% if featured_item.product.in_sale %}
+                                              <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ featured_item.product.new_price|stringformat:".2f"  }}</span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> ${{ featured_item.product.price|stringformat:".2f"  }} </span> </p>
                                             {% else %}
-                                              <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ featured_item.price|stringformat:".2f"  }}</span> </p>
+                                              <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ featured_item.product.price|stringformat:".2f"  }}</span> </p>
                                             {% endif %}
                                           </div>
                                         </div>

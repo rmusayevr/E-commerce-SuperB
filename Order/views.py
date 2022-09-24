@@ -1,9 +1,8 @@
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from Product.models import Product
 from django.db.models import Q
 from .forms import AddressInfoForm, BillingInfoForm, ShippingInfoForm, OrderForm
-from .models import Wishlist, basket, billing_addresses, shipping_addresses, order
+from .models import basket, basket_item, billing_addresses, shipping_addresses, wishlist
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.views.generic import CreateView, ListView
@@ -106,7 +105,8 @@ class CheckoutView(LoginRequiredMixin, FormMixin, ListView):
     form_class = OrderForm
     model = billing_addresses
     context_object_name = 'addresses'
-
+    #4032039308345646
+    
     def get_queryset(self):
         return billing_addresses.objects.filter(user_id = self.request.user).all()
         
@@ -115,15 +115,14 @@ class CheckoutView(LoginRequiredMixin, FormMixin, ListView):
         context['shipping_address'] = shipping_addresses.objects.filter(user_id = self.request.user).last()
         context['billing_address'] = billing_addresses.objects.filter(user_id = self.request.user).last()
         result = self.request.GET.get('result')
+        products = basket_item.objects.filter(user = self.request.user).all()
         if result == "COMPLETED":
+            for product in products:
+                product.delete()
             user_basket =  basket.objects.filter(user = self.request.user, is_active = True).first()
-            for products in user_basket.product.all():
-                products.quantity = 0
-                products.save()
             user_basket.is_active = False
             user_basket.save()
         grand_total = 0
-        products = Product.objects.filter(Q(products_basket__user__username = self.request.user.username), Q(products_basket__is_active = True)).all()
         for product in products:
             grand_total += product.get_subtotal()
         context['grand_total'] = grand_total
@@ -145,25 +144,25 @@ class BasketView(LoginRequiredMixin, ListView):
         context = super(BasketView, self).get_context_data(**kwargs)
         user_basket =  basket.objects.filter(Q(user = self.request.user), Q(is_active = True)).first()
         if user_basket:
-            all_products = user_basket.product.all()
+            all_products = user_basket.items.all()
             context['baskets'] = all_products
         
         grand_total = 0
-        products = Product.objects.filter(Q(products_basket__user__username = self.request.user.username), Q(products_basket__is_active = True)).all()
+        products = basket_item.objects.filter(Q(user = self.request.user), Q(basket_items__is_active = True))
         for product in products:
             grand_total += product.get_subtotal()
         context['grand_total'] = grand_total
         return context
     
 class WishlistView(LoginRequiredMixin, ListView):
-    model = Wishlist
+    model = wishlist
     template_name = 'wishlist.html'
 
     def get_context_data(self, **kwargs):
         context = super(WishlistView, self).get_context_data(**kwargs)
-        user_wishlist =  Wishlist.objects.filter(user = self.request.user).first()
+        user_wishlist =  wishlist.objects.filter(user = self.request.user).first()
         if user_wishlist:
-            all_products = user_wishlist.product_ver.all()
+            all_products = user_wishlist.product.all()
             context['items'] = all_products
         return context
 

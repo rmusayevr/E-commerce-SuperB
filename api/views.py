@@ -1,14 +1,15 @@
 from rest_framework.generics import ListAPIView, ListCreateAPIView
 from rest_framework.views import APIView
 from Product.models import Product, Product_version
-from Core.models import Subscription
-from Order.models import Wishlist, basket
+from Core.models import Subscriber
+from Order.models import wishlist, basket, basket_item
 from .serializers import (
                     ProductReadSerializer, 
-                    ProductVersionReadSerializer,
+                    ProductVersionSerializer,
                     SubscriberSerializer,
                     WishlistSerializer,
-                    BasketSerializer
+                    BasketSerializer,
+                    BasketItemSerializer
                 )
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -21,41 +22,41 @@ class ProductAPI(ListAPIView):
 
 class ProductVersionAPI(ListAPIView):
     queryset = Product_version.objects.all()
-    serializer_class = ProductVersionReadSerializer
+    serializer_class = ProductVersionSerializer
 
 class SubscriberAPI(ListCreateAPIView):
-    queryset = Subscription.objects.all()
+    queryset = Subscriber.objects.all()
     serializer_class = SubscriberSerializer
 
 class WishlistAPI(APIView):
-    queryset = Wishlist.objects.all()
+    queryset = wishlist.objects.all()
     serializer_class = WishlistSerializer
     permission_classes = [IsAuthenticated]
     http_method_names = ['get', 'post', 'delete']
 
     def get(self, request, *args, **kwargs):
-        obj, created = Wishlist.objects.get_or_create(user = request.user)
+        obj, created = wishlist.objects.get_or_create(user = request.user)
         serializer = self.serializer_class(obj)
         return Response(serializer.data, status = status.HTTP_200_OK)
 
     def post(self, request, *args, **kwargs):
         product_id = request.data.get('product')[0]
-        product = Product.objects.filter(pk=product_id).first()
+        product = Product_version.objects.filter(pk=product_id).first()
         if product:
-            wishlist, created = Wishlist.objects.get_or_create(user = request.user)
-            wishlist2 = Wishlist.objects.filter(user = request.user).first()
-            wishlist2.product_ver.add(product)
+            wishlist1, created = wishlist.objects.get_or_create(user = request.user)
+            wishlist2 = wishlist.objects.filter(user = request.user).first()
+            wishlist2.product.add(product)
             message = {'success': True, 'message' : 'Product added to your wishlist.'}
             return Response(message, status = status.HTTP_201_CREATED)
         message = {'success' : False, 'message': 'Product not found.'}
         return Response(message, status = status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, *args, **kwargs):
-        ProductID = request.data.get('product')[0]
+        ProductID = request.data.get('product')
         if ProductID:
-            user_wishlist =  Wishlist.objects.filter(user = self.request.user).first()
-            product = user_wishlist.product_ver.filter(id = ProductID[0])
-            user_wishlist.product_ver.remove(product[0].id)
+            user_wishlist =  wishlist.objects.filter(user = self.request.user).first()
+            product = user_wishlist.product.filter(id = ProductID)
+            user_wishlist.product.remove(product[0].id)
         return Response(status = status.HTTP_200_OK)
 
 class BasketAPI(APIView):
@@ -65,36 +66,33 @@ class BasketAPI(APIView):
 
     def get(self, request, *args, **kwargs):
         obj, created = basket.objects.get_or_create(user = request.user, is_active = True)
-        basket1 = basket.objects.filter(Q(user = request.user), Q(is_active = True)).all()
-        if len(basket1) != 1:
-            basket1.last().delete()
         serializer = self.serializer_class(obj)
         return Response(serializer.data, status = status.HTTP_200_OK)
 
     def post(self, request, *args, **kwargs):
-        product_id = request.data.get('product')[0]
-        product = Product.objects.filter(pk=product_id).first()
+        quantity = request.data.get('quantity')
+        product_id = request.data.get('product')
+        product = Product_version.objects.filter(pk=product_id).first()
         if product:
-            for_basket, created = basket.objects.get_or_create(user = request.user, is_active = True)
-            basket2 = basket.objects.filter(Q(user = request.user), Q(is_active = True)).first()
-            product.quantity += 1
-            product.save()
-            basket2.product.add(product)
-            message = {'success': True, 'message' : 'Product added to your wishlist.'}
-            return Response(message, status = status.HTTP_201_CREATED)
+            for_basket, created = basket_item.objects.get_or_create(product = product, user = request.user)
+            basket2 = basket_item.objects.get(user = request.user, product = product)
+            basket2.quantity += quantity
+            basket2.save()
+            basket1, created = basket.objects.get_or_create(user = request.user, is_active = True)
+            basket1.items.add(basket2)   
+            arr = []
+            for item in basket1.items.all():
+                serializer = BasketItemSerializer(item)
+                arr.append(serializer.data)
+            message = {'success': True, 'message' : 'Product added to your card.'}
+            return Response(arr, status = status.HTTP_201_CREATED)
         message = {'success' : False, 'message': 'Product not found.'}
         return Response(message, status = status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, *args, **kwargs):
-        ProductID = request.data.get('product')[0]
+        ProductID = request.data.get('product')
         if ProductID:
-            user_basket =  basket.objects.filter(user = self.request.user, is_active = True).first()
-            product_s = Product.objects.filter(pk=ProductID).first()
-            product_s.get_subtotal()
-            product_s.quantity = 0
-            product_s.save()
-            product = user_basket.product.filter(id = ProductID[0])
-            user_basket.product.remove(product[0].id)
-
+            user_basket = basket_item.objects.get(product = ProductID, user = request.user)
+            user_basket.delete()
         return Response(status = status.HTTP_200_OK)
 

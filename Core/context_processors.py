@@ -1,12 +1,12 @@
 from Order.models import basket
-from Core.forms import SubscriptionForm
+from Core.forms import SubscriberForm
 
 def base_data(request):
     data = {}
-    data["subscriber_form"] = SubscriptionForm()
+    data["subscriber_form"] = SubscriberForm()
     if request.user.is_authenticated:
-        user_wishlist =  basket.objects.filter(user = request.user, is_active = True).last()
-        if user_wishlist:
-            all_products = user_wishlist.product.all()
+        shopping_card = basket.objects.filter(user = request.user, is_active = True).last()
+        if shopping_card:
+            all_products = shopping_card.items.all()
             data["basket_items"] = all_products
     return data

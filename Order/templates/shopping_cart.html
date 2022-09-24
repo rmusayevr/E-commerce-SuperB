@@ -43,16 +43,16 @@
                   <tbody>
                     {% for item in baskets %}
                       <tr class="first odd">
-                        <td class="image"><a class="product-image" title="" href="{% url 'product_detail' item.pk %}"><img width="75" height="75" alt="Women's Crepe Printed Black" src="{{ item.cover_image.url }}"></a></td>
-                        <td><h2 class="product-name"> <a href="{% url 'product_detail' item.pk %}">{{ item.name }}</a> </h2></td>
-                        {% if item.in_sale %}
-                          <td class="a-center hidden-table"><span class="cart-price"> <span class="price">${{ item.new_price|stringformat:".2f" }}</span> </span></td>
+                        <td class="image"><a class="product-image" title="" href="{% url 'product_detail' item.product.pk %}"><img width="75" height="75" alt="Women's Crepe Printed Black" src="{{ item.product.cover_image.url }}"></a></td>
+                        <td><h2 class="product-name"> <a href="{% url 'product_detail' item.product.pk %}">{{ item.product.product.name }}</a> </h2></td>
+                        {% if item.product.product.in_sale %}
+                          <td class="a-center hidden-table"><span class="cart-price"> <span class="price">${{ item.product.product.new_price|stringformat:".2f" }}</span> </span></td>
                         {% else %}
-                          <td class="a-center hidden-table"><span class="cart-price"> <span class="price">${{ item.price|stringformat:".2f" }}</span> </span></td>
+                          <td class="a-center hidden-table"><span class="cart-price"> <span class="price">${{ item.product.product.price|stringformat:".2f" }}</span> </span></td>
                         {% endif %}
                         <td class="a-center movewishlist"><span class="input-text qty"><span class="price">{{ item.quantity }}</span></span></td>
                         <td class="a-center movewishlist"><span class="cart-price"> <span class="price">${{ item.get_subtotal|stringformat:".2f" }}</span> </span></td>
-                        <td class="a-center last"><a class="button remove-item basket-remove" title="Remove item" onclick = "removeBasket($(this).attr('data'))" href="{% url 'shopping_cart' %}" data="{{ item.pk }}"><span><span>Remove item</span></span></a></td>
+                        <td class="a-center last"><a class="button remove-item basket-remove" title="Remove item" onclick = "removeBasket($(this).attr('data'))" href="{% url 'shopping_cart' %}" data="{{ item.product.pk }}"><span><span>Remove item</span></span></a></td>
                       </tr>
                     {% endfor %}
                   </tbody>

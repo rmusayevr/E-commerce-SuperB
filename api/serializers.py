@@ -1,8 +1,8 @@
 from rest_framework import serializers
 from drf_yasg.utils import swagger_serializer_method
-from Product.models import Product, Product_version, Category
-from Core.models import Subscription
-from Order.models import Wishlist, basket
+from Product.models import Product, Product_version, Category, Manufacturer, Color
+from Core.models import Subscriber
+from Order.models import basket_item, wishlist, basket
 
 class CategorySerializer(serializers.ModelSerializer):
     
@@ -11,105 +11,96 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'name',
+            'is_navbar',
             'p_category'
         ]
 
-class ProductVersionSerializer(serializers.ModelSerializer):
+class ManufacturerReadSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Product_version
+        model = Manufacturer
         fields = [
-            'id', 
-            'color',    
+            'name'
         ]
 
-class BasketReadSerializer(serializers.ModelSerializer):
+class ColorReadSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = basket
+        model = Color
         fields = [
-            'is_active'
+            'name'
         ]
 
 class ProductReadSerializer(serializers.ModelSerializer):
     category = CategorySerializer()
-    basket = serializers.SerializerMethodField()
-    product_ver = serializers.SerializerMethodField()
-
+    detail_url = serializers.SerializerMethodField()
+    manufacturer = ManufacturerReadSerializer()
+    
     class Meta:
         model = Product 
         fields = [
             'id', 
             'name', 
             'overview',
-            'details',
-            'cover_image',
-            'manufacturer',
             'price', 
             'in_sale',
             'discount', 
-            'new_price', 
+            'new_price',
+            'manufacturer',
+            'details', 
             'category',
-            'product_ver',
-            'basket'
+            'detail_url'
         ]
 
-    @swagger_serializer_method(serializer_or_field=ProductVersionSerializer(many=True))
-    def get_product_ver(self, obj):
-        return ProductVersionSerializer().data
-    
-    @swagger_serializer_method(serializer_or_field=BasketReadSerializer(many=True))
-    def get_basket(self, obj):
-        return BasketReadSerializer().data
+    def get_detail_url(self, obj):
+        return obj.get_absolute_url()
 
-class ProductVersionReadSerializer(serializers.ModelSerializer):
+class ProductVersionSerializer(serializers.ModelSerializer):
     product = ProductReadSerializer()
+    color = ColorReadSerializer()
 
     class Meta:
         model = Product_version
         fields = [
             'id', 
-            'color',    
+            'color',
+            'cover_image',
+            'product',
             'quantity',
-            'product'
+            'review_count',
+            'read_count'
         ]
 
 class WishlistSerializer(serializers.ModelSerializer):
+    product = ProductVersionSerializer(many=True)
 
     class Meta:
-        model = Wishlist
+        model = wishlist
         fields = [
             'user',
-            'product_ver'
-        ]
-
-class ProductBasketReadSerializer(serializers.ModelSerializer):
-     class Meta:
-        model = Product 
-        fields = [
-            'id', 
-            'name', 
-            'price',
-            'cover_image',
-            'in_sale',
-            'new_price',
-            'quantity',
+            'product'
         ]
 
 class BasketSerializer(serializers.ModelSerializer):
-    product = ProductBasketReadSerializer(read_only=True, many=True)
 
     class Meta:
         model = basket
         fields = [
             'user',
-            'product',
+            'items',
             'is_active'
         ]
 
+class BasketItemSerializer(serializers.ModelSerializer):
+    product = ProductVersionSerializer()
+
+    class Meta:
+        model = basket_item
+        fields = ['user', 'product', 'quantity']
+
 class SubscriberSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Subscription
+        model = Subscriber
         fields = [
             'id', 
             'email'

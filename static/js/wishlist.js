@@ -15,39 +15,47 @@ function getCookie(name) {
 const csrftoken = getCookie('csrftoken');
 
 const addCart = {
- 
-    addProductCart(ProductID) {
-        url = `${location.origin}/api/basket/`
-        fetch(url).then(response => response.json()).then(data => {
-        document.getElementsByClassName('mini-products-list')[0].innerHTML = ''
-        if (data['is_active'] === true) {
-            for (let i in data) {
-                for (let x in data[i]) {
-                    if (data[i][x]['in_sale'] == true) {
-                        document.getElementsByClassName('mini-products-list')[0].innerHTML += `
-                        <li class="item first">
-                            <div class="item-inner"><a class="product-image" title="${data[i][x]['name']}" href="{% url 'product_detail' pk=item.pk %}"><img alt="${data[i][x]['name']}" src="${data[i][x]['cover_image']}"></a>
-                            <div class="product-details">
-                                <strong>${data[i][x]['quantity']}</strong> x <span class="price">${data[i][x]['new_price'].toFixed(2)}</span>
-                                <p class="product-name"><a href="{% url 'product_detail' pk=item.pk %}">${data[i][x]['name']}</a></p>
-                            </div>
-                        </div>
-                    </li>`
-                    }
-                    else {
-                        document.getElementsByClassName('mini-products-list')[0].innerHTML += `
-                        <li class="item first">
-                            <div class="item-inner"><a class="product-image" title="${data[i][x]['name']}" href="{% url 'product_detail' pk=item.pk %}"><img alt="${data[i][x]['name']}" src="${data[i][x]['cover_image']}"></a>
-                            <div class="product-details">
-                                <strong>${data[i][x]['quantity']}</strong> x <span class="price">${data[i][x]['price'].toFixed(2)}</span>
-                                <p class="product-name"><a href="{% url 'product_detail' pk=item.pk %}">${data[i][x]['name']}</a></p>
-                            </div>
-                        </div>
-                    </li>`
-                    }
+    addProductCart(ProductID, Quantity) {
+        return fetch(`${location.origin}/api/basket/`, {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json',
+                'X-CSRFToken': csrftoken,
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify({
+                'product': ProductID,
+                'quantity': Quantity
+            })
+        }).then(response => response.json()).then(data => {
+            document.getElementById('cart-sidebar').innerHTML = '';
+                for (let i in data) {
+                            if (data[i]['product']['product']['in_sale'] == true) {
+                                document.getElementById('cart-sidebar').innerHTML += `
+                                <li class="item first">
+                                    <div class="item-inner"><a class="product-image" title="${data[i]['product']['product']['name']}" href="{% url 'product_detail' pk=item.pk %}"><img alt="${data[i]['product']['product']['name']}" src="${data[i]['product']['cover_image']}"></a>
+                                    <div class="product-details">
+                                        <strong>${data[i]['quantity']}</strong> x <span class="price">${data[i]['product']['product']['new_price'].toFixed(2)}</span>
+                                        <p class="product-name"><a href="{% url 'product_detail' pk=item.pk %}">${data[i]['product']['product']['name']}</a></p>
+                                    </div>
+                                    </div>
+                                </li>`
+                                document.getElementById('top-cart').style.display = 'block'
+                            }
+                            else {
+                                document.getElementsByClassName('mini-products-list')[0].innerHTML += `
+                                <li class="item first">
+                                    <div class="item-inner"><a class="product-image" title="${data[i]['product']['product']['name']}" href="{% url 'product_detail' pk=item.pk %}"><img alt="${data[i]['product']['product']['name']}" src="${data[i]['product']['cover_image']}"></a>
+                                    <div class="product-details">
+                                        <strong>${data[i]['quantity']}</strong> x <span class="price">${data[i]['product']['product']['price'].toFixed(2)}</span>
+                                        <p class="product-name"><a href="{% url 'product_detail' pk=item.pk %}">${data[i]['product']['product']['name']}</a></p>
+                                    </div>
+                                    </div>
+                                </li>`
+                                document.getElementById('top-cart').style.display = 'block'
+
+                            }
                 }
-            }
-        }
         })
     }
 }
@@ -62,11 +70,13 @@ const addProduct = {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             },
             body: JSON.stringify({
-                'product': [ 
-                    ProductID
-                ]
+                'product': ProductID
             })
-        });
+        }).then(response => response.json()).then(data => {
+            if (data.success) {
+                window.alert(data.message);
+            }
+        })
     }
 }
 
@@ -80,27 +90,7 @@ const deleteProduct = {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             },
             body: JSON.stringify({
-                'product': [ 
-                    ProductID
-                ]
-            })
-        });
-    }
-}
-
-const addProduct_Basket = {
-    addProductBasket(ProductID) {
-        return fetch(`${location.origin}/api/basket/`, {
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json',
-                'X-CSRFToken': csrftoken,
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
-            },
-            body: JSON.stringify({
-                'product': [ 
-                    ProductID
-                ]
+                'product': ProductID
             })
         });
     }
@@ -116,9 +106,7 @@ const deleteProduct_Basket = {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             },
             body: JSON.stringify({
-                'product': [ 
-                    ProductID
-                ]
+                'product': ProductID
             })
         });
     }
@@ -129,9 +117,13 @@ function functionAddToWishlist(ProductID) {
 }
 
 function functionAddToBasket(ProductID) {
-    addProduct_Basket.addProductBasket(ProductID);
-    addCart.addProductCart(ProductID);
+    const quantity = 1;
+    addCart.addProductCart(ProductID, quantity);
+}
 
+function AddToBasketInDetail(ProductID) {
+    const quantity = parseInt(document.getElementById('qty').value);
+    addCart.addProductCart(ProductID, quantity);
 }
 
 function removeWishlist(ProductID) {
