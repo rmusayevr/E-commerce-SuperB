@@ -24,6 +24,7 @@ class BlogView(ListView):
         context = super(BlogView, self).get_context_data(**kwargs)
         context['p_posts'] = Blog.objects.order_by("-read_count").all()[:4]
         context['categories'] = Category.objects.all()
+        context['authors'] = Author.objects.all()
         return context
 
 class BlogDetailView(DetailView, CreateView):
@@ -47,9 +48,8 @@ class BlogDetailView(DetailView, CreateView):
         return redirect('blog_detail', slug=self.kwargs.get("slug"))
 
     def get_context_data(self, **kwargs):
-        print(kwargs)
         context = super(BlogDetailView, self).get_context_data(**kwargs)
-        context['r_blog'] = Blog.objects.filter(Q(category = kwargs['object'].category), ~Q(slug = self.kwargs.get("slug"))).all()[:5]
+        context['r_blogs'] = Blog.objects.filter(Q(category = kwargs['object'].category), ~Q(slug = self.kwargs.get("slug"))).all()[:5]
         context['p_posts'] = Blog.objects.order_by("-read_count").all()[:4]
         context['categories'] = Category.objects.all()
         context['comments'] = Comment.objects.filter(blog__slug = self.kwargs.get("slug")).order_by("-date").all()[:5]

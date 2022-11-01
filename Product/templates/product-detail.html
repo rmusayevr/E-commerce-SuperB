@@ -15,7 +15,7 @@
             <div class="product-view">
               <div class="product-next-prev"> <a class="product-next" href="#"><span></span></a> <a class="product-prev" href="#"><span></span></a> </div>
               <div class="product-essential">
-                <form action="#" method="post" id="product_addtocart_form">
+                <form method="post" id="product_addtocart_form">
                   <input name="form_key" value="6UbXroakyQlbfQzK" type="hidden">
                   <div class="product-img-box col-sm-4 col-xs-12">
                     <div class="product-image">
@@ -23,7 +23,11 @@
                       <div class="flexslider flexslider-thumb">
                         <ul class="previews-list slides">
                           {% for image in images %}
-                            <li><a href="{{ image.image.url }}" class='cloud-zoom-gallery' rel="useZoom: 'zoom1', smallImage:' {{ image.image.url }}'"><img src="{{ image.image.url }}" alt = "Thumbnail 1"/></a></li>
+                            {% for image_product in image.images_of_products.all %}
+                              {% if image_product.pk == product.pk %}
+                                <li><a href="{{ image.image.url }}" class='cloud-zoom-gallery' rel="useZoom: 'zoom1', smallImage:' {{ image.image.url }}'"><img src="{{ image.image.url }}" alt = "Thumbnail 1"/></a></li>
+                              {% endif %}
+                            {% endfor %}
                           {% endfor %}
                         </ul>
                       </div>
@@ -247,13 +251,13 @@
                     </div>
                     <div class="item-info">
                       <div class="info-inner">
-                        <div class="item-title"><a href="{% url 'product_detail' r_item.pk %}" title="Retis lapen casen">{{ r_item.name }}</a> </div>
+                        <div class="item-title"><a href="{% url 'product_detail' r_item.pk %}" title="Retis lapen casen">{{ r_item.product.name }}</a> </div>
                         <div class="item-content">
                           <div class="item-price">
-                            {% if r_item.in_sale %}
-                              <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ r_item.new_price|stringformat:".2f"  }}</span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> ${{ r_item.price|stringformat:".2f"  }} </span> </p>
+                            {% if r_item.product.in_sale %}
+                              <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ r_item.product.new_price|stringformat:".2f"  }}</span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> ${{ r_item.product.price|stringformat:".2f"  }} </span> </p>
                             {% else %}
-                              <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ r_item.price|stringformat:".2f"  }}</span> </p>
+                              <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ r_item.product.price|stringformat:".2f"  }}</span> </p>
                             {% endif %}
                           </div>
                         </div>
@@ -285,13 +289,13 @@
                     </div>
                     <div class="item-info">
                       <div class="info-inner">
-                        <div class="item-title"><a href="{% url 'product_detail' u_item.pk %}" title="Retis lapen casen">{{ u_item.name }}</a> </div>
+                        <div class="item-title"><a href="{% url 'product_detail' u_item.pk %}" title="Retis lapen casen">{{ u_item.product.name }}</a> </div>
                         <div class="item-content">
                           <div class="item-price">
-                            {% if u_item.in_sale %}
-                              <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ u_item.new_price|stringformat:".2f"  }}</span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> ${{ u_item.price|stringformat:".2f"  }} </span> </p>
+                            {% if u_item.product.in_sale %}
+                              <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ u_item.product.new_price|stringformat:".2f"  }}</span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> ${{ u_item.product.price|stringformat:".2f"  }} </span> </p>
                             {% else %}
-                              <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ u_item.price|stringformat:".2f"  }}</span> </p>
+                              <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ u_item.product.price|stringformat:".2f"  }}</span> </p>
                             {% endif %}
                           </div>
                         </div>
@@ -312,6 +316,5 @@
   <script type="text/javascript" src="{% static 'js/parallax.js' %}"></script> 
   <script type="text/javascript" src="{% static 'js/jquery.flexslider.js' %}"></script> 
   <script type="text/javascript" src="{% static 'js/cloud-zoom.js' %}"></script>
-  <script src="{% static 'js/wishlist.js' %}"></script>
 
   {% endblock %}

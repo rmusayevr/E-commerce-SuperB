@@ -10,11 +10,12 @@ class ProductListView(ListView):
     paginate_by = 4
     context_object_name = "products"
 
+
     def get_queryset(self):
         category = self.request.GET.get("category")
         if category:
-            return Product_version.objects.filter(product__category__name = category).order_by('product', "date").all().distinct('product')
-        return Product_version.objects.order_by('product', "date").all().distinct('product')
+            return Product_version.objects.filter(product__category__p_category__name = category).order_by("date").all()
+        return Product_version.objects.order_by("date").all()
 
     def get_context_data(self, **kwargs):
         context = super(ProductListView, self).get_context_data(**kwargs)
@@ -39,9 +40,9 @@ class ProductDetailView(DetailView, CreateView):
         
     def get_context_data(self, **kwargs):
         context = super(ProductDetailView, self).get_context_data(**kwargs)
-        context['images'] = Images_of_product.objects.filter(product__pk = self.kwargs.get("pk"))
-        context['r_items'] = Product_version.objects.filter(Q(product__category__p_category__name = kwargs['object'].product.category.p_category) | Q(product__category__name = kwargs['object'].product.category), ~Q(pk = self.kwargs.get("pk")), ~Q(product = kwargs["object"].product)).all()[:15]
-        context['u_items'] = Product_version.objects.order_by("-review_count").filter(~Q(pk = self.kwargs.get("pk")), ~Q(product = kwargs["object"].product)).all()[:5]
+        context['images'] = Image.objects.all()
+        context['r_items'] = Product_version.objects.filter(Q(product__category__p_category__name = kwargs['object'].product.category.p_category) | Q(product__category__name = kwargs['object'].product.category), ~Q(pk = self.kwargs.get("pk")), ~Q(product = kwargs["object"].product)).order_by('product').all().distinct('product')[:5]
+        context['u_items'] = Product_version.objects.order_by("-review_count").filter(~Q(pk = self.kwargs.get("pk")), ~Q(product = kwargs["object"].product)).order_by('product').all().distinct('product')[:5]
         context['reviews'] = Review.objects.filter(product__pk = self.kwargs.get("pk")).all()[:3]
         context['colors'] = Product_version.objects.filter(product = kwargs["object"].product).all()
         return context

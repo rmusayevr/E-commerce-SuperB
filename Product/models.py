@@ -9,6 +9,13 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def save(self, *args, **kwargs):
+        if self.p_category == None:
+            self.is_navbar = True
+        else:
+            self.is_navbar = False
+        return super().save()
+
     class Meta:
         verbose_name = "Category"
         verbose_name_plural = "Categories"
@@ -17,7 +24,7 @@ class Manufacturer(models.Model):
     name = models.CharField(max_length=50)
 
     def __str__(self):
-        return f"Products of {self.name}"
+        return self.name
 
     class Meta:
         verbose_name = "Product Manufacturer"
@@ -72,6 +79,16 @@ class Color(models.Model):
         verbose_name = "Product Color"
         verbose_name_plural = "Product Colors"
 
+class Image(models.Model):
+    image = models.ImageField(upload_to="product_images")
+
+    def __str__(self):
+        return f'{self.pk}'
+
+    class Meta:
+        verbose_name = "Product Image"
+        verbose_name_plural = "Product Images"
+
 class Product_version(models.Model):
     quantity = models.PositiveIntegerField()
     review_count = models.PositiveIntegerField(default=0)
@@ -80,6 +97,7 @@ class Product_version(models.Model):
     cover_image = models.ImageField(upload_to="product_images")
     color = models.ForeignKey(Color, on_delete=models.CASCADE, related_name="product_color")
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="product_version")
+    images = models.ManyToManyField(Image, related_name='images_of_products')
     
     def __str__(self):
         return f"{self.product.name}'s {self.color.name} version"
@@ -87,17 +105,6 @@ class Product_version(models.Model):
     class Meta:
         verbose_name = "Product Version"
         verbose_name_plural = "Product Versions"
-
-class Images_of_product(models.Model):
-    image = models.ImageField(upload_to="product_images")
-    product = models.ForeignKey(Product_version, on_delete=models.CASCADE, related_name="product_images")
-
-    def __str__(self):
-        return f"{self.product}'s images"
-
-    class Meta:
-        verbose_name = "Product Image"
-        verbose_name_plural = "Product Images"
 
 class Review(models.Model):
     Rates = {

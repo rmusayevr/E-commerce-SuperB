@@ -6,10 +6,6 @@ from .models import Category, Product, Product_version
 class CategoryTranslationOptions(TranslationOptions):
     fields = ('name', )
 
-# @register(Product)
-# class ProductTranslationOptions(TranslationOptions):
-#     fields = ('name', 'overview', 'details')
-
-# @register(Product_version)
-# class ProductVersionTranslationOptions(TranslationOptions):
-#     fields = ('color', )    
+@register(Product)
+class ProductTranslationOptions(TranslationOptions):
+    fields = ('name', 'overview', 'details')  

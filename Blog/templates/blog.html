@@ -72,6 +72,17 @@
                   {% endfor %}
                 </ul>
               </div>
+              <div class="popular-posts widget widget_categories" id="categories-2">
+                <h3 class="widget-title">Authors</h3>
+                <ul class="posts-list unstyled clearfix">
+                  {% for author in authors %}
+                  <li style='padding: 5px;'>
+                    <span class="author-avatar byline"> <a href="{% url 'blogs' %}?author={{author.author.author_slug}}"> <img class="avatar avatar-96 photo" alt="author image" src="{{ author.author_image.url }}"></a></span>
+                    <a href="{% url 'blogs' %}?author={{author.author_slug}}">{{ author }}</a>
+                  </li>
+                  {% endfor %}
+                </ul>
+              </div>
             </div>
           </aside>
         </div>

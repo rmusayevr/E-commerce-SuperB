@@ -4,10 +4,9 @@ const categoryFilter = {
   filterProduct(categoryId) {
     let url = this.url;
     if (categoryId) {
-      url += `?categoryId=${categoryId}`;
+      url += `?product__category=${categoryId}`;
     }
     fetch(url).then(response => response.json()).then(data => {
-      console.log(data);
       document.getElementById('products-list').innerHTML = ''
       for (let i in data) {
           for (let x in data[i]['product'].category) {
@@ -71,7 +70,7 @@ const manufacturerFilter = {
   filterManufacturerProduct(manufacturerId) {
     let url = this.url;
     if (manufacturerId) {
-      url += `?manufacturer=${manufacturerId}`;
+      url += `?product__manufacturer__name=${manufacturerId}`;
     }
     fetch(url).then(response => response.json()).then(data => {
       document.getElementById('products-list').innerHTML = ''
@@ -136,7 +135,7 @@ const colorFilter = {
   filterColorProduct(ColorId) {
     let url = this.url;
     if (ColorId) {
-      url += `?color=${ColorId}`;
+      url += `?color__name=${ColorId}`;
     }
     fetch(url).then(response => response.json()).then(data => {
       document.getElementById('products-list').innerHTML = ''

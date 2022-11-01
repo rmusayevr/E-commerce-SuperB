@@ -3,7 +3,6 @@ from Core.forms import SubscriberForm
 
 def base_data(request):
     data = {}
-    data["subscriber_form"] = SubscriberForm()
     if request.user.is_authenticated:
         shopping_card = basket.objects.filter(user = request.user, is_active = True).last()
         if shopping_card:

@@ -3,6 +3,7 @@ from django.urls import reverse_lazy
 from django.db.models import Q
 from .forms import AddressInfoForm, BillingInfoForm, ShippingInfoForm, OrderForm
 from .models import basket, basket_item, billing_addresses, shipping_addresses, wishlist
+from Product.models import Product_version
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.views.generic import CreateView, ListView
@@ -103,7 +104,7 @@ class AddressInfo(LoginRequiredMixin, CreateView):
 class CheckoutView(LoginRequiredMixin, FormMixin, ListView):
     template_name = 'checkout.html'
     form_class = OrderForm
-    model = billing_addresses
+    model = Product_version
     context_object_name = 'addresses'
     #4032039308345646
     

@@ -1,5 +1,6 @@
-from rest_framework.generics import ListAPIView, ListCreateAPIView
+from rest_framework.generics import ListAPIView, ListCreateAPIView, CreateAPIView
 from rest_framework.views import APIView
+from django_filters.rest_framework import DjangoFilterBackend
 from Product.models import Product, Product_version
 from Core.models import Subscriber
 from Order.models import wishlist, basket, basket_item
@@ -14,7 +15,6 @@ from .serializers import (
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
-from django.db.models import Q
 
 class ProductAPI(ListAPIView):
     queryset = Product.objects.all()
@@ -23,8 +23,10 @@ class ProductAPI(ListAPIView):
 class ProductVersionAPI(ListAPIView):
     queryset = Product_version.objects.all()
     serializer_class = ProductVersionSerializer
-
-class SubscriberAPI(ListCreateAPIView):
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['product__category', 'color__name', 'product__manufacturer__name']
+    
+class SubscriberAPI(CreateAPIView):
     queryset = Subscriber.objects.all()
     serializer_class = SubscriberSerializer
 
@@ -40,7 +42,7 @@ class WishlistAPI(APIView):
         return Response(serializer.data, status = status.HTTP_200_OK)
 
     def post(self, request, *args, **kwargs):
-        product_id = request.data.get('product')[0]
+        product_id = request.data.get('product')
         product = Product_version.objects.filter(pk=product_id).first()
         if product:
             wishlist1, created = wishlist.objects.get_or_create(user = request.user)
