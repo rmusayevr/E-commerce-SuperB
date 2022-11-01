@@ -10,9 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import os 
 from pathlib import Path
 from datetime import timedelta
-import os 
 from django.contrib.messages import constants as messages
 
 
@@ -242,9 +242,14 @@ MODELTRANSLATION_LANGUAGES = ('en', 'az')
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    BASE_DIR / 'static/'
-]
+
+if DEBUG:
+    STATICFILES_DIRS = [
+        BASE_DIR / 'static'
+    ]
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 MEDIA_ROOT = BASE_DIR / "media"
 MEDIA_URL = '/media/'
 # Default primary key field type
