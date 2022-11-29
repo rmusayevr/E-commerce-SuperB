@@ -2,7 +2,6 @@ from rest_framework import serializers
 from Product.models import Product, Product_version, Category, Manufacturer, Color
 from Core.models import Subscriber
 from Order.models import basket_item, wishlist, basket
-from verify_email import verify_email
 
 class CategorySerializer(serializers.ModelSerializer):
     
@@ -104,7 +103,3 @@ class SubscriberSerializer(serializers.ModelSerializer):
         fields = [
             'email'
         ]
-
-    def create(self, validated_data):
-        if verify_email(validated_data['email']):
-            return super().create(validated_data)

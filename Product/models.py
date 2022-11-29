@@ -92,7 +92,7 @@ class Image(models.Model):
 class Product_version(models.Model):
     quantity = models.PositiveIntegerField()
     review_count = models.PositiveIntegerField(default=0)
-    date = models.DateTimeField(auto_now_add=True)
+    datetime = models.DateTimeField(auto_now_add=True)
     read_count = models.PositiveIntegerField(default=0)
     cover_image = models.ImageField(upload_to="product_images")
     color = models.ForeignKey(Color, on_delete=models.CASCADE, related_name="product_color")

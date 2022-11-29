@@ -81,24 +81,24 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
 ]
 
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'handlers': {
-#         'file': {
-#             'level': 'INFO',
-#             'class': 'logging.FileHandler',
-#             'filename': 'SuperB/middlewares/logs.txt',
-#         },
-#     },
-#     'loggers': {
-#         'django.request': {
-#             'handlers': ['file'],
-#             'level': 'INFO',  # change debug level as appropiate
-#             'propagate': True,
-#         },
-#     },
-# }
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'SuperB/middlewares/logs.txt',
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['file'],
+            'level': 'INFO',  # change debug level as appropiate
+            'propagate': True,
+        },
+    },
+}
 
 CORS_ALLOW_ALL_ORIGINS = True
 
@@ -130,7 +130,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 }
 
 SIMPLE_JWT = {
@@ -181,12 +181,12 @@ WSGI_APPLICATION = 'SuperB.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': os.environ.get('DB_ENGINE', 'django.db.backends.sqlite3') ,
-        'NAME': os.environ.get('DB_NAME', 'db.sqlite3'),
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': os.environ.get('DB_HOST', 'localhost'),
-        'PORT': os.environ.get('DB_PORT', 5432)
+        'ENGINE': os.environ.get('POSTGRES_ENGINE', 'django.db.backends.sqlite3') ,
+        'NAME': os.environ.get('POSTGRES_NAME', 'db.sqlite3'),
+        'USER': os.environ.get('POSTGRES_USER'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+        'HOST': os.environ.get('POSTGRES_HOST'),
+        'PORT': os.environ.get('POSTGRES_PORT')
     }
 }
 
@@ -307,7 +307,6 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.user.user_details',
     'User.pipeline.get_avatar'
 )
-
 
 MESSAGE_TAGS = {
         messages.DEBUG: 'secondary',

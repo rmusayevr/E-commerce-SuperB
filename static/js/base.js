@@ -13,7 +13,6 @@ function getCookie(name) {
     return cookieValue;
 }
 const csrftoken = getCookie('csrftoken');
-
 const addCart = {
     addProductCart(ProductID, Quantity) {
         return fetch(`${location.origin}/api/basket/`, {
@@ -21,14 +20,15 @@ const addCart = {
             headers: {
                 'Content-type': 'application/json',
                 'X-CSRFToken': csrftoken,
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
             },
             body: JSON.stringify({
                 'product': ProductID,
                 'quantity': Quantity
             })
         }).then(response => response.json()).then(data => {
-            document.getElementById('cart-sidebar').innerHTML = '';
+            console.log(data.success);
+            if (data.success == undefined) {
+                document.getElementById('cart-sidebar').innerHTML = '';
                 for (let i in data) {
                             if (data[i]['product']['product']['in_sale'] == true) {
                                 document.getElementById('cart-sidebar').innerHTML += `
@@ -56,7 +56,12 @@ const addCart = {
 
                             }
                 }
+            }
+            else {
+                window.alert(data.message);
+            }
         })
+
     }
 }
 
@@ -67,7 +72,6 @@ const addProduct = {
             headers: {
                 'Content-type': 'application/json',
                 'X-CSRFToken': csrftoken,
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
             },
             body: JSON.stringify({
                 'product': ProductID
@@ -76,13 +80,16 @@ const addProduct = {
             if (data.success) {
                 window.alert(data.message);
             }
+            else {
+                window.alert(data.message);
+            }
         })
     }
 }
 
 const deleteProduct = {
     deleteProductWishlist(ProductID) {
-        return fetch(`${location.origin}/api/wishlist`, {
+        return fetch(`${location.origin}/api/wishlist/`, {
             method: 'DELETE',
             headers: {
                 'Content-type': 'application/json',
@@ -138,17 +145,22 @@ function removeBasket(ProductID) {
 
 let form = document.getElementById("newsletter-validate-detail")
 form.addEventListener('submit', async function(event) {
-
-    let postData = {
-        email: form.email.value,
-    }
-
+    event.preventDefault()
     let response = await fetch(`${location.origin}/api/subscribers/`, {
         method: "POST",
         headers: {
                 'X-CSRFToken': csrftoken,
                 "Content-Type": "application/json"
         },
-        body: JSON.stringify(postData)
+        body: JSON.stringify({
+            'email': form.email.value
+        })
+    }).then(response => response.json()).then(data => {
+        if (data.success) {
+            window.alert(data.message);
+        }
+        else {
+            window.alert(data.message);
+        }
     })
 })

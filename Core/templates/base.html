@@ -69,12 +69,12 @@
             <!-- Top Cart -->
             {% if user.is_authenticated %}
               <div class="mini-cart">
-                <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"><a href="{% url 'shopping_cart' %}">{% trans 'My Cart' %} </div>
+                <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"><a href="{% url 'checkout' %}">{% trans 'My Cart' %} </div>
                 <div>
                   <div class="top-cart-content" style="display: none;" id="top-cart">
                     <div class="actions">
                       <button class="btn-checkout" title="Checkout" type="button"><span>Checkout</span></button>
-                      <a href="#" class="view-cart" ><span>View Cart</span></a> 
+                      <a href="{% url 'shopping_cart' %}" class="view-cart" ><span>View Cart</span></a> 
                     </div>
                     <!--block-subtitle-->
                       <ul class="mini-products-list" id="cart-sidebar">
@@ -116,11 +116,11 @@
                       <button aria-label="Close" data-dismiss="modal" class="close" type="button"><img src="{% static 'images/interstitial-close.png' %}" alt="close"> </button>
                     </div>
                     <div class="modal-body">
-                      <form class="navbar-form">
+                      <form class="navbar-form" action="{% url 'search' %}">
                         <div id="search">
                           <div class="input-group">
                             <input name="search" placeholder="Search" class="form-control" type="text">
-                            <button type="button" class="btn-search"><i class="fa fa-search"></i></button>
+                            <button class="btn-search"><i class="fa fa-search"></i></button>
                           </div>
                         </div>
                       </form>
@@ -197,31 +197,22 @@
         <li class="level0 parent drop-menu"><a href="{% url 'blogs' %}"><span>{% trans 'Blogs' %}</span></a></li>
       </ul>
       <ul class="nav hidden-xs menu-item menu-item-right">
-        <li class="level0 parent drop-menu"><a href="{% url 'product_list' %}?category=Women" class="level-top"><span>{% trans 'Women' %}</span></a>
+        <li class="level0 parent drop-menu"><a href="{% url 'product_list' %}?parent_category=Women" class="level-top"><span>{% trans 'Women' %}</span></a>
           <ul class="level1" style="display: none;">
-            <li class="level1"><a href="#.html" class=""><span>Handbags</span></a></li>
-            <li class="level1"><a href="#.html"><span>Jackets</span></a></li>
-            <li class="level1"><a href="#.html"><span>Shoes</span></a></li>
-            <li class="level1"><a href="#.html"><span>Jwellery</span></a></li>
-            <li class="level1"><a href="#.html"><span>Dresses</span></a></li>
+            <li class="level1" style="margin-left: 0;"><a href="{% url 'product_list' %}?parent_category=Women&category=Shirts"><span>Shirts</span></a></li>
+            <li class="level1" style="margin-left: 0;"><a href="{% url 'product_list' %}?parent_category=Women&category=Dresses"><span>Dresses</span></a></li>
           </ul>
         </li>
-        <li class="level0 parent drop-menu"><a href="{% url 'product_list' %}?category=Men" class="level-top"><span>{% trans 'Men' %}</span></a>
+        <li class="level0 parent drop-menu"><a href="{% url 'product_list' %}?parent_category=Men" class="level-top"><span>{% trans 'Men' %}</span></a>
           <ul class="level1" style="display: none;">
-            <li class="level1"><a href="#.html" class=""><span>Shoes</span></a></li>
-            <li class="level1"><a href="#.html"><span>Shirts</span></a></li>
-            <li class="level1"><a href="#.html"><span>Jackets</span></a></li>
-            <li class="level1"><a href="#.html"><span>Socks</span></a></li>
-            <li class="level1"><a href="#/sunglasses.html"><span>Jeans</span></a></li>
+            <li class="level1" style="margin-left: 0;"><a href="{% url 'product_list' %}?parent_category=Men&category=Jackets"><span>Jackets</span></a></li>
+            <li class="level1" style="margin-left: 0;"><a href="{% url 'product_list' %}?parent_category=Men&category=Shoes"><span>Shoes</span></a></li>
           </ul>
         </li>
-        <li class="level0 parent drop-menu"><a href="{% url 'product_list' %}?category=Kids" class="level-top"><span>{% trans 'Kids' %}</span></a>
+        <li class="level0 parent drop-menu"><a href="{% url 'product_list' %}?parent_category=Kids" class="level-top"><span>{% trans 'Kids' %}</span></a>
           <ul class="level1" style="display: none;">
-            <li class="level1"><a href="#.html" class=""><span>Shoes</span></a></li>
-            <li class="level1"><a href="#.html"><span>Dresses</span></a></li>
-            <li class="level1"><a href="#.html"><span>T-Shirts</span></a></li>
-            <li class="level1"><a href="#.html"><span>Jeans</span></a></li>
-            <li class="level1"><a href="#/sunglasses.html"><span>Backpacks</span></a></li>
+            <li class="level1" style="margin-left: 0;"><a href="{% url 'product_list' %}?parent_category=Kids&category=Pants"><span>Pants</span></a></li>
+            <li class="level1" style="margin-left: 0;"><a href="{% url 'product_list' %}?parent_category=Kids&category=Sweaters"><span>Sweaters</span></a></li>
           </ul>
         </li>
         <li class="level0 parent drop-menu"><a href="{% url 'faq' %}"><span>{% trans 'FAQ' %}</span></a></li>

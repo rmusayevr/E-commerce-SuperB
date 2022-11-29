@@ -8,5 +8,5 @@ def slugify_blog_title(sender, instance, *args, **kwargs):
     instance.slug = slugify(instance.title)
 
 @receiver(pre_save, sender=Author)
-def slugify_blog_title(sender, instance, *args, **kwargs):
+def slugify_author_title(sender, instance, *args, **kwargs):
     instance.author_slug = slugify(instance.author)

@@ -62,9 +62,9 @@
                       <div class="add-to-cart">
                         <div class="pull-left">
                           <div class="custom pull-left">
-                            <button onClick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty )) result.value--;return false;" class="reduced items-count" type="button"><i class="fa fa-minus">&nbsp;</i></button>
-                            <input type="text" class="input-text qty" title="Qty" value="1" maxlength="12" id="qty" name="qty">
-                            <button onClick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty )) result.value++;return false;" class="increase items-count" type="button"><i class="fa fa-plus">&nbsp;</i></button>
+                            <button onClick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty ) && qty > 1) result.value--;return false;" class="reduced items-count" type="button"><i class="fa fa-minus">&nbsp;</i></button>
+                            <input type="number" class="input-text qty" title="Qty" value="1" maxlength="12" id="qty" name="qty">
+                            <button onClick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty ) && qty < {{ product.quantity }}) result.value++;return false;" class="increase items-count" type="button"><i class="fa fa-plus">&nbsp;</i></button>
                           </div>
                         </div>
                         <button onclick = "AddToBasketInDetail($(this).attr('data'))" class="button btn-cart" id="add-to-basket" title="Add to Cart" type="button" data="{{ product.pk }}"><span>Add to Cart</span></button>
@@ -101,82 +101,87 @@
                       <div class="box-collateral box-reviews" id="customer-reviews">
                         <div class="box-reviews1">
                           <div class="form-add">
-                            <form id="review-form" method="POST" action="">
-                              {% csrf_token %}
-                              <h3>Write Your Own Review</h3>
-                              <fieldset>
-                                <h4>How do you rate this product? <em class="required">*</em></h4>
-                                <span id="input-message-box"></span>
-                                <table id="product-review-table" class="data-table">
-                                  <thead>
-                                    <tr class="first last">
-                                      <th>&nbsp;</th>
-                                      <th><span class="nobr">1 *</span></th>
-                                      <th><span class="nobr">2 *</span></th>
-                                      <th><span class="nobr">3 *</span></th>
-                                      <th><span class="nobr">4 *</span></th>
-                                      <th><span class="nobr">5 *</span></th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    <tr class="first odd">
-                                      <th>Price</th>
-                                      <td class="value"><input type="radio" class="radio" value="1" id="Price_1" name="price_review"></td>
-                                      <td class="value"><input type="radio" class="radio" value="2" id="Price_2" name="price_review"></td>
-                                      <td class="value"><input type="radio" class="radio" value="3" id="Price_3" name="price_review"></td>
-                                      <td class="value"><input type="radio" class="radio" value="4" id="Price_4" name="price_review"></td>
-                                      <td class="value"><input type="radio" class="radio" value="5" id="Price_5" name="price_review"></td>
-                                    </tr>
-                                    <tr class="even">
-                                      <th>Value</th>
-                                      <td class="value"><input type="radio" class="radio" value="1" id="Value_1" name="value_review"></td>
-                                      <td class="value"><input type="radio" class="radio" value="2" id="Value_2" name="value_review"></td>
-                                      <td class="value"><input type="radio" class="radio" value="3" id="Value_3" name="value_review"></td>
-                                      <td class="value"><input type="radio" class="radio" value="4" id="Value_4" name="value_review"></td>
-                                      <td class="value"><input type="radio" class="radio" value="5" id="Value_5" name="value_review"></td>
-                                    </tr>
-                                    <tr class="last odd">
-                                      <th>Quality</th>
-                                      <td class="value"><input type="radio" class="radio" value="1" id="Quality_1" name="quality_review"></td>
-                                      <td class="value"><input type="radio" class="radio" value="2" id="Quality_2" name="quality_review"></td>
-                                      <td class="value"><input type="radio" class="radio" value="3" id="Quality_3" name="quality_review"></td>
-                                      <td class="value"><input type="radio" class="radio" value="4" id="Quality_4" name="quality_review"></td>
-                                      <td class="value"><input type="radio" class="radio" value="5" id="Quality_5" name="quality_review"></td>
-                                    </tr>
-                                  </tbody>
-                                </table>
-                                <input type="hidden" value="" class="validate-rating" name="validate_rating">
-                                <div class="review1">
-                                  <ul class="form-list">
-                                    <li>
-                                      <label class="required" for="nickname_field">Nickname<em>*</em></label>
-                                      <div class="input-box">
-                                        <input type="text" class="input-text" id="nickname_field" name="nickname">
-                                      </div>
-                                    </li>
-                                    <li>
-                                      <label class="required" for="summary_field">Summary<em>*</em></label>
-                                      <div class="input-box">
-                                        <input type="text" class="input-text" id="summary_field" name="summary">
-                                      </div>
-                                    </li>
-                                  </ul>
-                                </div>
-                                <div class="review2">
-                                  <ul>
-                                    <li>
-                                      <label class="required " for="review_field">Review<em>*</em></label>
-                                      <div class="input-box">
-                                        <textarea rows="3" cols="5" id="review_field" name="product_review"></textarea>
-                                      </div>
-                                    </li>
-                                  </ul>
-                                  <div class="buttons-set">
-                                    <button class="button submit" title="Submit Review" type="submit"><span>Submit Review</span></button>
+                            {% if user.is_authenticated %}
+                              <form id="review-form" method="POST">
+                                {% csrf_token %}
+                                <h3>Write Your Own Review</h3>
+                                <fieldset>
+                                  <h4>How do you rate this product? <em class="required">*</em></h4>
+                                  <span id="input-message-box"></span>
+                                  <table id="product-review-table" class="data-table">
+                                    <thead>
+                                      <tr class="first last">
+                                        <th>&nbsp;</th>
+                                        <th><span class="nobr">1 *</span></th>
+                                        <th><span class="nobr">2 *</span></th>
+                                        <th><span class="nobr">3 *</span></th>
+                                        <th><span class="nobr">4 *</span></th>
+                                        <th><span class="nobr">5 *</span></th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr class="first odd">
+                                        <th>Price</th>
+                                        <td class="value"><input type="radio" class="radio" value="1" id="Price_1" name="price_review"></td>
+                                        <td class="value"><input type="radio" class="radio" value="2" id="Price_2" name="price_review"></td>
+                                        <td class="value"><input type="radio" class="radio" value="3" id="Price_3" name="price_review"></td>
+                                        <td class="value"><input type="radio" class="radio" value="4" id="Price_4" name="price_review"></td>
+                                        <td class="value"><input type="radio" class="radio" value="5" id="Price_5" name="price_review"></td>
+                                      </tr>
+                                      <tr class="even">
+                                        <th>Value</th>
+                                        <td class="value"><input type="radio" class="radio" value="1" id="Value_1" name="value_review"></td>
+                                        <td class="value"><input type="radio" class="radio" value="2" id="Value_2" name="value_review"></td>
+                                        <td class="value"><input type="radio" class="radio" value="3" id="Value_3" name="value_review"></td>
+                                        <td class="value"><input type="radio" class="radio" value="4" id="Value_4" name="value_review"></td>
+                                        <td class="value"><input type="radio" class="radio" value="5" id="Value_5" name="value_review"></td>
+                                      </tr>
+                                      <tr class="last odd">
+                                        <th>Quality</th>
+                                        <td class="value"><input type="radio" class="radio" value="1" id="Quality_1" name="quality_review"></td>
+                                        <td class="value"><input type="radio" class="radio" value="2" id="Quality_2" name="quality_review"></td>
+                                        <td class="value"><input type="radio" class="radio" value="3" id="Quality_3" name="quality_review"></td>
+                                        <td class="value"><input type="radio" class="radio" value="4" id="Quality_4" name="quality_review"></td>
+                                        <td class="value"><input type="radio" class="radio" value="5" id="Quality_5" name="quality_review"></td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                  <input type="hidden" value="" class="validate-rating" name="validate_rating">
+                                  <div class="review1">
+                                    <ul class="form-list">
+                                      <li>
+                                        <label class="required" for="nickname_field">Nickname<em>*</em></label>
+                                        <div class="input-box">
+                                          <input type="text" class="input-text" id="nickname_field" name="nickname">
+                                        </div>
+                                      </li>
+                                      <li>
+                                        <label class="required" for="summary_field">Summary<em>*</em></label>
+                                        <div class="input-box">
+                                          <input type="text" class="input-text" id="summary_field" name="summary">
+                                        </div>
+                                      </li>
+                                    </ul>
                                   </div>
-                                </div>
-                              </fieldset>
-                            </form>
+                                  <div class="review2">
+                                    <ul>
+                                      <li>
+                                        <label class="required " for="review_field">Review<em>*</em></label>
+                                        <div class="input-box">
+                                          <textarea rows="3" cols="5" id="review_field" name="product_review"></textarea>
+                                        </div>
+                                      </li>
+                                    </ul>
+                                    <div class="buttons-set">
+                                      <button class="button submit" title="Submit Review" type="submit"><span>Submit Review</span></button>
+                                    </div>
+                                  </div>
+                                </fieldset>
+                              </form>
+                            {% else %}
+                              <h3>You have to log in to add your reviews!</h3>
+                            {% endif %}
+
                           </div>
                         </div>
                         <div class="box-reviews2">

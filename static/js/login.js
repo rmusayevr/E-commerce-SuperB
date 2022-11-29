@@ -1,9 +1,9 @@
-let form = document.getElementById("login-form")
-form.addEventListener('submit', async function(event) {
+let login_form = document.getElementById("login-form")
+login_form.addEventListener('submit', async function(event) {
 
     let postData = {
-        username: form.username.value,
-        password: form.password.value
+        username: login_form.username.value,
+        password: login_form.password.value
     }
 
     let response = await fetch(`${location.origin}/api/token/`, {
@@ -17,6 +17,7 @@ form.addEventListener('submit', async function(event) {
     if (response.ok) {
         let data = await response.json()
         localStorage.setItem('user-detail', JSON.stringify(data))
-        
+        localStorage.setItem('token', data.access)
     }
+    
 })

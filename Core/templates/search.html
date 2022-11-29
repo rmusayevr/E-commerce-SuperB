@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+  <title>Search Page</title>
+{% endblock %}
+
+{% block css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/internal.css' %}">
+{% endblock %}
+
+<body class="inner-page">
+  <div id="page"> 
+    {% block content %}
+        <div class="container">
+            <div class="row">
+                <div class="col-main col-sm-9 col-sm-push-3">
+                <article class="col-main">
+                    <div class="category-products">
+                    <ol class="products-list" id="products-list">
+                        {% for product in products %}
+                        {% if product.quantity != 0 %}
+                            <li class="item first">
+                            <div class="product-image"> <a href="{% url 'product_detail' product.pk %}" title="HTC Rhyme Sense"> <img class="small-image" src="{{ product.cover_image.url }}" alt="HTC Rhyme Sense" width="150px" height="325px"> </a> </div>
+                            <div class="product-shop">
+                                <h2 class="product-name"><a href="{% url 'product_detail' product.pk %}" title="HTC Rhyme Sense">{{ product.product.name }}</a></h2>
+                                <div class="desc std">
+                                <p>{{ product.product.overview }}</p>
+                                </div>
+                                <div class="price-box"> 
+                                {% if product.product.in_sale %}
+                                    <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ product.product.new_price|stringformat:".2f"  }}</span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> ${{ product.product.price|stringformat:".2f"  }} </span> </p>
+                                {% else %}
+                                    <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ product.product.price|stringformat:".2f"  }}</span> </p>
+                                {% endif %}
+                                </div>
+                                <div class="actions">
+                                <button class="button btn-cart ajx-cart" onclick = "functionAddToBasket($(this).attr('data'))" title="Add to Cart" type="button" data="{{ product.pk }}"><span>Add to Cart</span></button>
+                                <button type="button" class="button link-wishlist add-to-links" onclick = "functionAddToWishlist($(this).attr('data'))" data="{{ product.pk }}" title="Add to Wishlist"><span>Add to Wishlist</span></button> </div>
+                            </div>
+                            </li>
+                        {% endif %}
+                        {% endfor %}
+                    </ol>
+                    </div>
+                </article>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+  </div>
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'js/parallax.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/jquery.flexslider.js' %}"></script> 
+  <script type="text/javascript" src="{% static 'js/cloud-zoom.js' %}"></script>
+{% endblock %}

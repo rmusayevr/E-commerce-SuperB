@@ -1,5 +1,4 @@
-env 
-pgdb
+postgresdb
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -55,7 +54,6 @@ coverage.xml
 .pytest_cache/
 
 # Translations
-*.mo
 *.pot
 
 # Django stuff:
@@ -130,3 +128,34 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# POSTGRES_ENGINE=django.db.backends.postgresql
+# POSTGRES_NAME=postgresdb
+# POSTGRES_USER=admin
+# POSTGRES_PASSWORD=12345
+# POSTGRES_HOST=postgres
+# POSTGRES_PORT=5432
+
+# REDIS_HOST=redisdb
+# REDIS_PORT=6379
+
+# SECRET_KEY=django-insecure--*a6k6b+d52==cv+mx4w#v5v*d92*@5t7ijsdo3bfw&zojuvi0
+
+# EMAIL_BACKEND="django.core.mail.backends.smtp.EmailBackend"
+# EMAIL_HOST="smtp.gmail.com"
+# EMAIL_USE_TLS=True
+# EMAIL_PORT=587
+# EMAIL_HOST_USER='rasmusayevhad@gmail.com'
+# EMAIL_HOST_PASSWORD='dyjbxkltynicpkzy'
+
+# SOCIAL_AUTH_FACEBOOK_KEY=1206709190106021
+# SOCIAL_AUTH_FACEBOOK_SECRET="3c7d611e9421907b43ea3c4a9b80418a"
+# SOCIAL_AUTH_GOOGLE_OAUTH2_KEY='598291091795-o86o5g8idjhs7j2ohv6ctmfek9kh46s3.apps.googleusercontent.com'
+# SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET='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'
+
+# DEBUG=False
+
+# python manage.py dumpdata --all > ./mydump.json
+# python manage.py loaddata ./mydump.json
+# docker cp containerId:/sourceFilePath/someFile.txt C:/localMachineDestinationFolder
+

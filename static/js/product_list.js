@@ -3,8 +3,11 @@ const categoryFilter = {
 
   filterProduct(categoryId) {
     let url = this.url;
-    if (categoryId) {
+    if (categoryId > 3) {
       url += `?product__category=${categoryId}`;
+    }
+    else {
+      url += `?product__category__p_category=${categoryId}`;
     }
     fetch(url).then(response => response.json()).then(data => {
       document.getElementById('products-list').innerHTML = ''

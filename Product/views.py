@@ -12,10 +12,13 @@ class ProductListView(ListView):
 
 
     def get_queryset(self):
+        parent_category = self.request.GET.get("parent_category")
         category = self.request.GET.get("category")
-        if category:
-            return Product_version.objects.filter(product__category__p_category__name = category).order_by("date").all()
-        return Product_version.objects.order_by("date").all()
+        if parent_category and not category:
+            return Product_version.objects.filter(product__category__p_category__name = parent_category).order_by("-datetime").all()
+        elif category:
+            return Product_version.objects.filter(product__category__name = category, product__category__p_category__name = parent_category).order_by("-datetime").all() 
+        return Product_version.objects.order_by("-datetime").all()
 
     def get_context_data(self, **kwargs):
         context = super(ProductListView, self).get_context_data(**kwargs)

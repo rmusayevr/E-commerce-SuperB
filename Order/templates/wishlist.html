@@ -21,9 +21,8 @@
                   <h1>My Wishlist</h1>
                 </div>
                 <div class="my-wishlist">
-                  <form method="post" action="#" id="wishlist-view-form">
+                  <form method="POST" id="wishlist-view-form">
                     <fieldset>
-                      <input type="hidden" value="ROBdJO5tIbODPZHZ" name="">
                       <div class="table-responsive">
                         <table id="wishlist-table" class="clean-table linearize-table data-table">
                           <thead>
@@ -50,9 +49,9 @@
                                       <p class="special-price"> <span class="price-label"></span> <span class="price"> {{ item.product.price|stringformat:".2f"  }}</span> </p>
                                     {% endif %}
                                   </td>
-                                  <td class="wishlist-cell4 customer-wishlist-item-cart"><div class="cart-cell">
-                                      <button class="button btn-cart" title="Add to Cart" onclick = "functionAddToBasket($(this).attr('data'))" type="button" data="{{ item.id }}"><span><span>Add to Cart</span></span></button>
-                                    </div>
+                                  <td class="wishlist-cell4 customer-wishlist-item-cart">
+                                    <button class="button btn-cart" title="Add to Cart" onclick = "functionAddToBasket($(this).attr('data'))" type="button" data="{{ item.id }}"><span><span></span></span></button>
+                                  </td>
                                   <td class="wishlist-cell5 customer-wishlist-item-remove last"><a class="remove-item btn" title="Clear Cart" onclick = "removeWishlist($(this).attr('data'))" href="{% url 'wishlist' %}" data="{{ item.id }}"><span><span></span></span></a></td>
                                 </tr>
                               {% endfor %}
@@ -99,6 +98,5 @@
   <script type="text/javascript" src="{% static 'js/parallax.js' %}"></script> 
   <script type="text/javascript" src="{% static 'js/jquery.flexslider.js' %}"></script>  
   <script type="text/javascript" src="{% static 'js/cloud-zoom.js' %}"></script>
-  <script src="{% static 'js/wishlist.js' %}"></script>
 {% endblock %}
 

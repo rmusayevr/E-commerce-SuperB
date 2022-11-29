@@ -6,6 +6,13 @@
 
 {% block css %}
   <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.bxslider.css' %}">
+  <style>
+    .link-wishlist:hover {
+      border: 1;
+      background-color: sandybrown;
+      color: black;
+    }
+  </style>
 {% endblock %}
 
 <body class="inner-page">
@@ -19,25 +26,27 @@
                 <div class="category-products">
                   <ol class="products-list" id="products-list">
                     {% for product in products %}
-                    <li class="item first">
-                      <div class="product-image"> <a href="{% url 'product_detail' product.pk %}" title="HTC Rhyme Sense"> <img class="small-image" src="{{ product.cover_image.url }}" alt="HTC Rhyme Sense" width="150px" height="325px"> </a> </div>
-                      <div class="product-shop">
-                        <h2 class="product-name"><a href="{% url 'product_detail' product.pk %}" title="HTC Rhyme Sense">{{ product.product.name }}</a></h2>
-                        <div class="desc std">
-                          <p>{{ product.product.overview }}</p>
-                        </div>
-                        <div class="price-box"> 
-                          {% if product.product.in_sale %}
-                            <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ product.product.new_price|stringformat:".2f"  }}</span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> ${{ product.product.price|stringformat:".2f"  }} </span> </p>
-                          {% else %}
-                            <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ product.product.price|stringformat:".2f"  }}</span> </p>
-                          {% endif %}
-                        </div>
-                        <div class="actions">
-                          <button class="button btn-cart ajx-cart" onclick = "functionAddToBasket($(this).attr('data'))" title="Add to Cart" type="button" data="{{ product.pk }}"><span>Add to Cart</span></button>
-                          <span class="add-to-links" onclick = "functionAddToWishlist($(this).attr('data'))" data="{{ product.pk }}"> <button type="button" title="Add to Wishlist" class="button link-wishlist"><span>Add to Wishlist</span></button> </span> </div>
-                      </div>
-                    </li>
+                      {% if product.quantity != 0 %}
+                        <li class="item first">
+                          <div class="product-image"> <a href="{% url 'product_detail' product.pk %}" title="HTC Rhyme Sense"> <img class="small-image" src="{{ product.cover_image.url }}" alt="HTC Rhyme Sense" width="150px" height="325px"> </a> </div>
+                          <div class="product-shop">
+                            <h2 class="product-name"><a href="{% url 'product_detail' product.pk %}" title="HTC Rhyme Sense">{{ product.product.name }}</a></h2>
+                            <div class="desc std">
+                              <p>{{ product.product.overview }}</p>
+                            </div>
+                            <div class="price-box"> 
+                              {% if product.product.in_sale %}
+                                <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ product.product.new_price|stringformat:".2f"  }}</span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> ${{ product.product.price|stringformat:".2f"  }} </span> </p>
+                              {% else %}
+                                <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ product.product.price|stringformat:".2f"  }}</span> </p>
+                              {% endif %}
+                            </div>
+                            <div class="actions">
+                              <button class="button btn-cart ajx-cart" onclick = "functionAddToBasket($(this).attr('data'))" title="Add to Cart" type="button" data="{{ product.pk }}"><span>Add to Cart</span></button>
+                              <button type="button" class="button link-wishlist add-to-links" onclick = "functionAddToWishlist($(this).attr('data'))" data="{{ product.pk }}" title="Add to Wishlist"><span>Add to Wishlist</span></button> </div>
+                          </div>
+                        </li>
+                      {% endif %}
                     {% endfor %}
                   </ol>
                 </div>
@@ -77,11 +86,11 @@
                   <div class="box-content box-category">
                     <ul>
                       {% for category in categories %}
-                        <li> <a class="category-field" data="{{ category.id }}" href="#?product__category={{category.name}}">{{ category.name }}</a> <span class="subDropdown plus"></span>
+                        <li class="category-field" data="{{ category.id }}" style="cursor: pointer; margin-bottom: 10px; padding: 10px 0;">{{ category.name }} <span class="subDropdown plus"></span>
                           <ul class="level0_455" style="display:none">
                             {% for s_category in s_categories %}
                               {% if s_category.p_category == category %}
-                                <li><a class="category-field" data="{{ s_category.id }}" href="#?product__category={{category.name}}-{{s_category.name}}">{{ s_category.name }}</a></li>
+                                <li class="category-field" data="{{ s_category.id }}" style="cursor: pointer; padding: 3px 5px;">{{ s_category.name }}</li>
                               {% endif %}
                             {% endfor %}
                           </ul>
@@ -101,7 +110,7 @@
                       <dd class="even">
                         <ol>
                           {% for manufacturer in manufacturers %}
-                            <li class="manufacturer-category" data = '{{ manufacturer.name }}'>{{ manufacturer.name }} </li>
+                            <li class="manufacturer-category" data = '{{ manufacturer.name }}' style="cursor: pointer;">{{ manufacturer.name }} </li>
                           {% endfor %}
                         </ol>
                       </dd>
@@ -109,7 +118,7 @@
                       <dd class="odd">
                         <ol>
                           {% for color in colors %}
-                            <li class="color-category" data = '{{ color.color_id__name }}'>{{ color.color_id__name }} ({{ color.count }}) </li>
+                            <li class="color-category" data = '{{ color.color_id__name }}' style="cursor: pointer;">{{ color.color_id__name }} ({{ color.count }}) </li>
                           {% endfor %}
                         </ol>
                       </dd>

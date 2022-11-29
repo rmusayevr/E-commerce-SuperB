@@ -38,31 +38,36 @@ class RegisterView(CreateView):
 
     def form_valid(self, form):
         email = form.instance.email
-        if verify_email(email):
-            form.instance.set_password(form.cleaned_data['password1'])
-            form.instance.is_active = False
-            form.instance.save()
+        email_list = User.objects.values_list("email", flat=True)
+        if not email in email_list:
+            if verify_email(email):
+                form.instance.set_password(form.cleaned_data['password1'])
+                form.instance.is_active = False
+                form.instance.save()
 
-            subject = 'Activate Your SuperB Account'
-            current_site = get_current_site(self.request)
-            message = render_to_string('email/confirmation_email.html', {
-                    'user': form.instance,
-                    'domain': current_site.domain,
-                    'uid': urlsafe_base64_encode(force_bytes(form.instance.pk)),
-                    'token': account_activation_token.make_token(form.instance),
-                })
-            from_email = EMAIL_HOST_USER
-            to_email = self.request.POST['email']
-            send_mail(
-                subject,
-                message,
-                from_email,
-                [to_email, ]
-            )
-            messages.success(self.request, ('Please confirm your email to complete registration.'))
-            return redirect('login')
-        messages.error(self.request, ('Please write a real email to complete registration.'))
-        return redirect('register')
+                subject = 'Activate Your SuperB Account'
+                current_site = get_current_site(self.request)
+                message = render_to_string('email/confirmation_email.html', {
+                        'user': form.instance,
+                        'domain': current_site.domain,
+                        'uid': urlsafe_base64_encode(force_bytes(form.instance.pk)),
+                        'token': account_activation_token.make_token(form.instance),
+                    })
+                from_email = EMAIL_HOST_USER
+                to_email = self.request.POST['email']
+                send_mail(
+                    subject,
+                    message,
+                    from_email,
+                    [to_email, ]
+                )
+                messages.success(self.request, ('Please confirm your email to complete registration.'))
+                return redirect('login')
+            messages.error(self.request, ('Please write a real email to complete registration.'))
+            return redirect('register')
+        else: 
+            messages.error(self.request, ('You have been registered with this email! Please write a different email to complete registration!'))
+            return redirect('register')
 
 class CustomLoginView(LoginView):
     form_class = UserLoginForm

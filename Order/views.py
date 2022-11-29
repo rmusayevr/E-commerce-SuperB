@@ -107,6 +107,8 @@ class CheckoutView(LoginRequiredMixin, FormMixin, ListView):
     model = Product_version
     context_object_name = 'addresses'
     #4032039308345646
+    #musayevpersonal@gmail.com
+    #imaginedragons
     
     def get_queryset(self):
         return billing_addresses.objects.filter(user_id = self.request.user).all()
@@ -119,6 +121,8 @@ class CheckoutView(LoginRequiredMixin, FormMixin, ListView):
         products = basket_item.objects.filter(user = self.request.user).all()
         if result == "COMPLETED":
             for product in products:
+                product.product.quantity -= product.quantity
+                product.product.save()
                 product.delete()
             user_basket =  basket.objects.filter(user = self.request.user, is_active = True).first()
             user_basket.is_active = False
@@ -158,12 +162,11 @@ class BasketView(LoginRequiredMixin, ListView):
 class WishlistView(LoginRequiredMixin, ListView):
     model = wishlist
     template_name = 'wishlist.html'
+    context_object_name = 'items'
 
-    def get_context_data(self, **kwargs):
-        context = super(WishlistView, self).get_context_data(**kwargs)
+    def get_queryset(self):
         user_wishlist =  wishlist.objects.filter(user = self.request.user).first()
         if user_wishlist:
             all_products = user_wishlist.product.all()
-            context['items'] = all_products
-        return context
+        return all_products
 

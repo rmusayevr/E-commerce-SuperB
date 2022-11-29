@@ -8,16 +8,17 @@ class BlogView(ListView):
     template_name = "blog.html"
     model = Blog
     context_object_name = "posts"
+    paginate_by = 4
 
     def get_queryset(self):
         category = self.request.GET.get("category")
         author = self.request.GET.get("author")
         if category:
-            self.queryset = Blog.objects.filter(category__name = category).order_by("-date").all()[:4]
+            self.queryset = Blog.objects.filter(category__name = category).order_by("-date").all()
         elif author:
-            self.queryset = Blog.objects.filter(author__author_slug = author).order_by("-date").all()[:4]
+            self.queryset = Blog.objects.filter(author__author_slug = author).order_by("-date").all()
         else:
-            self.queryset = Blog.objects.order_by("-date").all()[:4]
+            self.queryset = Blog.objects.order_by("-date").all()
         return self.queryset
 
     def get_context_data(self, **kwargs):
