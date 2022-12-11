@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-18 15:10+0400\n"
+"POT-Creation-Date: 2022-12-09 22:24+0400\n"
 "PO-Revision-Date: 2022-09-02 23:53+0000\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,6 +26,24 @@ msgstr "Dillər"
 #: .\Core\templates\base.html:72
 msgid "My Cart"
 msgstr "Səbətim"
+
+#: .\Core\templates\base.html:76
+msgid "Checkout"
+msgstr ""
+
+#: .\Core\templates\base.html:77
+#, fuzzy
+#| msgid "My Cart"
+msgid "View Cart"
+msgstr "Səbətim"
+
+#: .\Core\templates\base.html:139
+msgid "Change Account Information"
+msgstr "İstifadəçi Məlumatlarını Dəyişmək"
+
+#: .\Core\templates\base.html:140
+msgid "Change Password"
+msgstr "Şifrəni Dəyişmək"
 
 #: .\Core\templates\base.html:141
 msgid "Log Out"
@@ -51,15 +69,39 @@ msgstr "Bloqlar"
 msgid "Women"
 msgstr "Qadın"
 
-#: .\Core\templates\base.html:209
+#: .\Core\templates\base.html:202
+msgid "Shirts"
+msgstr "Köynəklər"
+
+#: .\Core\templates\base.html:203
+msgid "Dresses"
+msgstr "Paltarlar"
+
+#: .\Core\templates\base.html:206
 msgid "Men"
 msgstr "Kişi"
 
-#: .\Core\templates\base.html:218
+#: .\Core\templates\base.html:208
+msgid "Jackets"
+msgstr "Gödəkçələr"
+
+#: .\Core\templates\base.html:209
+msgid "Shoes"
+msgstr "Ayaqqabılar"
+
+#: .\Core\templates\base.html:212
 msgid "Kids"
 msgstr "Uşaq"
 
-#: .\Core\templates\base.html:227
+#: .\Core\templates\base.html:214
+msgid "Pants"
+msgstr "Şalvarlar"
+
+#: .\Core\templates\base.html:215
+msgid "Sweaters"
+msgstr "Sviterlər"
+
+#: .\Core\templates\base.html:218
 msgid "FAQ"
 msgstr "FAQ"
 

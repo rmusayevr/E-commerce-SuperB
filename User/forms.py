@@ -98,7 +98,18 @@ class AccountInformationForm(forms.ModelForm):
         fields = ['first_name', 'last_name', 'email']
 
         widgets = {
-            'first_name': forms.TextInput(attrs={'class': 'input-text'}),
-            'last_name': forms.TextInput(attrs={'class': 'input-text'}),
-            'email': forms.EmailInput(attrs={'class': 'input-text'})
+            'first_name': forms.TextInput(
+                attrs={
+                    'class': 'input-text',
+                    'placeholder': 'Your New First Name'
+                    }),
+            'last_name': forms.TextInput(
+                attrs={
+                    'class': 'input-text',
+                    'placeholder': 'Your New Last Name'
+                    }),
+            'email': forms.EmailInput(
+                attrs={
+                    'class': 'input-text',
+                    'placeholder': 'Your New Email'})
         }

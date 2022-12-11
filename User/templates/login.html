@@ -12,60 +12,58 @@
   <div id="page"> 
     {% block content %}
       <!-- Main Container -->
-      <section class="main-container col1-layout bounceInUp animated">
-        <div class="main container">
-          <div class="account-login">
-            <div class="page-title">
-              <h1>Login</h1>
-            </div>
-            <fieldset class="col2-set">
-              <legend>Login or Create an Account</legend>
-                <div class="content">
-                  <form method="POST" id="login-form">
-                    {% include 'messages.html' %}
-                    {% csrf_token %}
-                    {% if form.errors %}
-                      <div class="alert alert-danger alert-dismissible" role="alert">
-                          <div id="form_errors">
-                              {% for key, value in form.errors.items %}
-                                  <strong>{{ value }}</strong>
-                              {% endfor %}
-                          </div>
-                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                          </button>
-                      </div>
-                    {% endif %}
-                    <ul class="form-list row">
-                      <li class="col-md-6">
-                        {{ form.username.label }}
-                        {{ form.username }}
-                      </li>
-                      <li class="col-md-6">
-                        {{ form.password.label }}
-                        {{ form.password }}
-                      </li>
-                    </ul>
-                    <div class="buttons-set">
-                      <button id="login" type="submit" class="button login"><span>Login</span></button>
-                      <a class="forgot-word" href="{% url 'password_reset' %}">Forgot Your Password?</a>
-                      If you don't have an account, <a href="{% url 'register' %}"><span>Register</span></a>
+      <section class="main-container col1-layout bounceInUp animated register">
+        <div class="col-lg-5 mb-5 mb-lg-0">
+          <div class="card" style="border: 1px #e5e5e5 solid; padding: 30px 40px; border-radius: 5px;">
+            <h1 style="font-weight: 500; font-size: 30px; margin: 0 0 15px 0;">Sign in</h1>
+            <div class="card-body py-5 px-md-5">
+              {% include 'messages.html' %}
+              {% if form.errors %}
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <div id="form_errors">
+                        {% for key, value in form.errors.items %}
+                            <strong>{{ value }}</strong>
+                        {% endfor %}
                     </div>
-                    <br>
-                    <button class="btn btn-danger mb-2">
-                      <a href="{% url 'social:begin' 'google-oauth2' %}" style="color: white;">
-                        Login with Google
-                      </a>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
                     </button>
-                    <br><br>
-                    <button class="btn btn-primary mb-2">
-                        <a href="{% url 'social:begin' 'facebook' %}" style="color: white;">
-                          Login with Facebook 
-                        </a>
-                    </button>
-                  </form>
                 </div>
-            </fieldset>
+              {% endif %}
+              <form method="POST" id="login-form">
+                {% csrf_token %}
+                <div class="row" style='margin: 0;'>
+                <div class="form-outline mb-4">
+                  {{form.username}}
+                  {{form.username.errors}}
+                </div>
+                <div class="form-outline mb-4">
+                  {{form.password}}
+                  {{form.password.errors}}
+                </div>
+                <div class="buttons-set">
+                  <button type="submit" class="btn btn-block mb-4 rounded-3" id="login" style="background-color: #997847; color: white; margin-bottom: 5px;">
+                    Sign in
+                  </button>
+                  <a class="forgot-word" style="color: #997847; margin-left: 5px; text-decoration: underline;" href="{% url 'password_reset' %}">Forgot Your Password?</a>
+                  If you don't have an account, <a href="{% url 'register' %}" style="color: #997847; margin-left: 5px; text-decoration: underline;"><span>Register</span></a>
+                </div>
+                <div style='display: flex; align-items: center; margin-top: 15px;'>
+                  <button class="btn mb-2" style='border: 1px #e5e5e5 solid; background-color: white; display: flex; align-items: center; margin-right: 15px;'>
+                    <img src="{% static 'images/google.png' %}" style='margin-right: 5px;'>
+                    <a href="{% url 'social:begin' 'google-oauth2' %}" style="color: black;">
+                      Login with Google
+                    </a>
+                  </button>
+                  <button class="btn mb-2" style='border: 1px #e5e5e5 solid; background-color: white; display: flex; align-items: center;'>
+                    <img src="{% static 'images/facebook.png' %}" style='margin-right: 5px;'>
+                    <a href="{% url 'social:begin' 'facebook' %}" style="color: black;">
+                      Login with Facebook 
+                    </a>
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </section>

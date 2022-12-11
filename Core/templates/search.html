@@ -13,14 +13,14 @@
     {% block content %}
         <div class="container">
             <div class="row">
-                <div class="col-main col-sm-9 col-sm-push-3">
+                <div class="col-main">
                 <article class="col-main">
                     <div class="category-products">
                     <ol class="products-list" id="products-list">
                         {% for product in products %}
                         {% if product.quantity != 0 %}
                             <li class="item first">
-                            <div class="product-image"> <a href="{% url 'product_detail' product.pk %}" title="HTC Rhyme Sense"> <img class="small-image" src="{{ product.cover_image.url }}" alt="HTC Rhyme Sense" width="150px" height="325px"> </a> </div>
+                            <div class="product-image"> <a href="{% url 'product_detail' product.pk %}" title="HTC Rhyme Sense"> <img class="small-image" src="{{ product.cover_image.url }}" alt="HTC Rhyme Sense" width="150px" height="325px" style="object-fit: contain;"> </a> </div>
                             <div class="product-shop">
                                 <h2 class="product-name"><a href="{% url 'product_detail' product.pk %}" title="HTC Rhyme Sense">{{ product.product.name }}</a></h2>
                                 <div class="desc std">

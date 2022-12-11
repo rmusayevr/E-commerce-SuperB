@@ -297,10 +297,23 @@ input.input-text, select, textarea {
 	outline: none;
 	color: #aaa;
 }
+
+.register {
+	display: flex;
+	justify-content: center;
+	margin-top: 50px;
+}
+
+.register input {
+	width: 100%;
+	margin-bottom: 15px;
+	border-radius: 5px;
+}
+
 .totals {
-	margin-top: 25px;
+	margin-top: 12px;
 	border: 1px #ddd solid;
-	min-height: 354px;
+	min-height: 200px;
 }
 #shopping-cart-table .product-name {
 	margin: 0px;
@@ -367,9 +380,10 @@ input.input-text, select, textarea {
 	padding: 0;
 	list-style: none;
 }
-.form-list li {
+.register .form-list li {
 	margin: 0 0 10px;
 	position: relative;
+	width: 35% !important;
 }
 .form-list label {
 	position: relative;

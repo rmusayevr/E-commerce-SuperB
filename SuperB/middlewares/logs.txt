@@ -1,0 +1,310 @@
+[36mGET /[0m
+[35m{'Content-Length': '', 'Content-Type': 'text/plain', 'Host': 'localhost:8000', 'Connection': 'keep-alive', 'Sec-Ch-Ua': '"Not?A_Brand";v="8", "Chromium";v="108", "Google Chrome";v="108"', 'Sec-Ch-Ua-Mobile': '?0', 'Sec-Ch-Ua-Platform': '"Windows"', 'Upgrade-Insecure-Requests': '1', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9', 'Sec-Fetch-Site': 'none', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-User': '?1', 'Sec-Fetch-Dest': 'document', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'en-US,en;q=0.9,tr;q=0.8', 'Cookie': 'csrftoken=du4r0SyFs7hFZEjHZsGZnOXsXnSI6cdWfW4dqCan8y3GoAYOAEdxIsfC0iGzH6Rp; sessionid=0eagfpglkx25ncshnic4u269acc3pz5q'}[0m
+[35mb''[0m
+[35mGET / - 404[0m
+[36mGET /en/[0m
+[36mGET /en/ - 200[0m
+[36mGET /media/product_images/jacket6.jfif[0m
+[36mGET /media/product_images/jacket6.jfif - 304[0m
+[36mGET /media/product_images/jacket1.jfif[0m
+[36mGET /media/product_images/jacket1.jfif - 304[0m
+[36mGET /media/product_images/shoes16.jfif[0m
+[36mGET /media/product_images/shirts6_QSejkMe.jfif[0m
+[36mGET /media/product_images/shoes16.jfif - 304[0m
+[36mGET /media/product_images/shirts6_QSejkMe.jfif - 304[0m
+[36mGET /media/product_images/shirts1.jfif[0m
+[36mGET /media/product_images/dress1.jfif[0m
+[36mGET /media/product_images/dress6.jfif[0m
+[36mGET /media/product_images/dress11.jfif[0m
+[36mGET /media/product_images/shirts1.jfif - 200[0m
+[36mGET /media/product_images/dress1.jfif - 200[0m
+[36mGET /media/product_images/dress6.jfif - 200[0m
+[36mGET /media/product_images/dress11.jfif - 200[0m
+[36mGET /media/product_images/sweater1.jfif[0m
+[36mGET /media/product_images/sweater1.jfif - 200[0m
+[36mGET /media/product_images/Pants5.jfif[0m
+[36mGET /media/product_images/shoes1.jfif[0m
+[36mGET /media/product_images/shoes11.jfif[0m
+[36mGET /media/product_images/Pants5.jfif - 200[0m
+[36mGET /media/product_images/shoes1.jfif - 200[0m
+[36mGET /media/product_images/shoes6.jfif[0m
+[36mGET /media/product_images/shoes11.jfif - 200[0m
+[36mGET /media/product_images/Pants1.jfif[0m
+[36mGET /media/product_images/shoes6.jfif - 200[0m
+[36mGET /media/blog_images/HM_Move_teams_up_with_Zlatan_Ibrahimovi%C4%87culture1.jpg[0m
+[36mGET /media/product_images/Pants1.jfif - 200[0m
+[36mGET /media/user_images/avatar5_ADpM8vF.png[0m
+[36mGET /media/blog_images/HM_Move_teams_up_with_Zlatan_Ibrahimovi%C4%87culture1.jpg - 200[0m
+[36mGET /media/user_images/avatar5_ADpM8vF.png - 200[0m
+[36mGET /media/blog_images/The_ultimate_guide_to_handbagsfashion1.jpg[0m
+[36mGET /media/blog_images/The_ultimate_guide_to_handbagsfashion1.jpg - 200[0m
+[36mGET /media/user_images/avatar2_vjx5qkK.png[0m
+[36mGET /media/user_images/avatar2_vjx5qkK.png - 200[0m
+[36mGET /favicon.ico[0m
+[35m{'Content-Length': '', 'Content-Type': 'text/plain', 'Host': 'localhost:8000', 'Connection': 'keep-alive', 'Sec-Ch-Ua': '"Not?A_Brand";v="8", "Chromium";v="108", "Google Chrome";v="108"', 'Sec-Ch-Ua-Mobile': '?0', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36', 'Sec-Ch-Ua-Platform': '"Windows"', 'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'no-cors', 'Sec-Fetch-Dest': 'image', 'Referer': 'http://localhost:8000/en/', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'en-US,en;q=0.9,tr;q=0.8', 'Cookie': 'csrftoken=du4r0SyFs7hFZEjHZsGZnOXsXnSI6cdWfW4dqCan8y3GoAYOAEdxIsfC0iGzH6Rp'}[0m
+[35mb''[0m
+[35mGET /favicon.ico - 404[0m
+Not Found: /favicon.ico
+[36mGET /en/product_list/[0m
+[36mGET /en/product_list/ - 200[0m
+[36mGET /en/product_list/[0m
+[36mGET /en/product_list/ - 200[0m
+[36mGET /en/product_list/[0m
+[36mGET /en/product_list/ - 200[0m
+[36mGET /media/product_images/jacket6.jfif[0m
+[36mGET /media/product_images/jacket1.jfif[0m
+[36mGET /media/product_images/shoes16.jfif[0m
+[36mGET /media/product_images/jacket6.jfif - 200[0m
+[36mGET /media/product_images/jacket1.jfif - 200[0m
+[36mGET /media/product_images/shoes16.jfif - 200[0m
+[36mGET /media/product_images/shirts6_QSejkMe.jfif[0m
+[36mGET /media/product_images/shirts6_QSejkMe.jfif - 200[0m
+[36mGET /favicon.ico[0m
+[35m{'Content-Length': '', 'Content-Type': 'text/plain', 'Host': 'localhost:8000', 'Connection': 'keep-alive', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache', 'Sec-Ch-Ua': '"Not?A_Brand";v="8", "Chromium";v="108", "Google Chrome";v="108"', 'Sec-Ch-Ua-Mobile': '?0', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36', 'Sec-Ch-Ua-Platform': '"Windows"', 'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'no-cors', 'Sec-Fetch-Dest': 'image', 'Referer': 'http://localhost:8000/en/product_list/', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'en-US,en;q=0.9,tr;q=0.8', 'Cookie': 'csrftoken=du4r0SyFs7hFZEjHZsGZnOXsXnSI6cdWfW4dqCan8y3GoAYOAEdxIsfC0iGzH6Rp'}[0m
+[35mb''[0m
+[35mGET /favicon.ico - 404[0m
+Not Found: /favicon.ico
+[36mGET /en/product_list/[0m
+[36mGET /en/product_list/ - 200[0m
+[36mGET /media/product_images/jacket6.jfif[0m
+[36mGET /media/product_images/jacket6.jfif - 200[0m
+[36mGET /media/product_images/jacket1.jfif[0m
+[36mGET /media/product_images/shirts6_QSejkMe.jfif[0m
+[36mGET /media/product_images/jacket1.jfif - 200[0m
+[36mGET /media/product_images/shoes16.jfif[0m
+[36mGET /media/product_images/shirts6_QSejkMe.jfif - 200[0m
+[36mGET /media/product_images/shoes16.jfif - 200[0m
+[36mGET /favicon.ico[0m
+[35m{'Content-Length': '', 'Content-Type': 'text/plain', 'Host': 'localhost:8000', 'Connection': 'keep-alive', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache', 'Sec-Ch-Ua': '"Not?A_Brand";v="8", "Chromium";v="108", "Google Chrome";v="108"', 'Sec-Ch-Ua-Mobile': '?0', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36', 'Sec-Ch-Ua-Platform': '"Windows"', 'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'no-cors', 'Sec-Fetch-Dest': 'image', 'Referer': 'http://localhost:8000/en/product_list/', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'en-US,en;q=0.9,tr;q=0.8', 'Cookie': 'csrftoken=du4r0SyFs7hFZEjHZsGZnOXsXnSI6cdWfW4dqCan8y3GoAYOAEdxIsfC0iGzH6Rp'}[0m
+[35mb''[0m
+[35mGET /favicon.ico - 404[0m
+Not Found: /favicon.ico
+[36mGET /en/product_list/[0m
+[36mGET /en/product_list/ - 200[0m
+[36mGET /media/product_images/jacket6.jfif[0m
+[36mGET /media/product_images/jacket6.jfif - 200[0m
+[36mGET /media/product_images/shoes16.jfif[0m
+[36mGET /media/product_images/jacket1.jfif[0m
+[36mGET /media/product_images/shoes16.jfif - 200[0m
+[36mGET /media/product_images/jacket1.jfif - 200[0m
+[36mGET /media/product_images/shirts6_QSejkMe.jfif[0m
+[36mGET /media/product_images/shirts6_QSejkMe.jfif - 200[0m
+[36mGET /favicon.ico[0m
+[35m{'Content-Length': '', 'Content-Type': 'text/plain', 'Host': 'localhost:8000', 'Connection': 'keep-alive', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache', 'Sec-Ch-Ua': '"Not?A_Brand";v="8", "Chromium";v="108", "Google Chrome";v="108"', 'Sec-Ch-Ua-Mobile': '?0', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36', 'Sec-Ch-Ua-Platform': '"Windows"', 'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'no-cors', 'Sec-Fetch-Dest': 'image', 'Referer': 'http://localhost:8000/en/product_list/', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'en-US,en;q=0.9,tr;q=0.8', 'Cookie': 'csrftoken=du4r0SyFs7hFZEjHZsGZnOXsXnSI6cdWfW4dqCan8y3GoAYOAEdxIsfC0iGzH6Rp'}[0m
+[35mb''[0m
+[35mGET /favicon.ico - 404[0m
+Not Found: /favicon.ico
+[36mGET /en/product_list/[0m
+[36mGET /en/product_list/ - 200[0m
+[36mGET /media/product_images/jacket6.jfif[0m
+[36mGET /media/product_images/jacket1.jfif[0m
+[36mGET /media/product_images/jacket6.jfif - 200[0m
+[36mGET /media/product_images/jacket1.jfif - 200[0m
+[36mGET /media/product_images/shoes16.jfif[0m
+[36mGET /media/product_images/shirts6_QSejkMe.jfif[0m
+[36mGET /media/product_images/shoes16.jfif - 200[0m
+[36mGET /media/product_images/shirts6_QSejkMe.jfif - 200[0m
+[36mGET /favicon.ico[0m
+[35m{'Content-Length': '', 'Content-Type': 'text/plain', 'Host': 'localhost:8000', 'Connection': 'keep-alive', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache', 'Sec-Ch-Ua': '"Not?A_Brand";v="8", "Chromium";v="108", "Google Chrome";v="108"', 'Sec-Ch-Ua-Mobile': '?0', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36', 'Sec-Ch-Ua-Platform': '"Windows"', 'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'no-cors', 'Sec-Fetch-Dest': 'image', 'Referer': 'http://localhost:8000/en/product_list/', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'en-US,en;q=0.9,tr;q=0.8', 'Cookie': 'csrftoken=du4r0SyFs7hFZEjHZsGZnOXsXnSI6cdWfW4dqCan8y3GoAYOAEdxIsfC0iGzH6Rp'}[0m
+[35mb''[0m
+[35mGET /favicon.ico - 404[0m
+Not Found: /favicon.ico
+[36mGET /en/product_list/[0m
+[36mGET /en/product_list/ - 200[0m
+[36mGET /media/product_images/jacket6.jfif[0m
+[36mGET /media/product_images/jacket6.jfif - 200[0m
+[36mGET /media/product_images/jacket1.jfif[0m
+[36mGET /media/product_images/jacket1.jfif - 200[0m
+[36mGET /media/product_images/shoes16.jfif[0m
+[36mGET /media/product_images/shirts6_QSejkMe.jfif[0m
+[36mGET /media/product_images/shoes16.jfif - 200[0m
+[36mGET /media/product_images/shirts6_QSejkMe.jfif - 200[0m
+[36mGET /favicon.ico[0m
+[35m{'Content-Length': '', 'Content-Type': 'text/plain', 'Host': 'localhost:8000', 'Connection': 'keep-alive', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache', 'Sec-Ch-Ua': '"Not?A_Brand";v="8", "Chromium";v="108", "Google Chrome";v="108"', 'Sec-Ch-Ua-Mobile': '?0', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36', 'Sec-Ch-Ua-Platform': '"Windows"', 'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'no-cors', 'Sec-Fetch-Dest': 'image', 'Referer': 'http://localhost:8000/en/product_list/', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'en-US,en;q=0.9,tr;q=0.8', 'Cookie': 'csrftoken=du4r0SyFs7hFZEjHZsGZnOXsXnSI6cdWfW4dqCan8y3GoAYOAEdxIsfC0iGzH6Rp'}[0m
+[35mb''[0m
+[35mGET /favicon.ico - 404[0m
+Not Found: /favicon.ico
+[36mGET /en/product_list/[0m
+[36mGET /en/product_list/ - 200[0m
+[36mGET /en/login/[0m
+[36mGET /en/login/ - 200[0m
+[36mPOST /en/login/[0m
+[36mPOST /en/login/ - 302[0m
+[36mGET /[0m
+[35m{'Content-Length': '', 'Content-Type': 'text/plain', 'Host': 'localhost:8000', 'Connection': 'keep-alive', 'Cache-Control': 'max-age=0', 'Upgrade-Insecure-Requests': '1', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-User': '?1', 'Sec-Fetch-Dest': 'document', 'Sec-Ch-Ua': '"Not?A_Brand";v="8", "Chromium";v="108", "Google Chrome";v="108"', 'Sec-Ch-Ua-Mobile': '?0', 'Sec-Ch-Ua-Platform': '"Windows"', 'Referer': 'http://localhost:8000/en/login/', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'en-US,en;q=0.9,tr;q=0.8', 'Cookie': 'csrftoken=mSfh6xP6YJmdPPqVSA2fJ4LijeCuY33soxQ6bsDqPGzjAGfiv9quiBdcMMXkMnIC; sessionid=mchojq1xwc8zs7zwj800gc4dbgc6kd70'}[0m
+[35mb''[0m
+[35mGET / - 404[0m
+[36mGET /en/[0m
+[36mGET /en/ - 200[0m
+[36mPOST /api/token/[0m
+[36mPOST /api/token/ - 200[0m
+[36mGET /en/change_info/admin/[0m
+[36mGET /en/change_info/admin/ - 200[0m
+[36mGET /en/change_password/[0m
+[36mGET /en/change_password/ - 200[0m
+[36mGET /en/change_password/[0m
+[36mGET /en/change_password/ - 200[0m
+[36mGET /en/change_password/[0m
+[36mGET /en/change_password/ - 200[0m
+[36mGET /media/product_images/jacket6.jfif[0m
+[36mGET /media/product_images/Pants5.jfif[0m
+[36mGET /media/product_images/jacket6.jfif - 200[0m
+[36mGET /media/product_images/Pants5.jfif - 200[0m
+[36mGET /favicon.ico[0m
+[35m{'Content-Length': '', 'Content-Type': 'text/plain', 'Host': 'localhost:8000', 'Connection': 'keep-alive', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache', 'Sec-Ch-Ua': '"Not?A_Brand";v="8", "Chromium";v="108", "Google Chrome";v="108"', 'Sec-Ch-Ua-Mobile': '?0', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36', 'Sec-Ch-Ua-Platform': '"Windows"', 'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'no-cors', 'Sec-Fetch-Dest': 'image', 'Referer': 'http://localhost:8000/en/change_password/', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'en-US,en;q=0.9,tr;q=0.8', 'Cookie': 'csrftoken=mSfh6xP6YJmdPPqVSA2fJ4LijeCuY33soxQ6bsDqPGzjAGfiv9quiBdcMMXkMnIC; sessionid=mchojq1xwc8zs7zwj800gc4dbgc6kd70'}[0m
+[35mb''[0m
+[35mGET /favicon.ico - 404[0m
+Not Found: /favicon.ico
+[36mGET /en/change_info/admin/[0m
+[36mGET /en/change_info/admin/ - 200[0m
+[36mGET /en/change_info/admin/[0m
+[36mGET /en/change_info/admin/ - 200[0m
+[36mGET /en/logout/[0m
+[36mGET /en/logout/ - 302[0m
+[36mGET /[0m
+[35m{'Content-Length': '', 'Content-Type': 'text/plain', 'Host': 'localhost:8000', 'Connection': 'keep-alive', 'Upgrade-Insecure-Requests': '1', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-User': '?1', 'Sec-Fetch-Dest': 'document', 'Sec-Ch-Ua': '"Not?A_Brand";v="8", "Chromium";v="108", "Google Chrome";v="108"', 'Sec-Ch-Ua-Mobile': '?0', 'Sec-Ch-Ua-Platform': '"Windows"', 'Referer': 'http://localhost:8000/en/change_info/admin/', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'en-US,en;q=0.9,tr;q=0.8', 'Cookie': 'csrftoken=mSfh6xP6YJmdPPqVSA2fJ4LijeCuY33soxQ6bsDqPGzjAGfiv9quiBdcMMXkMnIC'}[0m
+[35mb''[0m
+[35mGET / - 404[0m
+[36mGET /en/[0m
+[36mGET /en/ - 200[0m
+[36mGET /en/register/[0m
+[36mGET /en/register/ - 200[0m
+[36mPOST /en/register/[0m
+[36mPOST /en/register/ - 200[0m
+[36mPOST /en/register/[0m
+[36mPOST /en/register/ - 200[0m
+[36mGET /en/register/[0m
+[36mGET /en/register/ - 200[0m
+[36mPOST /en/register/[0m
+[36mPOST /en/register/ - 302[0m
+[36mGET /en/register/[0m
+[36mGET /en/register/ - 200[0m
+[36mGET /admin[0m
+[35m{'Content-Length': '', 'Content-Type': 'text/plain', 'Host': 'localhost:8000', 'Connection': 'keep-alive', 'Sec-Ch-Ua': '"Not?A_Brand";v="8", "Chromium";v="108", "Google Chrome";v="108"', 'Sec-Ch-Ua-Mobile': '?0', 'Sec-Ch-Ua-Platform': '"Windows"', 'Upgrade-Insecure-Requests': '1', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9', 'Sec-Fetch-Site': 'none', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-User': '?1', 'Sec-Fetch-Dest': 'document', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'en-US,en;q=0.9,tr;q=0.8', 'Cookie': 'csrftoken=mSfh6xP6YJmdPPqVSA2fJ4LijeCuY33soxQ6bsDqPGzjAGfiv9quiBdcMMXkMnIC'}[0m
+[35mb''[0m
+[35mGET /admin - 404[0m
+[36mGET /en/admin/[0m
+[36mGET /en/admin/ - 302[0m
+[36mGET /en/admin/login/?next=/en/admin/[0m
+[36mGET /en/admin/login/?next=/en/admin/ - 200[0m
+[36mPOST /en/admin/login/?next=/en/admin/[0m
+[36mPOST /en/admin/login/?next=/en/admin/ - 302[0m
+[36mGET /en/admin/[0m
+[36mGET /en/admin/ - 200[0m
+[36mGET /en/admin/User/user/[0m
+[36mGET /en/admin/User/user/ - 200[0m
+[36mGET /en/admin/jsi18n/[0m
+[36mGET /en/admin/jsi18n/ - 200[0m
+[36mPOST /en/admin/User/user/[0m
+[36mPOST /en/admin/User/user/ - 200[0m
+[36mPOST /en/admin/User/user/[0m
+[36mPOST /en/admin/User/user/ - 302[0m
+[36mGET /en/admin/User/user/[0m
+[36mGET /en/admin/User/user/ - 200[0m
+[36mGET /en/admin/jsi18n/[0m
+[36mGET /en/admin/jsi18n/ - 200[0m
+[36mGET /en/register/[0m
+[36mGET /en/register/ - 302[0m
+[36mGET /[0m
+[35m{'Content-Length': '', 'Content-Type': 'text/plain', 'Host': 'localhost:8000', 'Connection': 'keep-alive', 'Cache-Control': 'max-age=0', 'Upgrade-Insecure-Requests': '1', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-User': '?1', 'Sec-Fetch-Dest': 'document', 'Sec-Ch-Ua': '"Not?A_Brand";v="8", "Chromium";v="108", "Google Chrome";v="108"', 'Sec-Ch-Ua-Mobile': '?0', 'Sec-Ch-Ua-Platform': '"Windows"', 'Referer': 'http://localhost:8000/en/register/', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'en-US,en;q=0.9,tr;q=0.8', 'Cookie': 'csrftoken=FGeuFIB6UkzLAVYZmOw4k9KKEKTTS79XY5UrI06lGA0xmggP9e0U4ZJ5eGSG6yW0; sessionid=52li7k9ookvvy2icg8zmslfznnc8hxfi'}[0m
+[35mb''[0m
+[35mGET / - 404[0m
+[36mGET /en/[0m
+[36mGET /en/ - 200[0m
+[36mGET /en/logout/[0m
+[36mGET /en/logout/ - 302[0m
+[36mGET /[0m
+[35m{'Content-Length': '', 'Content-Type': 'text/plain', 'Host': 'localhost:8000', 'Connection': 'keep-alive', 'Upgrade-Insecure-Requests': '1', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-User': '?1', 'Sec-Fetch-Dest': 'document', 'Sec-Ch-Ua': '"Not?A_Brand";v="8", "Chromium";v="108", "Google Chrome";v="108"', 'Sec-Ch-Ua-Mobile': '?0', 'Sec-Ch-Ua-Platform': '"Windows"', 'Referer': 'http://localhost:8000/en/', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'en-US,en;q=0.9,tr;q=0.8', 'Cookie': 'csrftoken=FGeuFIB6UkzLAVYZmOw4k9KKEKTTS79XY5UrI06lGA0xmggP9e0U4ZJ5eGSG6yW0'}[0m
+[35mb''[0m
+[35mGET / - 404[0m
+[36mGET /en/[0m
+[36mGET /en/ - 200[0m
+[36mGET /en/[0m
+[36mGET /en/ - 200[0m
+[36mGET /en/register/[0m
+[36mGET /en/register/ - 200[0m
+[36mGET /en/register/[0m
+[36mGET /en/register/ - 200[0m
+[36mPOST /en/register/[0m
+[36mPOST /en/register/ - 200[0m
+[36mPOST /en/register/[0m
+[36mPOST /en/register/ - 200[0m
+[36mPOST /en/register/[0m
+[36mPOST /en/register/ - 200[0m
+[36mGET /en/admin/User/user/[0m
+[36mGET /en/admin/User/user/ - 302[0m
+[36mGET /en/admin/login/?next=/en/admin/User/user/[0m
+[36mGET /en/admin/login/?next=/en/admin/User/user/ - 200[0m
+[36mPOST /en/admin/login/?next=/en/admin/User/user/[0m
+[36mPOST /en/admin/login/?next=/en/admin/User/user/ - 302[0m
+[36mGET /en/admin/User/user/[0m
+[36mGET /en/admin/User/user/ - 200[0m
+[36mGET /en/admin/jsi18n/[0m
+[36mGET /en/admin/jsi18n/ - 200[0m
+[36mGET /[0m
+[35m{'Content-Length': '', 'Content-Type': 'text/plain', 'Host': '127.0.0.1:8000', 'Connection': 'keep-alive', 'Sec-Ch-Ua': '"Not?A_Brand";v="8", "Chromium";v="108", "Google Chrome";v="108"', 'Sec-Ch-Ua-Mobile': '?0', 'Sec-Ch-Ua-Platform': '"Windows"', 'Upgrade-Insecure-Requests': '1', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9', 'Sec-Fetch-Site': 'none', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-User': '?1', 'Sec-Fetch-Dest': 'document', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'en-US,en;q=0.9,tr;q=0.8'}[0m
+[35mb''[0m
+[35mGET / - 404[0m
+[36mGET /en/[0m
+[36mGET /en/ - 200[0m
+[36mGET /media/product_images/shoes16.jfif[0m
+[36mGET /media/product_images/shoes16.jfif - 200[0m
+[36mGET /media/product_images/jacket6.jfif[0m
+[36mGET /media/product_images/jacket6.jfif - 200[0m
+[36mGET /media/product_images/jacket1.jfif[0m
+[36mGET /media/product_images/dress6.jfif[0m
+[36mGET /media/product_images/jacket1.jfif - 200[0m
+[36mGET /media/product_images/shirts6_QSejkMe.jfif[0m
+[36mGET /media/product_images/dress6.jfif - 200[0m
+[36mGET /media/product_images/dress11.jfif[0m
+[36mGET /media/product_images/shirts6_QSejkMe.jfif - 200[0m
+[36mGET /media/product_images/shirts1.jfif[0m
+[36mGET /media/product_images/dress1.jfif[0m
+[36mGET /media/product_images/dress11.jfif - 200[0m
+[36mGET /media/product_images/sweater1.jfif[0m
+[36mGET /media/product_images/shirts1.jfif - 200[0m
+[36mGET /media/product_images/Pants5.jfif[0m
+[36mGET /media/product_images/dress1.jfif - 200[0m
+[36mGET /media/product_images/shoes1.jfif[0m
+[36mGET /media/product_images/sweater1.jfif - 200[0m
+[36mGET /media/product_images/Pants5.jfif - 200[0m
+[36mGET /media/product_images/shoes6.jfif[0m
+[36mGET /media/product_images/shoes11.jfif[0m
+[36mGET /media/product_images/shoes1.jfif - 200[0m
+[36mGET /media/product_images/Pants1.jfif[0m
+[36mGET /media/product_images/shoes6.jfif - 200[0m
+[36mGET /media/product_images/shoes11.jfif - 200[0m
+[36mGET /media/product_images/Pants1.jfif - 200[0m
+[36mGET /media/blog_images/HM_Move_teams_up_with_Zlatan_Ibrahimovi%C4%87culture1.jpg[0m
+[36mGET /media/user_images/avatar5_ADpM8vF.png[0m
+[36mGET /media/user_images/avatar2_vjx5qkK.png[0m
+[36mGET /media/blog_images/HM_Move_teams_up_with_Zlatan_Ibrahimovi%C4%87culture1.jpg - 200[0m
+[36mGET /media/blog_images/The_ultimate_guide_to_handbagsfashion1.jpg[0m
+[36mGET /media/user_images/avatar5_ADpM8vF.png - 200[0m
+[36mGET /media/user_images/avatar2_vjx5qkK.png - 200[0m
+[36mGET /media/blog_images/The_ultimate_guide_to_handbagsfashion1.jpg - 200[0m
+[36mGET /favicon.ico[0m
+[35m{'Content-Length': '', 'Content-Type': 'text/plain', 'Host': '127.0.0.1:8000', 'Connection': 'keep-alive', 'Sec-Ch-Ua': '"Not?A_Brand";v="8", "Chromium";v="108", "Google Chrome";v="108"', 'Sec-Ch-Ua-Mobile': '?0', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36', 'Sec-Ch-Ua-Platform': '"Windows"', 'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'no-cors', 'Sec-Fetch-Dest': 'image', 'Referer': 'http://127.0.0.1:8000/en/', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'en-US,en;q=0.9,tr;q=0.8'}[0m
+[35mb''[0m
+[35mGET /favicon.ico - 404[0m
+Not Found: /favicon.ico
+[36mGET /en/product_list/[0m
+[36mGET /en/product_list/ - 200[0m
+[36mGET /en/product/14/[0m
+[36mGET /en/product/14/ - 200[0m
+[36mGET /en/product/13/[0m
+[36mGET /en/product/13/ - 200[0m
+[36mGET /en/product/13/[0m
+[36mGET /en/product/13/ - 200[0m
+[36mGET /en/[0m
+[36mGET /en/ - 200[0m
+[36mGET /en/product_list/[0m
+[36mGET /en/product_list/ - 200[0m
+[36mGET /api/product_versions/?product__category=5[0m
+[36mGET /api/product_versions/?product__category=5 - 200[0m
+[36mGET /en/product/13/[0m
+[36mGET /en/product/13/ - 200[0m
+[36mGET /api/product_versions/?product__category=7[0m
+[36mGET /api/product_versions/?product__category=7 - 200[0m
+[36mGET /en/product/10/[0m
+[36mGET /en/product/10/ - 200[0m

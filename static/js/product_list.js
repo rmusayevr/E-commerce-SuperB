@@ -61,7 +61,10 @@ const categoryFilter = {
 
 let filterCategory = document.getElementsByClassName('category-field');
 for (let i = 0; i < filterCategory.length; i++) {
-  filterCategory[i].onclick = function () {
+  filterCategory[i].onclick = function (e) {
+    if (e.target !== this) {
+      return;
+    }
     const categoryId = this.getAttribute('data');
     categoryFilter.filterProduct(categoryId);
   }

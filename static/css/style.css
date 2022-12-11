@@ -35,6 +35,11 @@ Text Domain:  Superb
 
 /*----------- 1. Body --------------*/
 
+.level0_455 {
+	list-style-type: disc !important;
+	margin-left: 23px !important;
+}
+
 body {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 13px;
@@ -169,7 +174,7 @@ button.button {
 	border-style: solid
 }
 button.button:hover {
-	padding: 7px 15px;
+	
 	transition: all 0.3s linear;
 	-moz-transition: all 0.3s linear;
 	-webkit-transition: all 0.3s linear;
@@ -944,8 +949,6 @@ background:#f6f6f6
 nav {
 	margin: auto;
 	width: 100%;
-	height: 100px;
-	
 }
 
 .inner-page nav {background:url('../images/slide-img1.jpg') repeat top left ;
@@ -1285,7 +1288,7 @@ ul.vertnav-top li > a > span > .cat-label {
 
 .block-27 ul li a,
 .block-27 ul li span {
-    color: #1f1f1f;
+    color: #C2A476;
     text-align: center;
     display: inline-block;
     width: 40px;
@@ -1297,9 +1300,13 @@ ul.vertnav-top li > a > span > .cat-label {
 
 .block-27 ul li.active a,
 .block-27 ul li.active span {
-    background: #1f1f1f;
+    background: #C2A476;
     color: #fff;
     border: 1px solid transparent;
+}
+
+.checkoutAddress {
+	padding: 15px 20px !important;
 }
 /* Category blocks */
 .nav-block {
@@ -1733,6 +1740,7 @@ ul.level1 {
 	position: relative;
 }
 .nav > li.drop-menu a {
+	color:rgba(0, 0, 0);
 }
 .nav li.drop-menu ul li {
 	position: relative;

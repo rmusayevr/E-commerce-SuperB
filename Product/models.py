@@ -58,7 +58,12 @@ class Product(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return reverse('product_detail', kwargs={"pk": self.pk})
+        return reverse('product_detail', kwargs={"pk": self.get_visual_product})
+    
+    @property
+    def get_visual_product(self):
+        for version in self.product_version.all():
+            return version.pk
 
     def save(self, *args, **kwargs):
         if self.in_sale:

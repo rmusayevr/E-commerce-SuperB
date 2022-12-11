@@ -26,7 +26,6 @@ const addCart = {
                 'quantity': Quantity
             })
         }).then(response => response.json()).then(data => {
-            console.log(data.success);
             if (data.success == undefined) {
                 document.getElementById('cart-sidebar').innerHTML = '';
                 for (let i in data) {

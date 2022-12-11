@@ -12,67 +12,63 @@
   <div id="page"> 
     {% block content %}
       <!-- Main Container -->
-      <section class="main-container col1-layout bounceInUp animated">
-        <div class="main container">
-          <div class="account-login">
-            <div class="page-title">
-              <h1>Create an Account</h1>
-            </div>
-            <fieldset class="col2-set">
-                <div class="content">
-                  <form method="POST">
-                    {% csrf_token %}
-                    {% include 'messages.html' %}
-                    {% if form.errors %}
-                      <div class="alert alert-danger alert-dismissible" role="alert">
-                          <div id="form_errors">
-                              {% for key, value in form.errors.items %}
-                                  <strong>{{ value }}</strong>
-                              {% endfor %}
-                          </div>
-                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                          </button>
-                      </div>
-                    {% endif %}
-                    <ul class="form-list row">
-                      <li class="col-md-6">
-                        {{ form.first_name.label }}
-                        {{ form.first_name }}
-                      </li>
-                      <li class="col-md-6">
-                        {{ form.last_name.label }}
-                        {{ form.last_name }}
-                      </li>
-                      <li class="col-md-6"> 
-                        {{ form.email.label }}
-                        {{ form.email }}
-                      </li>
-                      <li class="col-md-6">
-                        {{ form.username.label }}
-                        {{ form.username }}
-                      </li>
-                      <li class="col-md-6">
-                        {{ form.password1.label }}
-                        {{ form.password1 }}
-                      </li>
-                      <li class="col-md-6">
-                        {{ form.password2.label }}
-                        {{ form.password2 }}
-                      </li>
-                    </ul>
-                    <div class="buttons-set">
-                      <button id="send2" type="submit" class="button login"><span>Register</span></button>
-                      If you have an account, <a href="{% url 'login' %}"><span>Login</span></a>
+      <section class="main-container col1-layout bounceInUp animated register">
+        
+        <div class="col-lg-5 mb-5 mb-lg-0">
+          <div class="card" style="border: 1px #e5e5e5 solid; padding: 30px 40px; border-radius: 5px;">
+            <h1 style="font-weight: 500; font-size: 30px; margin: 0 0 15px 0;">Sign up</h1>
+            <div class="card-body py-5 px-md-5">
+              {% include 'messages.html' %}
+              {% if form.errors %}
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <div id="form_errors">
+                        {% for key, value in form.errors.items %}
+                            <strong>{{ value }}</strong>
+                        {% endfor %}
+                    </div>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+              {% endif %}
+              <form method="POST">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      {{form.first_name}}
+                    </div>
                   </div>
-                  </form>
-            </fieldset>
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      {{form.last_name}}
+                    </div>
+                  </div>
+                </div>
+                <div class="form-outline mb-4">
+                  {{form.email}}
+                </div>
+                <div class="form-outline mb-4">
+                  {{form.username}}
+                </div>
+                <div class="form-outline mb-4">
+                  {{form.password1}}
+                </div>
+                <div class="form-outline mb-4">
+                  {{form.password2}}
+                </div>
+                <button type="submit" class="btn btn-block mb-4 rounded-3" id="signup" style="background-color: #997847; color: white; margin-bottom: 5px;">
+                  Sign up
+                </button>
+                <span class="d-flex">
+                  Do you have an account? <a href="{% url 'login' %}" style="color: #997847; margin-left: 5px; text-decoration: underline;"> Sign in</a>
+                </span>
+
+                <!-- Register buttons -->
+
+              </form>
+            </div>
           </div>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
         </div>
       </section>
       <!-- Main Container End --> 

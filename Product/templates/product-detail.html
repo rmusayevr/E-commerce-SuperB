@@ -58,6 +58,11 @@
                       <h2>Quick Overview</h2>
                       <p>{{ product.product.overview }}</p>
                     </div>
+                    <div style="display: flex; ">
+                      {% for color in colors %}
+                        <a href="{% url 'product_detail' color.pk %}"><div style="background-color: {{color.color.name}}; height:40px; width: 40px; border-radius: 50%; content:''; margin: 0 5px 5px 0;"></div></a>
+                      {% endfor %}
+                  </div>
                     <div class="add-to-box">
                       <div class="add-to-cart">
                         <div class="pull-left">
@@ -75,13 +80,7 @@
                         </ul>
                       </div>
                     </div>
-                    <div>
-                      <ul class="list-unstyled" style="margin-top: 30px; padding-left: 10px;">
-                        {% for color in colors %}
-                          <li><a href="{% url 'product_detail' color.pk %}" style="font-size: 20px;">{{ color.color.name }}</a></li>
-                        {% endfor %}
-                      </ul>
-                    </div>
+                    
                   </div>
                 </form>
               </div>

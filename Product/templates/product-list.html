@@ -8,9 +8,9 @@
   <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.bxslider.css' %}">
   <style>
     .link-wishlist:hover {
-      border: 1;
-      background-color: sandybrown;
-      color: black;
+      border: 1px solid #C2A476;
+      background-color: #C2A476;
+      color: white;
     }
   </style>
 {% endblock %}
@@ -43,7 +43,7 @@
                             </div>
                             <div class="actions">
                               <button class="button btn-cart ajx-cart" onclick = "functionAddToBasket($(this).attr('data'))" title="Add to Cart" type="button" data="{{ product.pk }}"><span>Add to Cart</span></button>
-                              <button type="button" class="button link-wishlist add-to-links" onclick = "functionAddToWishlist($(this).attr('data'))" data="{{ product.pk }}" title="Add to Wishlist"><span>Add to Wishlist</span></button> </div>
+                              <button type="button" class="button link-wishlist add-to-links" onclick = "functionAddToWishlist($(this).attr('data'))" data="{{ product.pk }}" title="Add to Wishlist"><span>Add to Wishlist</span></button></div>
                           </div>
                         </li>
                       {% endif %}
@@ -90,7 +90,7 @@
                           <ul class="level0_455" style="display:none">
                             {% for s_category in s_categories %}
                               {% if s_category.p_category == category %}
-                                <li class="category-field" data="{{ s_category.id }}" style="cursor: pointer; padding: 3px 5px;">{{ s_category.name }}</li>
+                                <li class="category-field" data="{{ s_category.id }}" style="cursor: pointer; padding: 3px 0;">{{ s_category.name }}</li>
                               {% endif %}
                             {% endfor %}
                           </ul>
