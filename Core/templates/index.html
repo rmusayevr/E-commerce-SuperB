@@ -230,6 +230,9 @@
             {% endfor %}
           </div>
         </div>
+        <button type="button" onclick="window.open('{% url 'blogs' %}', '_self');" class="btn rounded-3" style="display: block; margin: 25px auto; padding: 10px 20px; background-color: #997847; color: white;">
+          Show More
+        </button>
       </section>
       <!-- End Latest Blog -->
     {% endblock %}

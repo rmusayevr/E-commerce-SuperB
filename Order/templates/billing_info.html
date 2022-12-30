@@ -93,27 +93,27 @@
                   <dt class="complete"> Billing Address <span class="separator">|</span> <a href="{% url 'billing_info' %}">Change</a> </dt>
                   <dd class="complete">
                     <address>
-                      <span>{{ billing_address.first_name }} {{  billing_address.last_name }}</span>
-                      <span>{{ billing_address.telephone }}</span>
-                      <span>{{ billing_address.email }}</span>
-                      <span>{{ billing_address.street_address }}</span>
-                      <span>{{ billing_address.country }}</span>
-                      <span>{{ billing_address.city }}</span>
-                      <span>{{ billing_address.state }}</span>
-                      <span>{{ billing_address.zip }}</span>
+                      <div>{{ billing_address.first_name }} {{  billing_address.last_name }}</div>
+                      <div>{{ billing_address.telephone }}</div>
+                      <div>{{ billing_address.email }}</div>
+                      <div>{{ billing_address.street_address }}</div>
+                      <div>{{ billing_address.country }}</div>
+                      <div>{{ billing_address.city }}</div>
+                      <div>{{ billing_address.province }}</div>
+                      <div>{{ billing_address.zip }}</div>
                     </address>
                   </dd>
                   <dt class="complete"> Shipping Address <span class="separator">|</span> <a href="{% url 'shipping_info' %}">Change</a> </dt>
                   <dd class="complete">
                     <address>
-                      <span>{{ shipping_address.first_name }} {{  shipping_address.last_name }}</span>
-                      <span>{{ shipping_address.telephone }}</span>
-                      <span>{{ shipping_address.email }}</span>
-                      <span>{{ shipping_address.street_address }}</span>
-                      <span>{{ shipping_address.country }}</span>
-                      <span>{{ shipping_address.city }}</span>
-                      <span>{{ shipping_address.state }}</span>
-                      <span>{{ shipping_address.zip }}</span>
+                      <div>{{ shipping_address.first_name }} {{  shipping_address.last_name }}</div>
+                      <div>{{ shipping_address.telephone }}</div>
+                      <div>{{ shipping_address.email }}</div>
+                      <div>{{ shipping_address.street_address }}</div>
+                      <div>{{ shipping_address.country }}</div>
+                      <div>{{ shipping_address.city }}</div>
+                      <div>{{ shipping_address.province }}</div>
+                      <div>{{ shipping_address.zip }}</div>
                     </address>
                   </dd>
                 </dl>

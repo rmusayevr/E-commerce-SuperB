@@ -18,8 +18,8 @@ class HomePage(ListView):
     def get_context_data(self, **kwargs):
         context = super(HomePage, self).get_context_data(**kwargs)
         context['items'] = Product_version.objects.order_by("-datetime").all()[:10]
-        context['featured_items'] = Product_version.objects.order_by("read_count").all()[:4]
-        context['best_items'] = Product_version.objects.order_by("review_count").all()[:4]
+        context['featured_items'] = Product_version.objects.order_by("-read_count").all()[:4]
+        context['best_items'] = Product_version.objects.order_by("-review_count").all()[:4]
         context['new_items'] = Product_version.objects.order_by("-datetime").all()[:4]
         return context
 

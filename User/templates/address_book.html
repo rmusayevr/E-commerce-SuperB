@@ -30,14 +30,14 @@
                     <li class="item">
                       <h4>Default Billing Address</h4>
                       <address>
-                          {{ billing_address.first_name }} {{  billing_address.last_name }}<br>
-                          {{ billing_address.telephone }}<br>
-                          {{ billing_address.email }}<br>
-                          {{ billing_address.street_address }}<br>
-                          {{ billing_address.country }}<br>
-                          {{ billing_address.city }}<br>
-                          {{ billing_address.state }}
-                          {{ billing_address.zip }}
+                        <div>{{ billing_address.first_name }} {{  billing_address.last_name }}</div>
+                        <div>{{ billing_address.telephone }}</div>
+                        <div>{{ billing_address.email }}</div>
+                        <div>{{ billing_address.street_address }}</div>
+                        <div>{{ billing_address.country }}</div>
+                        <div>{{ billing_address.city }}</div>
+                        <div>{{ billing_address.province }}</div>
+                        <div>{{ billing_address.zip }}</div>
                       </address>
                       <p><a href="{% url 'billing_info' %}">Change Billing Address</a></p>
                     </li>
@@ -45,14 +45,14 @@
                     <li class="item">
                       <h4>Default Shipping Address</h4>
                       <address>
-                        {{ shipping_address.first_name }} {{  shipping_address.last_name }}<br>
-                        {{ shipping_address.telephone }}<br>
-                        {{ shipping_address.email }}<br>
-                        {{ shipping_address.street_address }}<br>
-                        {{ shipping_address.country }}<br>
-                        {{ shipping_address.city }}<br>
-                        {{ shipping_address.state }}
-                        {{ shipping_address.zip }}
+                        <div>{{ shipping_address.first_name }} {{  shipping_address.last_name }}</div>
+                        <div>{{ shipping_address.telephone }}</div>
+                        <div>{{ shipping_address.email }}</div>
+                        <div>{{ shipping_address.street_address }}</div>
+                        <div>{{ shipping_address.country }}</div>
+                        <div>{{ shipping_address.city }}</div>
+                        <div>{{ shipping_address.province }}</div>
+                        <div>{{ shipping_address.zip }}</div>
                       </address>
                       <p><a href="{% url 'shipping_info' %}">Change Shipping Address</a></p>
                     </li>
